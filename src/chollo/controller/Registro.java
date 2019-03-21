@@ -21,7 +21,7 @@ import chollo.model.User;
 /**
  * Servlet implementation class Registro
  */
-@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/Registro", "/whatAtreat" })
+@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/Registro" })
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
