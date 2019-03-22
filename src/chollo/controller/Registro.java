@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import chollo.dao.JDBCUserDAOImpl;
 import chollo.dao.UserDAO;
@@ -53,12 +54,20 @@ public class Registro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//Obtengo la base de datos
 		Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
+		
+		//Creo un usuario y lo conecto con la base de datos
 		UserDAO userDAO = new JDBCUserDAOImpl();
 		userDAO.setConnection(conn);
+		HttpSession session = request.getSession();//obtengo la sesion de la requeste que ha hecho el usuario
 		
 		User u = userDAO.get(request.getParameter("user"));
 		try {
+			
+			request.setAttribute("user",u);//que hacia porque no lo tengo apuntado
+			//alamacenar en sesion.
 
 		} catch (NullPointerException e) {
 

@@ -14,6 +14,8 @@ public class Chollo {
 	private int likes;
 	private int soldout;
 	
+	private String imagen;
+	
 	
 	public int getSoldout() {
 		return soldout;
@@ -68,6 +70,13 @@ public class Chollo {
 	}
 	public void setIdu(long idu) {
 		this.idu = idu;
+	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	
 	

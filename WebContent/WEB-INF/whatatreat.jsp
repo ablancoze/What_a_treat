@@ -118,7 +118,8 @@
 				<c:forEach var="chollo" items="${chollosList}">
 					<div class="cholloBox">
 						<div class="cholloImagen">
-							<a href=""> <img src="10021021841-6-118x118.jpg">
+							<a href="">
+							<img src = "${chollo.first.imagen}">
 							</a>
 						</div>
 						<div class="textoChollo">
@@ -131,9 +132,9 @@
 								<h4>${chollo.first.price}</h4>
 								<a href="">#tienda</a>
 							</div>
-							<p>Descripcion chollo</p>
+							<p>${chollo.first.description}</p>
 							<div class="autorVerChollo">
-								<a href="">usuario</a>
+								<a href="">${chollo.second.username}</a>
 								<button href="">Ver Chollo</button>
 							</div>
 						</div>

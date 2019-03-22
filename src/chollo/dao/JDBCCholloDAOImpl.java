@@ -35,6 +35,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 			chollo.setIds(rs.getInt("ids"));
 			chollo.setLikes(rs.getInt("likes"));
 			chollo.setSoldout(rs.getInt("soldout"));
+			chollo.setImagen(rs.getString("imagen"));
 			
 			logger.info("fetching chollos: "+chollo.getId()+" "+chollo.getTitle()+" "+chollo.getDescription()+ " " + chollo.getLink() + " " + chollo.getPrice() 
 						+ " " + chollo.getIdu() + " " + chollo.getIds() + " " + chollo.getLikes() + " " + chollo.getSoldout());
@@ -69,7 +70,8 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 				chollo.setIds(rs.getInt("ids"));
 				chollo.setLikes(rs.getInt("likes"));
 				chollo.setSoldout(rs.getInt("soldout"));
-				
+				chollo.setImagen(rs.getString("imagen"));
+						
 				
 				chollos.add(chollo);
 				logger.info("fetching chollos: "+chollo.getId()+" "+chollo.getTitle()+" "+chollo.getDescription()+ " " + chollo.getLink() + " " + chollo.getPrice() 

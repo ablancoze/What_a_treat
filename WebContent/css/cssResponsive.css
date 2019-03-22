@@ -1,505 +1,412 @@
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-::placeholder{
-    color: #0093c4;
-    font-weight: bold;
+::placeholder {
+	color: #0093c4;
+	font-weight: bold;
 }
+
 .row::after {
-  content: "";
-  clear: both;
-  display: table;
+	content: "";
+	clear: both;
+	display: table;
 }
 
-.row{
-     background-color:#F7F7F7;
+.row {
+	background-color: #F7F7F7;
 }
 
-body{
-    display: block;
-    margin: 0;
+body {
+	display: block;
+	margin: 0;
 }
-
 
 html {
-  font-family: "Robot", sans-serif;
+	font-family: "Robot", sans-serif;
 }
-
-
 
 @media only screen and (min-width: 1368px) {
-  /* For desktop: */
-    
-    .col-3 {
-        width: 23%;
-        float: right;
-        margin-top: 174px;
-        margin-bottom: 1000px;
-    }
-    
-    .mainContainer{
-        width: 80%;
-        padding-right: 30px;
-    }
-    
-    
-/*------------------------------------------------*/
-/*------------------------------------------------*/
-/*--------------------HEADER----------------------*/
-/*------------------------------------------------*/
-/*------------------------------------------------*/
-    
-    header {
-        position: sticky;
-        top: 0;
-        padding-bottom: 15px;
-        padding-left: 15px;
-        padding-right: 28px;
-        padding-top: 12px;
-        display: inline-flex;
-        background-color: #002531;
-        color: #2a80b9;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        height: 84px;
-        box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0,0,0,.25);
-    }
-    
-    
-    
-/*--------------Seccion del logo--------------------*/
-    
-    header .seccionLogo{
-        display:inline-flex;
-        align-items: center;
-        align-self: center; 
-        justify-content: space-between;
-        margin-left: 36px;
-    }
-    
-    header .seccionLogo .boton{
-        background-color: transparent;
-        display: flex;
-        margin: 0;
-    }
-    
-    header .seccionLogo .boton span .material-icons{
-        font-family: 'Material Icons';
-        font-weight: normal;
-        font-style: normal;
-        font-size: 40px;
-        line-height: 1;
-        letter-spacing: normal;
-        text-transform: none;
-        display: inline-block;
-        white-space: nowrap;
-        word-wrap: normal;
-        direction: ltr;
-        -webkit-font-feature-settings: 'liga';
-        -webkit-font-smoothing: antialiased;
-    }
-    
-    
-    header .seccionLogo a{
-        display: flex;
-        margin-left: 81px;
-    }
-    
-    .Logo{
-        width: 167px;
-        height: 72px;
-    }
+	/* For desktop: */
+	.col-3 {
+		width: 23%;
+		float: right;
+		margin-top: 174px;
+		margin-bottom: 1000px;
+	}
+	.mainContainer {
+		width: 80%;
+		padding-right: 30px;
+	}
 
-/*---------------Fin Seccion del logo-----------------*/
-    
-    
-    
-/*---------------Seccion buscador---------------------*/
-    header .buscador{
-        display: inline-flex;
-        width: 27%;
-    }
+	/*------------------------------------------------*/
+	/*------------------------------------------------*/
+	/*--------------------HEADER----------------------*/
+	/*------------------------------------------------*/
+	/*------------------------------------------------*/
+	header {
+		position: sticky;
+		top: 0;
+		padding-bottom: 15px;
+		padding-left: 15px;
+		padding-right: 28px;
+		padding-top: 12px;
+		display: inline-flex;
+		background-color: #002531;
+		color: #2a80b9;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		height: 84px;
+		box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);
+	}
 
-    header .buscador > div{
-        margin: 0;
-    }
-    
-    header .buscador .searchBox{
-        width: 66%;
-    }
+	/*--------------Seccion del logo--------------------*/
+	header .seccionLogo {
+		display: inline-flex;
+		align-items: center;
+		align-self: center;
+		justify-content: space-between;
+		margin-left: 36px;
+	}
+	header .seccionLogo .boton {
+		background-color: transparent;
+		display: flex;
+		margin: 0;
+	}
+	header .seccionLogo .boton span .material-icons {
+		font-family: 'Material Icons';
+		font-weight: normal;
+		font-style: normal;
+		font-size: 40px;
+		line-height: 1;
+		letter-spacing: normal;
+		text-transform: none;
+		display: inline-block;
+		white-space: nowrap;
+		word-wrap: normal;
+		direction: ltr;
+		-webkit-font-feature-settings: 'liga';
+		-webkit-font-smoothing: antialiased;
+	}
+	header .seccionLogo a {
+		display: flex;
+		margin-left: 81px;
+	}
+	.Logo {
+		width: 167px;
+		height: 72px;
+	}
 
-    header .buscador > div >input{
-        height: 33px;
-        border-bottom-left-radius: 18px;
-        border-top-left-radius: 18px;
-        border-style: solid;
-        border-color: #0093c4;
-        border-right: none;
-        background-color: transparent;;
-        width: 100%;
-        padding-left: 15px;
-        font-size: medium;
-        color: white;
-        font: inherit;
-        font-weight: bold;
+	/*---------------Fin Seccion del logo-----------------*/
 
-    }
-    
-    input[type="search" i] {
-        -webkit-appearance:none;
-    }
+	/*---------------Seccion buscador---------------------*/
+	header .buscador {
+		display: inline-flex;
+		width: 27%;
+	}
+	header .buscador>div {
+		margin: 0;
+	}
+	header .buscador .searchBox {
+		width: 66%;
+	}
+	header .buscador>div>input {
+		height: 33px;
+		border-bottom-left-radius: 18px;
+		border-top-left-radius: 18px;
+		border-style: solid;
+		border-color: #0093c4;
+		border-right: none;
+		background-color: transparent;;
+		width: 100%;
+		padding-left: 15px;
+		font-size: medium;
+		color: white;
+		font: inherit;
+		font-weight: bold;
+	}
+	input[type="search" i] {
+		-webkit-appearance: none;
+	}
+	header .buscador div>button {
+		background-color: transparent;
+		border-style: solid;
+		border-color: #0093c4;
+		border-bottom-right-radius: 18px;
+		border-top-right-radius: 18px;
+		border-left: none;
+		height: 33px;
+		color: #0093c4;
+	}
+	/*---------------Fin seccion buscador--------------------*/
 
-    header .buscador div > button{
-        background-color: transparent;
-        border-style: solid;
-        border-color: #0093c4;
-        border-bottom-right-radius: 18px;
-        border-top-right-radius: 18px;
-        border-left: none;
-        height: 33px;
-        color: #0093c4;
-    }
-/*---------------Fin seccion buscador--------------------*/
-    
-    
-/*---------------Seccion Botones Usuario-----------------*/
+	/*---------------Seccion Botones Usuario-----------------*/
+	header .botonesUsuario {
+		display: inline-flex;
+		width: 19%;
+		justify-content: space-between;
+	}
+	header .botonesUsuario>a {
+		max-width: 136px;
+		max-height: 46px;
+		display: inherit;
+		border-radius: 7px;
+		-webkit-transition: width 10s;
+		transition: width 10s;
+		text-align: center;
+		border-bottom-left-radius: 18px;
+		border-top-left-radius: 18px;
+		border-style: solid;
+		border-color: #0093c4;
+		border-bottom-right-radius: 18px;
+		border-top-right-radius: 18px;
+	}
+	header .botonesUsuario>a .icono .material-icons {
+		display: flex;
+		font-size: 41px;
+	}
+	header .botonesUsuario>a .animacion {
+		display: flex;
+		left: 0;
+		border-left: 1px solid #2a80b9;
+	}
+	header .botonesUsuario>a .textoBoton {
+		margin-left: 3px;
+		font-weight: bold;
+		font-size: 99%;
+		padding-left: 1px;
+		border-top-right-radius: 7px;
+		border-bottom-right-radius: 7px;
+	}
+	.botonPublicar:hover span.animacion {
+		border-right: 4px solid #2a80b9;
+	}
+	.botonUsuario:hover span.animacion {
+		border-right: 4px solid #2a80b9;
+	}
 
-    header .botonesUsuario{
-        display: inline-flex;
-        width: 19%;
-        justify-content: space-between;
-    }
+	/*-------------Fin seccion Botones Usuario----------------*/
 
-    header .botonesUsuario > a{
-        
-        max-width: 136px;
-        max-height: 46px;
-        display: inherit;
-        border-radius: 7px;
-        -webkit-transition: width 10s;
-        transition: width 10s;
-        text-align: center;
-        border-bottom-left-radius: 18px;
-        border-top-left-radius: 18px;
-        border-style: solid;
-        border-color: #0093c4;
-        border-bottom-right-radius: 18px;
-        border-top-right-radius: 18px;
-    }
+	/*------------------------------------------------*/
+	/*------------------------------------------------*/
+	/*---------------------NAV------------------------*/
+	/*------------------------------------------------*/
+	/*------------------------------------------------*/
+	nav {
+		float: right;
+		list-style: none;
+		width: 87%;
+		transition: margin .2s ease-out 0s;
+		background-color: #308CAA;
+		color: white;
+		font-weight: bold;
+		padding-left: 25px;
+		height: 25px;
+		transition: 0.3s;
+	}
+	nav>p {
+		margin: 0;
+		margin-top: 5px;
+	}
 
+	/*------------------------------------------------*/
+	/*------------------------------------------------*/
+	/*---------------------ROW------------------------*/
+	/*------------------------------------------------*/
+	/*------------------------------------------------*/
 
-
-    header .botonesUsuario > a .icono .material-icons{
-        display: flex;
-        font-size: 41px;
-    }
-    header .botonesUsuario > a .animacion{
-        display: flex;
-        left: 0;
-        border-left: 1px solid #2a80b9;
-    }
-
-    header .botonesUsuario > a .textoBoton{
-        margin-left: 3px;
-        font-weight: bold;
-        font-size: 99%;
-        padding-left: 1px;
-        border-top-right-radius: 7px;
-        border-bottom-right-radius: 7px;
-    }
-
-    .botonPublicar:hover span.animacion{
-        border-right: 4px solid #2a80b9;
-    }
-    .botonUsuario:hover span.animacion{
-        border-right: 4px solid #2a80b9;
-    }
-    
-  /*-------------Fin seccion Botones Usuario----------------*/ 
-    
-    
-
-    
-    
-/*------------------------------------------------*/
-/*------------------------------------------------*/
-/*---------------------NAV------------------------*/
-/*------------------------------------------------*/
-/*------------------------------------------------*/
-    
-    
-    
-    nav{
-        float: right;
-        list-style: none;
-        width: 87%;
-        transition: margin .2s ease-out 0s;
-        background-color: #308CAA;
-        color: white;
-        font-weight: bold;
-        padding-left: 25px;
-        height: 25px;
-        transition: 0.3s;
-    }
-
-    nav > p{
-        margin: 0;
-        margin-top: 5px;
-    }
-    
-    
-/*------------------------------------------------*/
-/*------------------------------------------------*/
-/*---------------------ROW------------------------*/
-/*------------------------------------------------*/
-/*------------------------------------------------*/
-    
-/*------Seccion Navegacion desplegable------------*/
-    
-    .row .navegacion {
-        height: 100%;
-        width: 250px;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        background-color: #002531;
-        overflow-x: hidden;
-        transition: 0.3s;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0,0,0,.25);
-        display: block;
-        
-    }
-    
-    .row .navegacion li {
-        background-color:transparent;
-        padding: 8px 8px 8px 0px;
-        text-decoration: none;
-        font-size: 23px;
-        color: #0093c4;
-        transition: 0.3s;
-        width: 48%;
-        font-weight: 600;
-        margin-left: 32px;
-        display: block;
-      
-        
-    }
-
-    
-    .row .navegacion li > div {
-        visibility: hidden;
-        width: 0;
-        height: 0;
-        opacity: 0;
-        display: block;
-        margin-left: 25px;
-        transition:height 0.6s;
-        
-    }
-    
-
-    
-    .row .navegacion > li > div > a{
-        color: white;
-        text-decoration: none;
-        font-size: 15px;
-    }
-    
-    
-    .row .navegacion li:hover{
-        color: #005C7B;
-        cursor: context-menu; 
-        
-        
-        
-    }
-
-    .row .navegacion li:hover > div  {
-        visibility: visible;
-        width: 100px;
-        height: 217px;
-        opacity: 1;
-        transition: width 0.6s,height 0.6s,opacity 1s;
-    }
-    
-    
-    
-    .mainContainer{
-        display: table;
-        float: right;
-        transition: margin .2s ease-out 0s;
-    }
-    .aside {
-      background-color: #33b5e5;
-      padding: 15px;
-      color: #ffffff;
-      text-align: center;
-      font-size: 14px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    }
-
-    .footer {
-      background-color: #0099cc;
-      color: #ffffff;
-      text-align: center;
-      font-size: 12px;
-      padding: 15px;
-        display: block;
-    }
-
-    .col-6 {
-        width: 75%; 
-        float: left;
-        text-align: center;
-        margin-top: 2%;
-        background-color: white;
-    }
-    
-    .mainContainer > .col-6 > .cholloBox{
-        margin-bottom: 2%;
-        margin-top: 2%;
-        display: grid;
-        grid-template-columns: 20% 80%;
-    }
-    
-    .mainContainer > .col-6 > .cholloBox > .textoChollo > .progressBar{
-        display: inline-flex;
-    }
-    
-    .mainContainer > .col-6 > .cholloBox > .textoChollo > .progressBar > i.material-icons{
-        font-size: 30px;
-        margin: 0 10px 0 10px;
-    }
-    
-    .mainContainer > .col-6 > .cholloBox > .textoChollo > .progressBar > .progress{
-        width: 60%;
-        background-color: #F7F7F7;
-        height: 30px;
-        margin-left: 5%;
-    }
-    
-    .mainContainer > .col-6 > .cholloBox > .cholloImagen > a > img {
-        
-        width: 160px;
-        height: 160px;
-        
-    }
-    
-    .mainContainer > .col-6 > .cholloBox > .textoChollo{
-        
-        display: grid;
-        grid-template-rows: auto auto auto auto auto;
-        text-align: initial;
-        
-    }
-
-    .mainContainer > .col-6 > .cholloBox > .textoChollo > .precioTienda {
-
-	display: grid;
-        grid-template-columns: 40% 60%;
-        text-align: initial;
-
-    }
-
-    .mainContainer > .col-6 > .cholloBox > .textoChollo > .autorVerChollo{
-	display: grid;
-        grid-template-columns: 40% 60%;
-        text-align: initial;
-    }
-
-    .mainContainer > .col-6 > .cholloBox > .textoChollo > h3 , h4 , p{
-	margin: 0;
-    }
-    
-    .row .eventBox{
-        display: inline-flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        background-color: white;
-        float: right;
-        padding: 0 20% 0 20%;
-        box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0,0,0,.25);
-
-    }
-
-    .row .eventBox .cholloEventBox{
-        display: inline-flex;
-        align-items: center;
-        width: 33.33%;
-        text-align: initial;
-
-    }
-
+	/*------Seccion Navegacion desplegable------------*/
+	.row .navegacion {
+		height: 100%;
+		width: 250px;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		background-color: #002531;
+		overflow-x: hidden;
+		transition: 0.3s;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);
+		display: block;
+	}
+	.row .navegacion li {
+		background-color: transparent;
+		padding: 8px 8px 8px 0px;
+		text-decoration: none;
+		font-size: 23px;
+		color: #0093c4;
+		transition: 0.3s;
+		width: 48%;
+		font-weight: 600;
+		margin-left: 32px;
+		display: block;
+	}
+	.row .navegacion li>div {
+		visibility: hidden;
+		width: 0;
+		height: 0;
+		opacity: 0;
+		display: block;
+		margin-left: 25px;
+		transition: height 0.6s;
+	}
+	.row .navegacion>li>div>a {
+		color: white;
+		text-decoration: none;
+		font-size: 15px;
+	}
+	.row .navegacion li:hover {
+		color: #005C7B;
+		cursor: context-menu;
+	}
+	.row .navegacion li:hover>div {
+		visibility: visible;
+		width: 100px;
+		height: 217px;
+		opacity: 1;
+		transition: width 0.6s, height 0.6s, opacity 1s;
+	}
+	.mainContainer {
+		display: table;
+		float: right;
+		transition: margin .2s ease-out 0s;
+	}
+	.aside {
+		background-color: #33b5e5;
+		padding: 15px;
+		color: #ffffff;
+		text-align: center;
+		font-size: 14px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	}
+	.footer {
+		background-color: #0099cc;
+		color: #ffffff;
+		text-align: center;
+		font-size: 12px;
+		padding: 15px;
+		display: block;
+	}
+	.col-6 {
+		width: 75%;
+		float: left;
+		text-align: center;
+		margin-top: 2%;
+		background-color: #F7F7F7;
+	}
+	.mainContainer>.col-6>.cholloBox {
+		margin-bottom: 2%;
+		margin-top: 2%;
+		display: grid;
+		grid-template-columns: 20% 80%;
+		background-color: white;
+		box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);
+	}
+	.mainContainer>.col-6>.cholloBox>.textoChollo>.progressBar {
+		display: inline-flex;
+		margin-top: 10px;
+	}
+	.mainContainer>.col-6>.cholloBox>.textoChollo>.progressBar>i.material-icons
+		{
+		font-size: 30px;
+		margin: 0 10px 0 10px;
+	}
+	.mainContainer>.col-6>.cholloBox>.textoChollo>.progressBar>.progress {
+		width: 60%;
+		background-color: #F7F7F7;
+		height: 30px;
+		margin-left: 5%;
+	}
+	.mainContainer>.col-6>.cholloBox>.cholloImagen>a>img {
+		width: 160px;
+		height: 160px;
+	}
+	.mainContainer>.col-6>.cholloBox>.textoChollo {
+		display: grid;
+		grid-template-rows: auto auto auto auto auto;
+		text-align: initial;
+	}
+	.mainContainer>.col-6>.cholloBox>.textoChollo>.precioTienda {
+		display: grid;
+		grid-template-columns: 40% 60%;
+		text-align: initial;
+	}
+	.mainContainer>.col-6>.cholloBox>.textoChollo>.autorVerChollo {
+		display: grid;
+		grid-template-columns: 40% 60%;
+		text-align: initial;
+	}
+	.mainContainer>.col-6>.cholloBox>.textoChollo>h3, h4, p {
+		margin: 0;
+	}
+	.row .eventBox {
+		display: inline-flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		background-color: white;
+		float: right;
+		padding: 0 20% 0 20%;
+		box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);
+	}
+	.row .eventBox .cholloEventBox {
+		display: inline-flex;
+		align-items: center;
+		width: 33.33%;
+		text-align: initial;
+	}
 }
 
-
-
 @media only screen and (max-width: 757px) {
-    
-    [class*="col-"] {
-        width: 100%;
-        padding: 15px;
-    }
-    .mainContainer{
-        width: 100%;
-    }
-    
-    .cabecera {
-        padding: 15px;
-        display: flex;
-    }
-    
-    .cabecera .seccionLogo > h1 > a {
-    color: #0093c4;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 28px;
-    font-style: bold;
-    text-decoration: none;
-    }   
-    
-    .seccionLogo > a.boton{
-        display: none;
-    }
-    
-    .botonesUsuario > a > div > span{
-        display: none;
-    }
-    
-    .botonesUsuario  .textoBoton{
-        display: none;
-        
-    }
-    
-    .icono .material-icons{
-        font-size: 30px;
-        border-top-right-radius: 7px;
-        border-bottom-right-radius: 7px;
-    }
-    
-    .animacion{
-        display: none;
-    }
-    
-    ul.navegacion{
-        width: 0;
-    }
-    
-    .buscador > div > input {
-    margin: 0;
-        display: none;
-    }
-    
-    .navegadorLinks {
-    float: right;
-    list-style: none;
-    width: 100%;
-    transition: 0.5s;
-    }
-    
+	[class*="col-"] {
+		width: 100%;
+		padding: 15px;
+	}
+	.mainContainer {
+		width: 100%;
+	}
+	.cabecera {
+		padding: 15px;
+		display: flex;
+	}
+	.cabecera .seccionLogo>h1>a {
+		color: #0093c4;
+		font-family: 'Quicksand', sans-serif;
+		font-size: 28px;
+		font-style: bold;
+		text-decoration: none;
+	}
+	.seccionLogo>a.boton {
+		display: none;
+	}
+	.botonesUsuario>a>div>span {
+		display: none;
+	}
+	.botonesUsuario  .textoBoton {
+		display: none;
+	}
+	.icono .material-icons {
+		font-size: 30px;
+		border-top-right-radius: 7px;
+		border-bottom-right-radius: 7px;
+	}
+	.animacion {
+		display: none;
+	}
+	ul.navegacion {
+		width: 0;
+	}
+	.buscador>div>input {
+		margin: 0;
+		display: none;
+	}
+	.navegadorLinks {
+		float: right;
+		list-style: none;
+		width: 100%;
+		transition: 0.5s;
+	}
 }
