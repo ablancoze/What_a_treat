@@ -74,7 +74,7 @@ public class ServletContextListener implements javax.servlet.ServletContextListe
 		try {
 			logger.info("DB shutdown start");
 	   		ServletContext sc = arg0.getServletContext();
-	   		Connection conn = (Connection) sc.getAttribute("dbConn");
+	   		Connection conn = (Connection) sc.getAttribute("dbWhat");
 			conn.close();
 			Enumeration<Driver> drivers = DriverManager.getDrivers();
 			while (drivers.hasMoreElements()) {

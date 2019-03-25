@@ -32,31 +32,37 @@
         </div>
         
         <div class="botonesUsuario">
-            <a class="botonPublicar" href="Registro.html">
+            <a class="botonPublicar" onclick="openclosePublicar()">
                 <div class="icono">
-                    <i class="material-icons md-41">label</i>
+                    <i class="material-icons">add_circle</i>
                 </div>
-                <span class="animacion"></span>
-                <span class="textoBoton">
-                    Publica un chollo
-                </span>
             </a>
-            
-            <a class="botonUsuario">
+            <a class="botonUsuario" href="Registro.html">
                 <div class="icono">
                     <i class="material-icons md-41">account_circle</i>
                 </div>
-                <span class="animacion"></span>
-                <span class="textoBoton">
-                    Entrar o Registrate
-                </span>
             </a>
-        
         </div>
-        
     </header>
-    
+
     <nav id="navegadorSecundario" class="navegadorLinks">
+        <section class="publicarChollo" id="publicarChollo" style="display: none">
+            <div>
+                <a alt="Publicar un chollo" href="">
+                    <i class="material-icons">
+                        local_offer
+                    </i>
+                    Publicar Chollo
+                </a> 
+                <a alt="Publicar un cupon" href="">
+                        <i class="material-icons">
+                            local_activity
+                        </i>
+                        Publicar Cupon
+                </a> 
+
+            </div>
+        </section>
         <p>La mejor paginda de chollos</p>
     </nav>
     
@@ -167,9 +173,7 @@
 
 <footer class="footer">
   <p>Resize the browser window to see how the content respond to the resizing.</p>
-</footer>
-    
-    
+</footer> 
 <script>
 
     function openclosenav(){
@@ -183,6 +187,14 @@
             document.getElementById("navegador").style.width = "0";
             document.getElementById("principal").style.width = "90%";
             document.getElementById("navegadorSecundario").style.width = "100%";
+        }
+    }
+    
+    function openclosePublicar(){
+        if (document.getElementById("publicarChollo").style.display == "none"){
+            document.getElementById("publicarChollo").style.display = "block";
+        }else{
+            document.getElementById("publicarChollo").style.display = "none";
         }
     }
     
