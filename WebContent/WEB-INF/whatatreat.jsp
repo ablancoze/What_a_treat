@@ -18,102 +18,119 @@
 </head>
 <body>
 
-	<header>
-		<div class="seccionLogo">
-			<a class="boton"> <span
-				style="font-size: 30px; cursor: pointer; display: flex;"
-				onclick="openclosenav()"><i class="material-icons">menu</i></span>
-			</a> 
-			<a href="<c:url value="whatAtreat" />"> <img class="Logo"
-				src="Sin%20t%C3%ADtulo.png">
-			</a>
+    <header>
+        <div class="seccionLogo">
+            <a class="boton">
+                <span style="font-size:30px;cursor:pointer;display: flex;" onclick="openclosenav()"><i  class="material-icons">menu</i></span>
+            </a>
+            <a href="what_a_treat.html">
+                <img class="Logo" src="Sin%20t%C3%ADtulo.png">
+            </a>
+            
+        </div>
+        
+        <div class="buscador">
+            <div class="searchBox">
+                <input type="search" id="search" placeholder="What are you looking for?" >
+            </div>
+            <div>
+                <button type="submit"><i  class="material-icons">search</i></button>
+            </div>
+        </div>
+        
+        <div class="botonesUsuario">
+            <a class="botonPublicar" onclick="openclosePublicar()">
+                <div class="icono">
+                    <i class="material-icons">add_circle</i>
+                </div>
+            </a>
+            <a class="botonUsuario" href="Registro.html">
+                <div class="icono">
+                    <i class="material-icons md-41">account_circle</i>
+                </div>
+            </a>
+        </div>
+    </header>
 
-		</div>
+    <nav id="navegadorSecundario" class="navegadorLinks">
+        <section class="publicarChollo" id="publicarChollo" style="display: none">
+            <div>
+                <a alt="Publicar un chollo" href="PublicarChollo.html">
+                    <i class="material-icons">
+                        local_offer
+                    </i>
+                    Publicar Chollo
+                </a> 
+                <a alt="Publicar un cupon" href="">
+                        <i class="material-icons">
+                            local_activity
+                        </i>
+                        Publicar Cupon
+                </a> 
 
-		<div class="buscador">
-			<div class="searchBox">
-				<input type="search" id="search"
-					placeholder="What are you looking for?">
-			</div>
-			<div>
-				<button type="submit">
-					<i class="material-icons">search</i>
-				</button>
-			</div>
-		</div>
-
-		<div class="botonesUsuario">
-			<a class="botonPublicar" href="">
-				<div class="icono">
-					<i class="material-icons md-41">label</i>
-				</div> 
-				<span class="animacion"></span> 
-				<span class="textoBoton">Publica un chollo </span>
-			</a> 
-			<a class="botonUsuario" href="<c:url value = "/Registro"/>">
-				<div class="icono">
-					<i class="material-icons md-41">account_circle</i>
-				</div> <span class="animacion"></span> 
-				<span class="textoBoton">Entrar o Registrate </span>
-			</a>
-
-		</div>
-
-	</header>
-
-	<nav id="navegadorSecundario" class="navegadorLinks">
-		<p>La mejor paginda de chollos</p>
-	</nav>
-
-	<div class="row">
-		<div class="eventBox" id="eventBoxid">
-			<div class="cholloEventBox">
-				<a href="#home"> <img class="imagenEvent" alt="carrito bebe"
-					src="10021021841-6-118x118.jpg">
-				</a>
-				<p>Riñonera putimadre para el pc o lo que sea XD</p>
-			</div>
-			<div class="cholloEventBox">
-				<a href="#home"> <img class="imagenEvent" alt="carrito bebe"
-					src="10021021841-6-118x118.jpg">
-				</a>
-				<p>Riñonera putimadre para el pc o lo que sea XD</p>
-			</div>
-			<div class="cholloEventBox">
-				<a href="#home"> <img class="imagenEvent" alt="carrito bebe"
-					src="10021021841-6-118x118.jpg">
-				</a>
-				<p>Riñonera putimadre para el pc o lo que sea XD</p>
-			</div>
-		</div>
-		<ul id="navegador" class="navegacion">
-			<li>Tiendas
-				<div>
-					<a href="#">Aliexpress</a> <a href="#">Amazon</a> <a href="#">MediaMarkt</a>
-					<a href="#">PCcomponentes</a> <a href="#">Banggood</a> <a href="#">Ebay</a>
-					<a href="#">Gearbest</a> <a href="#">Steam</a>
-				</div>
-			</li>
-
-			<li>Categorias <a href="#home"></a>
-			</li>
-
-			<li>Chollos Aliexpress <a href="#home"></a>
-			</li>
-
-			<li>Chollos Amazon <a href="#home"></a>
-			</li>
-
-			<li>Chollos MediaMarkt <a href="#home"></a>
-			</li>
-
-			<li>Contacto <a href="#home"></a>
-			</li>
-
-		</ul>
-
-		<div id="principal" class="mainContainer">
-
+            </div>
+        </section>
+        <p>La mejor paginda de chollos</p>
+    </nav>
+    
+    <div class="row">
+        <div class="eventBox" id="eventBoxid">
+            <div class="cholloEventBox">
+                <a href="#home">
+                    <img class="imagenEvent" alt="carrito bebe" src="10021021841-6-118x118.jpg">
+                </a>
+                <p>Riñonera putimadre para el pc o lo que sea XD</p>
+            </div>
+            <div class="cholloEventBox">
+                <a href="#home">
+                    <img class="imagenEvent" alt="carrito bebe" src="10021021841-6-118x118.jpg">
+                </a>
+                <p>Riñonera putimadre para el pc o lo que sea XD</p>
+            </div>
+            <div class="cholloEventBox">
+                <a href="#home">
+                    <img class="imagenEvent" alt="carrito bebe" src="10021021841-6-118x118.jpg">
+                </a>
+                <p>Riñonera putimadre para el pc o lo que sea XD</p>
+            </div>
+        </div>
+        <ul id="navegador" class="navegacion">
+            <li>Tiendas
+                <div>
+                    <a href="#">Aliexpress</a>
+                    <a href="#">Amazon</a>
+                    <a href="#">MediaMarkt</a>
+                    <a href="#">PCcomponentes</a>
+                    <a href="#">Banggood</a>
+                    <a href="#">Ebay</a>
+                    <a href="#">Gearbest</a>
+                    <a href="#">Steam</a>
+                </div>
+            </li>
+            
+            <li>Categorias
+                <a href="#home"></a>
+            </li>
+            
+            <li>Chollos Aliexpress
+                <a href="#home"></a>
+            </li>
+            
+            <li>Chollos Amazon
+                <a href="#home"></a>
+            </li>
+            
+            <li>Chollos MediaMarkt
+                <a href="#home"></a>
+            </li>
+            
+            <li>Contacto
+                <a href="#home"></a>
+            </li>
+            
+        </ul>
+    
+        <div id="principal" class="mainContainer">
 			<div class="col-6 col-s-9">
 				<c:forEach var="chollo" items="${chollosList}">
 					<div class="cholloBox">
@@ -140,42 +157,48 @@
 						</div>
 					</div>
 				</c:forEach>
-				
 			</div>
-			<div class="col-3 col-s-12">
-				<div class="aside">
-					<h2>What?</h2>
-					<p>Chania is a city on the island of Crete.</p>
-					<h2>Where?</h2>
-					<p>Crete is a Greek island in the Mediterranean Sea.</p>
-					<h2>How?</h2>
-					<p>You can reach Chania airport from all over Europe.</p>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="col-3 col-s-12">
+                <div class="aside">
+                    <h2>What?</h2>
+                    <p>Chania is a city on the island of Crete.</p>
+                    <h2>Where?</h2>
+                    <p>Crete is a Greek island in the Mediterranean Sea.</p>
+                    <h2>How?</h2>
+                    <p>You can reach Chania airport from all over Europe.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<footer class="footer">
-		<p>Resize the browser window to see how the content respond to the
-			resizing.</p>
-	</footer>
+<footer class="footer">
+  <p>Resize the browser window to see how the content respond to the resizing.</p>
+</footer> 
+<script>
 
+    function openclosenav(){
 
-	<script>
-		function openclosenav() {
-
-			if (document.getElementById("navegador").style.width == "0px") {
-				document.getElementById("navegador").style.width = "250px";
-				document.getElementById("principal").style.width = "80%";
-				document.getElementById("navegadorSecundario").style.width = "87%";
-
-			} else {
-				document.getElementById("navegador").style.width = "0";
-				document.getElementById("principal").style.width = "90%";
-				document.getElementById("navegadorSecundario").style.width = "100%";
-			}
-		}
-	</script>
+        if(document.getElementById("navegador").style.width == "0px"){
+            document.getElementById("navegador").style.width = "250px"; 
+            document.getElementById("principal").style.width = "80%";
+            document.getElementById("navegadorSecundario").style.width = "87%";
+            
+        }else{
+            document.getElementById("navegador").style.width = "0";
+            document.getElementById("principal").style.width = "90%";
+            document.getElementById("navegadorSecundario").style.width = "100%";
+        }
+    }
+    
+    function openclosePublicar(){
+        if (document.getElementById("publicarChollo").style.display == "none"){
+            document.getElementById("publicarChollo").style.display = "block";
+        }else{
+            document.getElementById("publicarChollo").style.display = "none";
+        }
+    }
+    
+</script>
 
 </body>
 </html>
