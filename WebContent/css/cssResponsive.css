@@ -217,8 +217,15 @@ html {
         color: #2a80b9;
         cursor: pointer;
         text-decoration: none;
+        width: 70%;
 
     }
+    
+    .publicarChollo>div>a:hover{
+        color: #95C0DC;
+    }
+    
+    /*#95C0DC*/
 
 	/*------------------------------------------------*/
 	/*------------------------------------------------*/
