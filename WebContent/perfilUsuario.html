@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/cssResponsive.css" type="text/css"><link>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+<title>What a Treat</title>
+</head>
+    <body>
+
+        <header>
+            <div class="seccionLogo">
+                <a class="boton">
+                    <span style="font-size:30px;cursor:pointer;display: flex;" onclick="openclosenav()"><i  class="material-icons">menu</i></span>
+                </a>
+                <a href="what_a_treat.html">
+                    <img class="Logo" src="Sin%20t%C3%ADtulo.png">
+                </a>
+
+            </div>
+
+            <div class="buscador">
+                <div class="searchBox">
+                    <input type="search" id="search" placeholder="What are you looking for?" >
+                </div>
+                <div>
+                    <button type="submit"><i  class="material-icons">search</i></button>
+                </div>
+            </div>
+
+            <div class="botonesUsuario">
+                <a class="botonPublicar" onclick="openclosePublicar()">
+                    <div class="icono">
+                        <i class="material-icons">add_circle</i>
+                    </div>
+                </a>
+                <a class="botonUsuario" href="Registro.jsp">
+                    <div class="icono">
+                        <i class="material-icons md-41">account_circle</i>
+                    </div>
+                </a>
+            </div>
+        </header>
+        <nav id="navegadorSecundario" class="navegadorLinks">
+            <section class="publicarChollo" id="publicarChollo" style="display: none">
+                <div>
+                    <a alt="Publicar un chollo" href="PublicarChollo.html">
+                        <i class="material-icons">
+                            local_offer
+                        </i>
+                        Publicar Chollo
+                    </a> 
+                    <a alt="Publicar un cupon" href="">
+                            <i class="material-icons">
+                                local_activity
+                            </i>
+                            Publicar Cupon
+                    </a> 
+
+                </div>
+            </section>
+            <p>La mejor paginda de chollos</p>
+        </nav>
+        <div class="row">
+            <ul id="navegador" class="navegacion">
+                <li>Tiendas
+                    <div>
+                        <a href="#">Aliexpress</a>
+                        <a href="#">Amazon</a>
+                        <a href="#">MediaMarkt</a>
+                        <a href="#">PCcomponentes</a>
+                        <a href="#">Banggood</a>
+                        <a href="#">Ebay</a>
+                        <a href="#">Gearbest</a>
+                        <a href="#">Steam</a>
+                    </div>
+                </li>
+
+                <li>Categorias
+                    <a href="#home"></a>
+                </li>
+
+                <li>Chollos Aliexpress
+                    <a href="#home"></a>
+                </li>
+
+                <li>Chollos Amazon
+                    <a href="#home"></a>
+                </li>
+
+                <li>Chollos MediaMarkt
+                    <a href="#home"></a>
+                </li>
+
+                <li>Contacto
+                    <a href="#home"></a>
+                </li>
+
+            </ul>
+            <div id="principal" class="mainContainer">
+                <div class="col-6 col-s-9">
+                    <div class="userContainer">
+
+                        <div class="infoUser">
+                            <!-- #JSP AQUI PARA PONER FOTO -->
+                            <div class="foto">
+                                <i class="material-icons md-41">account_circle</i>
+                            </div>
+
+                            <div class="datosUser">
+                                <p>nombre usuario</p>
+                                <p>correo usuario</p>
+                            </div>
+
+                        </div>
+
+                        <div class="chollosUser">
+                            
+                            <div class="cholloBoxPequeña">
+                                
+                                <div>
+                                    <img src="10021021841-6-118x118.jpg">
+                                </div>
+                                
+                                <div>
+                                    <h4>TITULO CHOLLO</h4>
+                                    <h5>Precio chollo</h5>
+                                </div>
+                                
+                                <div class="iconoEditar">
+                                    <a>
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="cholloBoxPequeña">
+                                
+                                <div>
+                                    <img src="10021021841-6-118x118.jpg">
+                                </div>
+                                
+                                <div>
+                                    <h4>TITULO CHOLLO</h4>
+                                    <h5>Precio chollo</h5>
+                                </div>
+                                
+                                <div class="iconoEditar">
+                                    <a>
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="cholloBoxPequeña">
+                                
+                                <div>
+                                    <img src="10021021841-6-118x118.jpg">
+                                </div>
+                                
+                                <div>
+                                    <h4>TITULO CHOLLO</h4>
+                                    <h5>Precio chollo</h5>
+                                </div>
+                                
+                                <div class="iconoEditar">
+                                    <a>
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <footer class="footer">
+          <p>Resize the browser window to see how the content respond to the resizing.</p>
+        </footer> 
+    <script>
+
+        function openclosenav(){
+
+            if(document.getElementById("navegador").style.width == "0px"){
+                document.getElementById("navegador").style.width = "250px"; 
+                document.getElementById("navegadorSecundario").style.width = "87%";
+
+            }else{
+                document.getElementById("navegador").style.width = "0";
+                document.getElementById("navegadorSecundario").style.width = "100%";
+            }
+        }
+
+        function openclosePublicar(){
+            if (document.getElementById("publicarChollo").style.display == "none"){
+                document.getElementById("publicarChollo").style.display = "block";
+            }else{
+                document.getElementById("publicarChollo").style.display = "none";
+            }
+        }
+
+    </script>
+
+        </body>
+</html>

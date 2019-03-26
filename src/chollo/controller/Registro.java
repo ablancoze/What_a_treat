@@ -64,16 +64,11 @@ public class Registro extends HttpServlet {
 		HttpSession session = request.getSession();//obtengo la sesion de la requeste que ha hecho el usuario
 		
 		User u = userDAO.get(request.getParameter("user"));
-		try {
-			
-			request.setAttribute("user",u);//que hacia porque no lo tengo apuntado
-			//alamacenar en sesion.
-
-		} catch (NullPointerException e) {
-
-			request.setAttribute("user",u);
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
-			view.forward(request,response);	
+		
+		if (u!=null) { // usuario en base de datos. Lo devuelvo a la pagina principal como usuario registrado.
+			session.setAttribute("user", u);
+			request.setAttribute("user", u);//¿hay que almacenarlo en la request? ¿si es asi porque hay que hacerlo?
+			response.sendRedirect("/whatAtreat");
 		}
 	}
 

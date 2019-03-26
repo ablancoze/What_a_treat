@@ -108,7 +108,7 @@ public class WhatAtreat extends HttpServlet {
 		//NI IDEA
 		Iterator<User> itUser = listUser.iterator();
 		
-		//NO RECUERDO LO QUE ES UN MAPA... CREO QUE ES UN GRAFO 
+		
 		Map<User,List<Chollo>> userChollosMap = new HashMap<User,List<Chollo>>();
 		
 		while(itUser.hasNext()) {
@@ -121,6 +121,12 @@ public class WhatAtreat extends HttpServlet {
 		request.setAttribute("chollosList",chollosUserShopList);
 		//Tambien guardo el map de usuarios.
 		request.setAttribute("usersMap", userChollosMap);
+		User u = (User) session.getAttribute("user");
+		
+		if (u!=null) {
+			request.setAttribute("user", u);
+		}
+		
 		
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/whatatreat.jsp");
 		view.forward(request,response);	
