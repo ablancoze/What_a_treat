@@ -187,7 +187,7 @@ html {
 		margin-top: 5px;
 	}
     
-        .publicarChollo{
+    .publicarChollo{
        
         top: 89px;
         width: 240px;
@@ -200,7 +200,7 @@ html {
         
     }
     
-        .publicarChollo>div{
+    .publicarChollo>div{
         text-decoration: none;
         cursor: pointer;
         margin: 9px;
@@ -221,7 +221,38 @@ html {
         color: #95C0DC;
     }
     
-    /*#95C0DC*/
+    .verPerfil{
+        
+        top: 89px;
+        width: 164px;
+        z-index: 1000;
+        height: 76px;
+        float: right;
+        margin-left: 69%;
+        background-color: #002531;
+        position: fixed;
+        
+    }
+    
+    .verPerfil>div{
+        text-decoration: none;
+        cursor: pointer;
+        margin: 9px;
+        display: flex;
+    }
+    
+    .verPerfil>div>a{
+        color: #2a80b9;
+        cursor: pointer;
+        text-decoration: none;
+        width: 70%;
+    }
+    
+    .verPerfil>div>a:hover{
+        color: #95C0DC;
+    }
+    
+    
 
 	/*------------------------------------------------*/
 	/*------------------------------------------------*/

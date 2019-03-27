@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -17,7 +14,7 @@
 <body>
     
     <header>
-        <a href="<c:url value = "/whatAtreat"/>">
+        <a href="">
             <img class="Logo" src="Sin%20t%C3%ADtulo.png">
         </a>
     </header>
@@ -36,12 +33,9 @@
             
         </div>
         
-        <form method="post" action="Registro" class="Conectar" id="Conectar" style="display: block">
+        <form class="Conectar" id="Conectar" style="display: block">
             
             <fieldset>
-				<c:if test="${fallo!=null}">
-					<p>USUARIO O PASWORD INCORRECTO.</p>
-				</c:if>
                 <div>
                     <input id="user" name="user" autofocus="" required="" type="text" placeholder="User name">
                 </div>
@@ -50,13 +44,11 @@
                     <input id="pass" name="pass" autofocus="" required="" type="password" placeholder="Password">
                 </div>
                 
-                <button id="button" type="submit" value="Entrar">Entrar</button>
-                
             </fieldset>
             
         </form>
 
-        <form method="post" action="Registro" class="Registro" id="Registro" style="display: none">
+        <form method="post" action="OrderServlet" class="Registro" id="Registro" style="display: none">
             
             <fieldset>
                 
@@ -75,7 +67,7 @@
                     <input id="pass" name="pass" autofocus="" required="" type="password">
                 </div>
                 
-                <button id="button" type="submit" value="Registro">Registrarse</button>
+                <button id="button" type="submit" value="Submit order">Registrarse</button>
                 
             </fieldset>
             

@@ -40,30 +40,71 @@
                     <i class="material-icons">add_circle</i>
                 </div>
             </a>
-            <a class="botonUsuario" href="Registro.jsp">
-                <div class="icono">
-                    <i class="material-icons md-41">account_circle</i>
-                </div>
-            </a>
+            <c:choose>
+            	<c:when test="${user == null}">
+		            <a class="botonUsuario" href="<c:url value = "/Registro"/>">
+		                <div class="icono">
+		                    <i class="material-icons md-41">account_circle</i>
+		                </div>
+		            </a>
+		        </c:when>
+		      	<c:otherwise>
+		        	<a class="botonUsuario" onclick="opencloseUsuario()">
+		                <div class="icono">
+		                    <i class="material-icons md-41">account_circle</i>
+		                </div>
+		            </a>
+		        </c:otherwise>
+		     </c:choose>     
         </div>
     </header>
 
     <nav id="navegadorSecundario" class="navegadorLinks">
         <section class="publicarChollo" id="publicarChollo" style="display: none">
             <div>
-                <a alt="Publicar un chollo" href="PublicarChollo.html">
-                    <i class="material-icons">
-                        local_offer
-                    </i>
+            <c:choose>
+        		<c:when test="${user == null}">
+        			<a alt="Publicar un chollo" href="<c:url value = "/Registro"/>">
+                    	<i class="material-icons">
+                        	local_offer
+                    	</i>
                     Publicar Chollo
-                </a> 
-                <a alt="Publicar un cupon" href="">
+                	</a> 
+                	<a alt="Publicar un cupon" href="<c:url value = "/Registro"/>">
                         <i class="material-icons">
                             local_activity
                         </i>
                         Publicar Cupon
-                </a> 
+                	</a>
+        		</c:when>
+        		<c:otherwise>
+					<a alt="Publicar un chollo" href="PublicarChollo.html">
+                    	<i class="material-icons">
+                        	local_offer
+                    	</i>
+                    Publicar Chollo
+                	</a> 
+                	<a alt="Publicar un cupon" href="">
+                        <i class="material-icons">
+                            local_activity
+                        </i>
+                        Publicar Cupon
+                	</a>
+        		</c:otherwise>
+        	</c:choose>
 
+
+            </div>
+        </section>
+        
+        <section class="verPerfil" id="verPerfil" style="display: none">
+            <div>
+                <a alt="Ir a tu perfil" href="">
+                    <i class="material-icons">
+                        account_circle
+                    </i>
+                    ${user.getUsername} 
+                </a>  
             </div>
         </section>
         <p>La mejor paginda de chollos</p>
@@ -191,6 +232,14 @@
             document.getElementById("publicarChollo").style.display = "block";
         }else{
             document.getElementById("publicarChollo").style.display = "none";
+        }
+    }
+    
+    function opencloseUsuario(){
+        if (document.getElementById("verPerfil").style.display == "none"){
+             document.getElementById("verPerfil").style.display = "block"
+        }else{
+            document.getElementById("verPerfil").style.display = "none";
         }
     }
     

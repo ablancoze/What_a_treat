@@ -37,7 +37,7 @@
                     <i class="material-icons">add_circle</i>
                 </div>
             </a>
-            <a class="botonUsuario" href="Registro.html">
+            <a class="botonUsuario" href="Registro.html" onclick="opencloseUsuario()">
                 <div class="icono">
                     <i class="material-icons md-41">account_circle</i>
                 </div>
@@ -56,11 +56,22 @@
                 </a> 
                 <a alt="Publicar un cupon" href="">
                         <i class="material-icons">
-                            local_activity
+                            account_circle
                         </i>
                         Publicar Cupon
                 </a> 
 
+            </div>
+        </section>
+        
+        <section class="verPerfil" id="verPerfil" style="display: none">
+            <div>
+                <a alt="Ir a tu perfil" href="">
+                    <i class="material-icons">
+                        account_circle
+                    </i>
+                    NOMBRE USUARIO
+                </a>  
             </div>
         </section>
         <p>La mejor paginda de chollos</p>
@@ -195,6 +206,14 @@
             document.getElementById("publicarChollo").style.display = "block";
         }else{
             document.getElementById("publicarChollo").style.display = "none";
+        }
+    }
+    
+    function opencloseUsuario(){
+        if (document.getElementById("verPerfil").style.display == "none"){
+             document.getElementById("verPerfil").style.display = "block"
+        }else{
+            document.getElementById("verPerfil").style.display = "none";
         }
     }
     

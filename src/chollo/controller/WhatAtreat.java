@@ -121,6 +121,7 @@ public class WhatAtreat extends HttpServlet {
 		request.setAttribute("chollosList",chollosUserShopList);
 		//Tambien guardo el map de usuarios.
 		request.setAttribute("usersMap", userChollosMap);
+		
 		User u = (User) session.getAttribute("user");
 		
 		if (u!=null) {

@@ -34,4 +34,15 @@ public class User {
 	}
 	
 	
+	public boolean comprobarPasword(String password) {
+		
+		if (password.equals(this.password)) {
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
+	
 }
