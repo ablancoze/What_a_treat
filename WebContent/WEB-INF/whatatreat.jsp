@@ -103,7 +103,7 @@
                     <i class="material-icons">
                         account_circle
                     </i>
-                    ${user.getUsername} 
+                    ${user.username} 
                 </a>  
             </div>
         </section>

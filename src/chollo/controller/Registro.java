@@ -66,7 +66,7 @@ public class Registro extends HttpServlet {
 		//Creo un usuario y lo conecto con la base de datos
 		UserDAO userDAO = new JDBCUserDAOImpl();
 		userDAO.setConnection(conn);
-		HttpSession session = request.getSession();//obtengo la sesion de la requeste que ha hecho el usuario
+		
 		
 		User u = userDAO.get(request.getParameter("user"));
 		
@@ -74,9 +74,10 @@ public class Registro extends HttpServlet {
 		
 		if (u!=null) { // usuario en base de datos. Lo devuelvo a la pagina principal como usuario registrado.
 			if (u.comprobarPasword(request.getParameter("pass"))){
+				HttpSession session = request.getSession();//obtengo la sesion de la requeste que ha hecho el usuario
 				session.setAttribute("user", u);
 				logger.info("USUARIO CONECTADO");
-				response.sendRedirect("/whatAtreat"); // fallo aqui no se porque.
+				response.sendRedirect("whatAtreat"); // fallo aqui no se porque.
 			}else{
 				fallo="";
 				request.setAttribute("fallo",fallo);
