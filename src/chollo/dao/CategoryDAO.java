@@ -88,4 +88,11 @@ public interface CategoryDAO {
 	 */
 	
 	public boolean delete(long id);
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<String> getAllCategoryName();
 }

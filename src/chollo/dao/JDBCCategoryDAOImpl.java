@@ -70,7 +70,7 @@ public class JDBCCategoryDAOImpl implements CategoryDAO {
 			Statement stmt;
 			ResultSet rs;
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Categorys");
+			rs = stmt.executeQuery("SELECT * FROM categories");
 			while ( rs.next() ) {
 				Category category = new Category();
 				category.setId(rs.getInt("id"));
@@ -204,6 +204,30 @@ public class JDBCCategoryDAOImpl implements CategoryDAO {
 			}
 		}
 		return done;
+	}
+	
+	@Override
+	public List<String> getAllCategoryName(){
+		
+		if (conn == null) return null;
+		
+		List<String> categoryList = new ArrayList<String>();
+		
+		try {
+			Statement stmt;
+			ResultSet rs;
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM categories");
+			while ( rs.next() ) {
+				categoryList.add(rs.getString("name"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return categoryList;
+		
 	}
 
 	@Override

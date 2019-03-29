@@ -60,7 +60,52 @@ public class JDBCShopDAOImpl implements ShopDAO {
 		return shop;
 	}
 	
+	@Override
+	public long getIdByName(String name) {
+		if (conn == null) 
+			return -1; // Esto esta mu feo....... codigos de erros ?¿ Quien los necesita hoy en dia 
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id FROM Shops WHERE name ='"+name+"'");			 
+			if (!rs.next()) 
+				return -1; 
+			
+			logger.info("fetching Shop id by name: " + rs.getString("id") );
+			
+			return rs.getLong("id");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+		
+	}
+	@Override
+	public String getNameById(long id) {
+		if (conn == null) 
+			return null;
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT name FROM Shops WHERE id ='"+id+"'");			 
+			if (!rs.next()) 
+				return null; 
+			
+			logger.info("fetching Shop name by id: " + rs.getString("name") );
+			
+			return rs.getString("name");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 	
+	@Override
 	public List<Shop> getAll() {
 
 		if (conn == null) return null;
@@ -70,7 +115,7 @@ public class JDBCShopDAOImpl implements ShopDAO {
 			Statement stmt;
 			ResultSet rs;
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Shops");
+			rs = stmt.executeQuery("SELECT * FROM shops");
 			while ( rs.next() ) {
 				Shop shop = new Shop();
 				shop.setId(rs.getInt("id"));
@@ -89,6 +134,38 @@ public class JDBCShopDAOImpl implements ShopDAO {
 		return shops;
 	}
 	
+	@Override
+	public List<String> getAllShopName(){
+		
+		if (conn == null) return null;
+		
+		ArrayList<String> shopListName = new ArrayList<String>();
+		try {
+			Statement stmt;
+			ResultSet rs;
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT name FROM shops");
+			int i = 0;
+			while ( rs.next() ) {
+				shopListName.add(rs.getString("name"));
+				logger.info("fetching shops name: "+shopListName.get(i));
+				i++;
+								
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return shopListName;
+		
+		
+	}
+ 	
+	
+	
+	
+	@Override
 	public List<Shop> getAllBySearchName(String search) {
 		search = search.toUpperCase();
 		if (conn == null)

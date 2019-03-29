@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -14,14 +18,14 @@
     <body>
 
         <header>
-            <a href="what_a_treat.html">
+            <a href="<c:url value = "/whatAtreat"/>">
                 <img class="Logo" src="Sin%20t%C3%ADtulo.png">
             </a>
         </header>
 
         <div class = "PublicarChollo">
             
-            <form class = "formularioPublicacion">
+            <form method="post" action="PublicarChollo" id="formularioPublicacion" class = "formularioPublicacion">
                <legend>
                    <h1>Deja tu chollo</h1>
                 </legend>
@@ -51,21 +55,29 @@
                 <input id="imagen" name="imagen" type="text"><br>
                 
                 <h3>Tienda</h3>
-                <select>
-  					<option value="volvo">Volvo</option>
-  					<option value="saab">Saab</option>
-  					<option value="opel">Opel</option>
-  					<option value="audi">Audi</option>
+                <select name="shop" autofocus="" required="">
+                	<option value="">Escoga una tienda</option>
+					 <% ArrayList listaTiendas= (ArrayList)request.getAttribute("shop");
+                		for (int i=0; i<listaTiendas.size();i++){%>
+                			<option value="<%=listaTiendas.get(i)%>"><%=listaTiendas.get(i) %></option>
+                	<%}%>
 				</select>
                 
                 <h3>Categoria</h3>
-                <input id="categoria" name="categoria" type="text"><br>
+                <select name="category" autofocus="" required="">
+                	<option value="">Escoga una categoria</option>
+                	<% ArrayList listaCategorias= (ArrayList)request.getAttribute("category");
+                		for (int i=0; i<listaCategorias.size();i++){%>
+                			<option value="<%=listaCategorias.get(i)%>"><%=listaCategorias.get(i) %></option>
+                		<%}%>
+  						
+				</select>
                 
                 <h3>Palabra destacada</h3>
                 <input id="palabraDestacada" name="palabraDestacada" type="text">
+                <button id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">Publicar chollo</button>
             </form>
             
-            <button class="botonPublicarChollo">Publicar chollo</button>
         
         </div>
 

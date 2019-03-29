@@ -1,21 +1,31 @@
 package chollo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Chollo {
 
-	private long id;
+	private long id; //no comprobar
 	private String title;
 	private String description;
 	private String link;
 	private float price;
 	
-	private long idu;
-	private long ids;
+	private long idu;//No compruebo
+	private long ids;//No compruebo
 	
 	private int likes;
 	private int soldout;
 	
 	private String imagen;
 	
+	
+	public boolean comprobarParametros() {
+		
+		
+		return false;
+		
+	}
 	
 	public int getSoldout() {
 		return soldout;

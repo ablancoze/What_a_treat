@@ -39,19 +39,6 @@ public class Registro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("Handling GET");
-		
-		//Obtengo la base de datos
-		Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
-		
-		//Creo un usuario y lo conecto con la base de datos
-		UserDAO userDAO = new JDBCUserDAOImpl();
-		userDAO.setConnection(conn);
-		HttpSession session = request.getSession();//obtengo la sesion de la requeste que ha hecho el usuario
-
-		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
-		view.forward(request,response);	
 
 	}
 
@@ -59,37 +46,33 @@ public class Registro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("Handling Post");
-		//Obtengo la base de datos
+		logger.info("Handling POST PublicarChollo");
+		
+		// servlet context es como un servlet de tomcat, al inciarse tomcat carga la basde datos y la añade como atributo
 		Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
 		
-		//Creo un usuario y lo conecto con la base de datos
+		//Agrego una nueva sesion a la requeste que ha hecho el usuario
+		HttpSession session = request.getSession();
+		
 		UserDAO userDAO = new JDBCUserDAOImpl();
 		userDAO.setConnection(conn);
 		
+		User u = new User();
 		
-		User u = userDAO.get(request.getParameter("user"));
+		u.setUsername(request.getParameter("userName"));
+		u.setEmail(request.getParameter("email"));
+		u.setPassword(request.getParameter("pass"));
 		
-		String fallo;
-		
-		if (u!=null) { // usuario en base de datos. Lo devuelvo a la pagina principal como usuario registrado.
-			if (u.comprobarPasword(request.getParameter("pass"))){
-				HttpSession session = request.getSession();//obtengo la sesion de la requeste que ha hecho el usuario
-				session.setAttribute("user", u);
-				logger.info("USUARIO CONECTADO");
-				response.sendRedirect("whatAtreat"); // fallo aqui no se porque.
-			}else{
-				fallo="";
-				request.setAttribute("fallo",fallo);
-				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
-				view.forward(request,response);	
-			}
-		}else{
-			fallo="";
-			request.setAttribute("fallo",fallo);
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
-			view.forward(request,response);	
+		if (userDAO.get(u.getUsername()) != null) {
+			
 		}
+			
+		
+		
+		
+
+		
+
 	}
 
 }

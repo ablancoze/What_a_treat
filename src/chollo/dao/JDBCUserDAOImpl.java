@@ -115,10 +115,7 @@ public class JDBCUserDAOImpl implements UserDAO {
 			
 			try {
 				stmt = conn.createStatement();
-				stmt.executeUpdate("INSERT INTO Users (username,email,password) VALUES('"
-									+user.getUsername()+"','"
-									+user.getEmail()+"','"
-									+user.getPassword()+"')");
+				stmt.executeUpdate("INSERT INTO Users (username,email,password) VALUES(' "+user.getUsername()+" ',' "+user.getEmail()+" ',' "+user.getPassword()+" ')");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

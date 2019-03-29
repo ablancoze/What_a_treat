@@ -25,6 +25,23 @@ public interface ShopDAO {
 	 * @return Shop object with that id.
 	 */
 	public Shop get(long id);
+	
+	
+	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public long getIdByName(String name);
+	
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public String getNameById(long id);
 
 	/**
 	 * Gets a shop from the DB using name.
@@ -46,6 +63,12 @@ public interface ShopDAO {
 	 * @return List of all the shops from the database.
 	 */
 	public List<Shop> getAll();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<String> getAllShopName();
 	
 	/**
 	 * Gets all the shops from the database that contain a text in the name.

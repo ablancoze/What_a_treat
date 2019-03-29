@@ -364,7 +364,13 @@ html {
 		height: 30px;
 		margin-left: 5%;
 	}
-	.mainContainer>.col-6>.cholloBox>.cholloImagen>a>img {
+	
+	.cholloImagen>a>img{
+		width: 160px;
+		height: 160px;
+	}
+	
+	.cholloImagen>img {
 		width: 160px;
 		height: 160px;
 	}

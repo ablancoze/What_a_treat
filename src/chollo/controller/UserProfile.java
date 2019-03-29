@@ -2,6 +2,9 @@ package chollo.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,14 +18,19 @@ import com.sun.media.jfxmedia.logging.Logger;
 
 import chollo.dao.CholloDAO;
 import chollo.dao.JDBCCholloDAOImpl;
+import chollo.dao.JDBCShopDAOImpl;
 import chollo.dao.JDBCUserDAOImpl;
+import chollo.dao.ShopDAO;
 import chollo.dao.UserDAO;
+import chollo.model.Chollo;
+import chollo.model.Shop;
 import chollo.model.User;
+import chollo.util.Triplet;
 
 /**
  * Servlet implementation class UserProfile
  */
-@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/whatAtreat" })
+@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/UserProfile" })
 public class UserProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,13 +57,17 @@ public class UserProfile extends HttpServlet {
 		CholloDAO cholloDAO = new JDBCCholloDAOImpl();
 		cholloDAO.setConnection(conn);
 		
-		
+		ShopDAO shopDAO = new JDBCShopDAOImpl();
+		shopDAO.setConnection(conn);
 		
 		User u = (User) session.getAttribute("user");
 		
-		request.setAttribute("user", u);
+		List<Chollo> cholloList = cholloDAO.getAllByUser(u.getId());
 		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
+		request.setAttribute("user", u);
+		request.setAttribute("cholloList", cholloList);
+		
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/perfilUsuario.jsp");
 		view.forward(request,response);	
 
 	}

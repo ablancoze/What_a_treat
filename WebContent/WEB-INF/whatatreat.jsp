@@ -19,7 +19,7 @@
             <a class="boton">
                 <span style="font-size:30px;cursor:pointer;display: flex;" onclick="openclosenav()"><i  class="material-icons">menu</i></span>
             </a>
-            <a href="what_a_treat.html">
+            <a href="<c:url value = "/whatAtreat"/>">
                 <img class="Logo" src="Sin%20t%C3%ADtulo.png">
             </a>
             
@@ -42,7 +42,7 @@
             </a>
             <c:choose>
             	<c:when test="${user == null}">
-		            <a class="botonUsuario" href="<c:url value = "/Registro"/>">
+		            <a class="botonUsuario" href="<c:url value = "/Login"/>">
 		                <div class="icono">
 		                    <i class="material-icons md-41">account_circle</i>
 		                </div>
@@ -78,7 +78,7 @@
                 	</a>
         		</c:when>
         		<c:otherwise>
-					<a alt="Publicar un chollo" href="PublicarChollo.html">
+					<a alt="Publicar un chollo" href="<c:url value = "/PublicarChollo"/>">
                     	<i class="material-icons">
                         	local_offer
                     	</i>
@@ -99,7 +99,7 @@
         
         <section class="verPerfil" id="verPerfil" style="display: none">
             <div>
-                <a alt="Ir a tu perfil" href="">
+                <a alt="Ir a tu perfil" href="<c:url value = "/UserProfile"/>">
                     <i class="material-icons">
                         account_circle
                     </i>

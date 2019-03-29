@@ -105,7 +105,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 				chollo.setLink(rs.getString("link"));
 				chollo.setPrice(rs.getFloat("price"));
 				chollo.setIdu(rs.getInt("idu"));
-				chollo.setIdu(rs.getInt("ids"));
+				chollo.setIds(rs.getInt("ids"));
 				chollo.setLikes(rs.getInt("likes"));
 				chollo.setSoldout(rs.getInt("soldout"));
 				
@@ -143,7 +143,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 				chollo.setLink(rs.getString("link"));
 				chollo.setPrice(rs.getFloat("price"));
 				chollo.setIdu(rs.getInt("idu"));
-				chollo.setIdu(rs.getInt("ids"));
+				chollo.setIds(rs.getInt("ids"));
 				chollo.setLikes(rs.getInt("likes"));
 				chollo.setSoldout(rs.getInt("soldout"));
 				
@@ -220,9 +220,10 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 				chollo.setLink(rs.getString("link"));
 				chollo.setPrice(rs.getFloat("price"));
 				chollo.setIdu(rs.getInt("idu"));
-				chollo.setIdu(rs.getInt("ids"));
+				chollo.setIds(rs.getInt("ids"));
 				chollo.setLikes(rs.getInt("likes"));
 				chollo.setSoldout(rs.getInt("soldout"));
+				chollo.setImagen(rs.getString("imagen"));
 				
 				chollos.add(chollo);
 				
@@ -247,7 +248,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 		long id=-1;
 		long lastid=-1;
 		if (conn != null){
-
+			logger.info("Venga a ver que cojones pasa aqui La conexion no es nula algo es algo");
 			Statement stmt;
 			
 			
@@ -258,20 +259,19 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 				lastid=rs.getInt("seq");
 								
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				logger.info("Venga a ver que cojones pasa aqui  primer catch");
 				e.printStackTrace();
 			}
 			
 			
 			try {
+				logger.info("Venga a ver que cojones pasa aqui ");
 				stmt = conn.createStatement();
-				stmt.executeUpdate("INSERT INTO chollo (title,description,link,price,idu,ids,likes,soldout) VALUES('"
-									+chollo.getTitle()+"','"+chollo.getDescription()+"','" + chollo.getLink() + "'," 
-									+ chollo.getPrice() + "," + chollo.getIdu()+","+ chollo.getIds() +","+ chollo.getLikes() +","+ chollo.getSoldout() +")");
+				stmt.executeUpdate("INSERT INTO chollo (title,description,link,price,idu,ids,likes,soldout) VALUES( '"+chollo.getTitle()+"' , '"+chollo.getDescription()+"' , '"+ chollo.getLink() +"' , "+ chollo.getPrice()+" , "+ chollo.getIdu()+" , "+ chollo.getIds() +" , "+chollo.getLikes()+" , "+ chollo.getSoldout()+" )");
 				
 								
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				logger.info("Venga a ver que cojones pasa aqui  segundo catch");
 				e.printStackTrace();
 			}
 			

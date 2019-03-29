@@ -36,7 +36,7 @@
             
         </div>
         
-        <form method="post" action="Registro" class="Conectar" id="Conectar" style="display: block">
+        <form method="post" action="Login" class="Conectar" id="Conectar" style="display: block">
             
             <fieldset>
 				<c:if test="${fallo!=null}">
@@ -62,7 +62,7 @@
                 
                 <div>
                     <label>User Name</label>
-                    <input id="user-name" name="user-name" autofocus="" required="" type="text">
+                    <input id="userName" name="userName" autofocus="" required="" type="text">
                 </div>
                 
                 <div>
