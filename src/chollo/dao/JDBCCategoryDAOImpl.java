@@ -229,6 +229,28 @@ public class JDBCCategoryDAOImpl implements CategoryDAO {
 		return categoryList;
 		
 	}
+	
+	@Override
+	public String getCategoryNameById(Long id) {
+		
+		if (conn == null) 
+			return null;
+		
+		try {
+			Statement stmt;
+			ResultSet rs;
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT name FROM categories WHEN id =" +id);
+			if (!rs.next()) 
+				return null; 
+			return rs.getString("name");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 
 	@Override
 	public void setConnection(Connection conn) {

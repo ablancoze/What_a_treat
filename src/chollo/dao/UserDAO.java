@@ -72,4 +72,18 @@ public interface UserDAO {
 	 * @return True if the operation was made and False if the operation failed.
 	 */
 	public boolean delete(long idu);
+	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public String getEmail(String gmail);
+	
+	/**
+	 * 
+	 * @param userName
+	 * @return
+	 */
+	public String getUserName(String userName);
 }

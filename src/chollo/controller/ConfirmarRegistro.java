@@ -2,10 +2,6 @@ package chollo.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,17 +16,16 @@ import chollo.dao.UserDAO;
 import chollo.model.User;
 
 /**
- * Servlet implementation class Registro
+ * Servlet implementation class ConfirmarRegistro
  */
-@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/Registro" })
-public class Registro extends HttpServlet {
+@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/ConfirmarRegistro" })
+public class ConfirmarRegistro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Registro() {
+    public ConfirmarRegistro() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,58 +34,45 @@ public class Registro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		//Obtengo la base de datos
+		Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
+		
+		HttpSession session = request.getSession();
+		
+		request.setAttribute("username", session.getAttribute("username"));
+		request.setAttribute("email", session.getAttribute("email"));
+		
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/registroConfirmado.jsp");
+		view.forward(request,response);	
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("Handling POST PublicarChollo");
-		
 		// servlet context es como un servlet de tomcat, al inciarse tomcat carga la basde datos y la añade como atributo
 		Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
 		
 		//Agrego una nueva sesion a la requeste que ha hecho el usuario
 		HttpSession session = request.getSession();
 		
-		session.setAttribute("registro", true);
-		
 		UserDAO userDAO = new JDBCUserDAOImpl();
 		userDAO.setConnection(conn);
+		User u = new User();
 		
-		String userName = request.getParameter("userName");
-		String pass = request.getParameter("pass");
-		String email =request.getParameter("email");
+		u.setUsername((String) session.getAttribute("username"));
+		u.setEmail((String) session.getAttribute("email"));
+		u.setPassword((String) session.getAttribute("pass"));
 		
-		/**
-		 * User u;
-		 * 
-		 * hay que comprobar los elementos que se consultan en la bd para evitar inyecciones.
-		 */
+		userDAO.add(u);
+		session.setAttribute("user", u);
 		
-		
-		
-		
-		if (userDAO.getEmail(email)!=null) {
-			request.setAttribute("emailProblem","Este email ya existe");
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
-			view.forward(request,response);	
-		}
-		
-		if (userDAO.getUserName(userName)!=null) {
-			request.setAttribute("usernameProblem","Este nombre de usuario ya existe");
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
-			view.forward(request,response);	
-			
-		}
-		
+		session.removeAttribute("username");
+		session.removeAttribute("email");
+		session.removeAttribute("pass");
+		response.sendRedirect("whatAtreat");
 
-		session.setAttribute("username",userName);
-		session.setAttribute("pass",pass);
-		session.setAttribute("email",email);
-		
-		response.sendRedirect("ConfirmarRegistro");
 		
 	}
 

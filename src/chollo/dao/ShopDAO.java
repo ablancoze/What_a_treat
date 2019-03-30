@@ -70,6 +70,14 @@ public interface ShopDAO {
 	 */
 	public List<String> getAllShopName();
 	
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public String getShopNameById(Long id);
+	
 	/**
 	 * Gets all the shops from the database that contain a text in the name.
 	 * 

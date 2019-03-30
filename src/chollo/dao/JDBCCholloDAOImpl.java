@@ -86,6 +86,51 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 		return chollos;
 	}
 	
+	@Override
+	public List<Chollo> getTresChollosHot(){
+		
+		if (conn == null) {
+			System.out.println("NO ESTA CARGANDO LA BD");
+			return null;
+		}
+		
+		ArrayList<Chollo> chollos = new ArrayList<Chollo>();
+		try {
+			Statement stmt;
+			ResultSet rs;
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM chollo ORDER by likes DESC");
+			int i = 0;
+			while ( rs.next() && i<3 ) {
+				Chollo chollo = new Chollo();
+				chollo.setId(rs.getInt("id"));
+				chollo.setTitle(rs.getString("title"));
+				chollo.setDescription(rs.getString("description"));
+				chollo.setLink(rs.getString("link"));
+				chollo.setPrice(rs.getFloat("price"));
+				chollo.setIdu(rs.getInt("idu"));
+				chollo.setIds(rs.getInt("ids"));
+				chollo.setLikes(rs.getInt("likes"));
+				chollo.setSoldout(rs.getInt("soldout"));
+				chollo.setImagen(rs.getString("imagen"));
+						
+				
+				chollos.add(chollo);
+				logger.info("fetching chollos: "+chollo.getId()+" "+chollo.getTitle()+" "+chollo.getDescription()+ " " + chollo.getLink() + " " + chollo.getPrice() 
+						+ " " + chollo.getIdu()+ " " + chollo.getIds() + " " + chollo.getLikes() + " " + chollo.getSoldout());
+				
+				i++;				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return chollos;
+		
+	}
+	
+	@Override
 	public List<Chollo> getAllBySearchTitle(String search) {
 		search = search.toUpperCase();
 		if (conn == null)
@@ -267,7 +312,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 			try {
 				logger.info("Venga a ver que cojones pasa aqui ");
 				stmt = conn.createStatement();
-				stmt.executeUpdate("INSERT INTO chollo (title,description,link,price,idu,ids,likes,soldout) VALUES( '"+chollo.getTitle()+"' , '"+chollo.getDescription()+"' , '"+ chollo.getLink() +"' , "+ chollo.getPrice()+" , "+ chollo.getIdu()+" , "+ chollo.getIds() +" , "+chollo.getLikes()+" , "+ chollo.getSoldout()+" )");
+				stmt.executeUpdate("INSERT INTO chollo (title,description,link,price,idu,ids,likes,soldout,imagen) VALUES( '"+chollo.getTitle()+"' , '"+chollo.getDescription()+"' , '"+ chollo.getLink() +"' , "+ chollo.getPrice()+" , "+ chollo.getIdu()+" , "+ chollo.getIds() +" , "+chollo.getLikes()+" , "+chollo.getSoldout()+" , '"+chollo.getImagen()+"' )");
 				
 								
 			} catch (SQLException e) {
@@ -300,15 +345,8 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 			Statement stmt;
 			try {
 				stmt = conn.createStatement();
-				stmt.executeUpdate("UPDATE Chollo SET title='"+chollo.getTitle()
-				+"', description='"+chollo.getDescription()
-				+"', link='"+chollo.getLink()
-				+"', price="+chollo.getPrice()
-				+", idu="+chollo.getIdu()
-				+", ids="+chollo.getIds()
-				+", likes="+chollo.getLikes()
-				+", soldout="+chollo.getSoldout()
-				+" WHERE id = "+chollo.getId());
+				stmt.executeUpdate("UPDATE Chollo SET title= '"+chollo.getTitle() +"', description= '"+chollo.getDescription()+"', link= '"+chollo.getLink()+"', price="+chollo.getPrice()+", idu="+chollo.getIdu()+", ids="+chollo.getIds()+", likes="+chollo.getLikes()+", soldout="+chollo.getSoldout()+", imagen='"+chollo.getImagen()+"' WHERE id = "+chollo.getId());
+				
 				logger.info("updating Chollo: "+chollo.getId()+" "+chollo.getTitle()+" "+chollo.getDescription());
 						
 				done= true;

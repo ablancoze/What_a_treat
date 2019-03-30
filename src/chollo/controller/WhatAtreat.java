@@ -117,10 +117,14 @@ public class WhatAtreat extends HttpServlet {
 			userChollosMap.put(user, cholloList);
 		}
 		
+		List<Chollo> ListaChollosHOT = cholloDAO.getTresChollosHot();
+		
+		
 		//Almaceno en la requestes la lista de chollos 
 		request.setAttribute("chollosList",chollosUserShopList);
 		//Tambien guardo el map de usuarios.
 		request.setAttribute("usersMap", userChollosMap);
+		request.setAttribute("chollosHot", ListaChollosHOT);
 		
 		User u = (User) session.getAttribute("user");
 		
@@ -137,8 +141,84 @@ public class WhatAtreat extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// servlet context es como un servlet de tomcat, al inciarse tomcat carga la basde datos y la añade como atributo
+				Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
+				
+				//Agrego una nueva sesion a la requeste que ha hecho el usuario
+				HttpSession session = request.getSession();
+				
+				//Ley doy un usuario y lo conecto con la base de datos
+				UserDAO userDAO = new JDBCUserDAOImpl();
+				userDAO.setConnection(conn);
+				
+				//Le doy los chollos y los conecyo con la base de datospara que pueda verlos
+				CholloDAO cholloDAO = new JDBCCholloDAOImpl();
+				cholloDAO.setConnection(conn);
+				
+				//Lo mismo con las tiendas \\CATEGORIAS.
+				ShopDAO shopDAO = new JDBCShopDAOImpl();
+				shopDAO.setConnection(conn);
+				
+				//Le doy las tiendas de las que hay chollos
+				CategoryDAO categoryDAO = new JDBCCategoryDAOImpl();
+				categoryDAO.setConnection(conn);
+				
+				//...
+				ChollosCategoryDAO chollosCategoryDAO = new JDBCChollosCategoryDAOImpl();
+				chollosCategoryDAO.setConnection(conn);
+				
+				//Lista con todos los chollos que hay en base de datos
+				List<Chollo> cholloList = cholloDAO.getAllBySearchAll(request.getParameter("search"));
+				
+				Iterator<Chollo> itCholloList = cholloList.iterator();
+				
+				
+				List<Triplet<Chollo, User, Shop>> chollosUserShopList = new ArrayList<Triplet<Chollo, User, Shop>>();
+				
+				//NI IDEA
+				while(itCholloList.hasNext()) {
+					Chollo chollo = (Chollo) itCholloList.next();
+					User user = userDAO.get(chollo.getIdu());
+					logger.info("Usuario " + user.getUsername());
+					Shop shop = shopDAO.get(chollo.getIds());
+
+					chollosUserShopList.add(new Triplet<Chollo, User, Shop>(chollo,user,shop));
+				}
+				
+				//Lista con los usuarios de la pagina de chollos
+				List<User> listUser = new ArrayList<User>();
+				listUser = userDAO.getAll();
+				
+				//NI IDEA
+				Iterator<User> itUser = listUser.iterator();
+				
+				
+				Map<User,List<Chollo>> userChollosMap = new HashMap<User,List<Chollo>>();
+				
+				while(itUser.hasNext()) {
+					User user = itUser.next();
+					cholloList = cholloDAO.getAllByUser(user.getId());
+					userChollosMap.put(user, cholloList);
+				}
+				
+				List<Chollo> ListaChollosHOT = cholloDAO.getTresChollosHot();
+				
+				
+				//Almaceno en la requestes la lista de chollos 
+				request.setAttribute("chollosList",chollosUserShopList);
+				//Tambien guardo el map de usuarios.
+				request.setAttribute("usersMap", userChollosMap);
+				request.setAttribute("chollosHot", ListaChollosHOT);
+				
+				User u = (User) session.getAttribute("user");
+				
+				if (u!=null) {
+					request.setAttribute("user", u);
+				}
+				
+				
+				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/whatatreat.jsp");
+				view.forward(request,response);	
 	}
 
 }

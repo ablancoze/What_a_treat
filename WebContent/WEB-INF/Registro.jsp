@@ -35,51 +35,98 @@
             </div>
             
         </div>
-        
-        <form method="post" action="Login" class="Conectar" id="Conectar" style="display: block">
-            
-            <fieldset>
-				<c:if test="${fallo!=null}">
-					<p>USUARIO O PASWORD INCORRECTO.</p>
-				</c:if>
-                <div>
-                    <input id="user" name="user" autofocus="" required="" type="text" placeholder="User name">
-                </div>
-                
-                <div>
-                    <input id="pass" name="pass" autofocus="" required="" type="password" placeholder="Password">
-                </div>
-                
-                <button id="button" type="submit" value="Entrar">Entrar</button>
-                
-            </fieldset>
-            
-        </form>
-
-        <form method="post" action="Registro" class="Registro" id="Registro" style="display: none">
-            
-            <fieldset>
-                
-                <div>
-                    <label>User Name</label>
-                    <input id="userName" name="userName" autofocus="" required="" type="text">
-                </div>
-                
-                <div>
-                    <label>Email</label>
-                    <input id="email" name="email" autofocus="" required="" type="email" placeholder="example@gmail.com">
-                </div>
-                
-                <div>
-                    <label>Password</label>
-                    <input id="pass" name="pass" autofocus="" required="" type="password">
-                </div>
-                
-                <button id="button" type="submit" value="Registro">Registrarse</button>
-                
-            </fieldset>
-            
-        </form>
+        <c:choose>
+        	
+        	<c:when test="${registro == null}">
+	        	<form method="post" action="Login" class="Conectar" id="Conectar" style="display: block">
+		            
+		            <fieldset>
+						<p>${messages}</p>
+		                <div>
+		                    <input id="user" name="user" autofocus="" required="" type="text" placeholder="User name">
+		                </div>
+		                
+		                <div>
+		                    <input id="pass" name="pass" autofocus="" required="" type="password" placeholder="Password">
+		                </div>
+		                
+		                <button id="button" type="submit" value="Entrar">Entrar</button>
+		                
+		            </fieldset>
+		            
+		        </form>
+	
+		        <form method="post" action="Registro" class="Registro" id="Registro" style="display: none">
+		            
+		            <fieldset>
+		                
+		                <div>
+		                    <label>User Name</label>
+		                    <input id="userName" name="userName" autofocus="" required="" type="text">
+		                </div>
+		                
+		                <div>
+		                    <label>Email</label>
+		                    <input id="email" name="email" autofocus="" required="" type="email" placeholder="example@gmail.com">
+		                </div>
+		                
+		                <div>
+		                    <label>Password</label>
+		                    <input id="pass" name="pass" autofocus="" required="" type="password">
+		                </div>
+		                
+		                <button id="button" type="submit" value="Registro">Registrarse</button>
+		                
+		            </fieldset>
+		            
+		        </form>
+        	</c:when>
+        	
+        	<c:otherwise>
+        		<form method="post" action="Login" class="Conectar" id="Conectar" style="display: none">
+		            <fieldset>
+							<p>${messages}</p>
+		                <div>
+		                    <input id="user" name="user" autofocus="" required="" type="text" placeholder="User name">
+		                </div>
+		                
+		                <div>
+		                    <input id="pass" name="pass" autofocus="" required="" type="password" placeholder="Password">
+		                </div>
+		                
+		                <button id="button" type="submit" value="Entrar">Entrar</button>
+		                
+		            </fieldset>
+		            
+		        </form>
+	
+		        <form method="post" action="Registro" class="Registro" id="Registro" style="display: block">
+		            <fieldset>
+		                
+		                <div>
+		                	<p>${usernameProblem}</p>
+		                    <label>User Name</label>
+		                    <input id="userName" name="userName" autofocus="" required="" type="text">
+		                </div>
+		                
+		                <div>
+		                	<p>${emailProblem}</p>
+		                    <label>Email</label>
+		                    <input id="email" name="email" autofocus="" required="" type="email" placeholder="example@gmail.com">
+		                </div>
+		                
+		                <div>
+		                    <label>Password</label>
+		                    <input id="pass" name="pass" autofocus="" required="" type="password">
+		                </div>
+		                
+		                <button id="button" type="submit" value="Registro">Registrarse</button>
+		                
+		            </fieldset>
+		        </form>
+        	</c:otherwise>
+        </c:choose>
+	        
         
     </div>
     

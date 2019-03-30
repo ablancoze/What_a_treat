@@ -95,4 +95,11 @@ public interface CategoryDAO {
 	 * @return
 	 */
 	public List<String> getAllCategoryName();
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public String getCategoryNameById(Long id);
 }

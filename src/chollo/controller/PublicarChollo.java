@@ -116,7 +116,6 @@ public class PublicarChollo extends HttpServlet {
 			
 			
 			//Añado el chollo a la base de datos
-			logger.info("Venga vamos a consegirlo a ver si podemos");
 			cholloDAO.add(c);
 			response.sendRedirect("whatAtreat");
 			

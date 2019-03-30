@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -15,7 +16,7 @@
 </head>
     <body>
 
-        <header>
+ 		<header>
             <div class="seccionLogo">
                 <a class="boton">
                     <span style="font-size:30px;cursor:pointer;display: flex;" onclick="openclosenav()"><i  class="material-icons">menu</i></span>
@@ -48,6 +49,7 @@
 		        </a>
             </div>
         </header>
+        
         <nav id="navegadorSecundario" class="navegadorLinks">
             <section class="publicarChollo" id="publicarChollo" style="display: none">
                 <div>
@@ -75,10 +77,10 @@
 					</a>
 				</div>
 			</section>
-		<p>La mejor paginda de chollos</p>
+			<p>La mejor paginda de chollos</p>
         </nav>
         <div class="row">
-            <ul id="navegador" class="navegacion" style="width: 0px">
+            <ul id="navegador" class="navegacion">
                 <li>Tiendas
                     <div>
                         <a href="#">Aliexpress</a>
@@ -113,101 +115,101 @@
                 </li>
 
             </ul>
+
             <div id="principal" class="mainContainer">
                 <div class="col-6 col-s-9">
-                    <div class="userContainer">
-
-                        <div class="infoUser">
-                            <div class="foto">
-                                <img src="FotoPerfilAlvaroAlumno.jpg">
+                    <form method="post" action="EditChollo" id="formularioEditarChollo" class="editContainer">
+                        <div class="infoFoto">
+                            <div class="imagenChollo">
+                                <img src = "${chollo.imagen}">
                             </div>
 
-                            <div class="datosUser">
-                                <p>${user.username}</p>
-                                <p>${user.email}</p>
-                            </div>
                             <div>
-                            	<a href = "<c:url value = "/EditProfile"/>">
-                            		Configurar perfil
-                            	</a>
+                                <input id="imagen" name="imagen" type="text" placeholder="Cambiar link de la imagen" value="${chollo.imagen}">
+                                <i class="material-icons">link</i>
                             </div>
-
                         </div>
 
-                        <div class="chollosUser">
-                            <c:forEach var="chollo" items="${cholloList}">
-								<div class="cholloBoxPequeña">
-									<div class="cholloImagen">
-										<img src="${chollo.imagen}">
-									</div>
-	
-									<div>
-										<h4>${chollo.title}</h4>
-										<h5>${chollo.price}</h5>
-										<p>${chollo.description}</p>
-									</div>
-									<div class="iconoEditar">
-										<a href="<c:url value = '/EditChollo?id=${chollo.id}'/>" alt=""> 
-											<i class="material-icons">edit</i>
-										</a>
-									</div>
-								</div>
-							</c:forEach>   
+                        <div class="infoChollo">
+                            <h4>${chollo.title}</h4>
+                            <input id="titulo" name="titulo" type="text" placeholder="Introduce el nuevo titulo para el chollo" value="${chollo.title}">
+                            <h4>${chollo.price}</h4>
+                            <input id="precio" name="precio" type="number" placeholder="Introduce el nuevo precio del chollo" value="${chollo.price}">
+                            <textarea name="descripcion" rows="10" cols="40" value="${chollo.description}" >${chollo.description}</textarea>
+                            <select name="shop" autofocus="" required="">
+                	           <option value="${tienda}">${tienda}</option>
+					           <% ArrayList listaTiendas= (ArrayList)request.getAttribute("shopList");
+                		          for (int i=0; i<listaTiendas.size();i++){%>
+                			         <option value="<%=listaTiendas.get(i)%>"><%=listaTiendas.get(i) %></option>
+                	           <%}%>
+				            </select>
+                            <select name="category" autofocus="" required="">
+                	           <option value="noCategoria">Escoga una categoria</option>
+                	           <% ArrayList listaCategorias= (ArrayList)request.getAttribute("categoryList");
+                		          for (int i=0; i<listaCategorias.size();i++){%>
+                			         <option value="<%=listaCategorias.get(i)%>"><%=listaCategorias.get(i) %></option>
+                		      <%}%>
+				            </select>
                         </div>
-                    </div>
+                        <button id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">Editar Chollo</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <footer class="footer" >
-        	<div class="Ayuda usurio">
-        	</div>
-        	<div class="IconosSocialMedia">
-        		<a href="https://www.facebook.com/alvaro.blancomangut.37">
-        			<i class="fa fa-facebook-square" style="font-size:36px;color:#002531"></i>
-        		</a>
-        		<a href="https://github.com/ablancoze">
-        			<i class="fa fa-github" style="font-size:36px;color:#002531"></i>
-        		</a>
-        		<a href="https://www.linkedin.com/in/%C3%A1lvaro-blanco-mangut-ab2313163/">
-        			<i class="fa fa-linkedin-square" style="font-size:36px;color:#002531"></i>	
-        		</a>
-        		<a href="https://www.starwars.com/">
-        			<i class="fa fa-rebel" style="font-size:36px;color:#002531"></i>
-        		</a>
-        		<a href="https://www.youtube.com/watch?v=sNbGxOccYWc">
-        			<i class="fa fa-youtube-play" style="font-size:36px;color:#002531"></i>
-        		</a>
-        	</div>
-        </footer>
-    <script>
-					function openclosenav() {
+        
+<footer class="footer">
+	<div class="Ayuda usurio">
+	</div>
+	<div class="IconosSocialMedia">
+		<a href="https://www.facebook.com/alvaro.blancomangut.37">
+			<i class="fa fa-facebook-square" style="font-size:36px;color:#002531"></i>
+		</a>			
+		<a href="https://github.com/ablancoze">	
+			<i class="fa fa-github" style="font-size:36px;color:#002531"></i>
+		</a>		
+		<a href="https://www.linkedin.com/in/%C3%A1lvaro-blanco-mangut-ab2313163/">
+			<i class="fa fa-linkedin-square" style="font-size:36px;color:#002531"></i>	
+		</a>		
+		<a href="https://www.starwars.com/">
+			<i class="fa fa-rebel" style="font-size:36px;color:#002531"></i>
+		</a>
+		<a href="https://www.youtube.com/watch?v=sNbGxOccYWc">
+			<i class="fa fa-youtube-play" style="font-size:36px;color:#002531"></i>
+		</a>
+	</div>
+</footer> 
+        
+<script>
 
-						if (document.getElementById("navegador").style.width == "0px") {
-							document.getElementById("navegador").style.width = "200px";
-							
+    function openclosenav(){
 
-						} else {
-							document.getElementById("navegador").style.width = "0";
-							
-						}
-					}
+        if(document.getElementById("navegador").style.width == "0px"){
+            document.getElementById("navegador").style.width = "200px"; 
 
-					function openclosePublicar() {
-						if (document.getElementById("publicarChollo").style.display == "none") {
-							document.getElementById("publicarChollo").style.display = "block";
-						} else {
-							document.getElementById("publicarChollo").style.display = "none";
-						}
-					}
-					
-				    function opencloseUsuario(){
-				        if (document.getElementById("verPerfil").style.display == "none"){
-				             document.getElementById("verPerfil").style.display = "block"
-				        }else{
-				            document.getElementById("verPerfil").style.display = "none";
-				        }
-				    }
-				</script>
+        }else{
+            document.getElementById("navegador").style.width = "0";
+            document.getElementById("navegadorSecundario").style.width = "100%";
+        }
+    }
 
-	</body>
+    function openclosePublicar(){
+        if (document.getElementById("publicarChollo").style.display == "none"){
+            document.getElementById("publicarChollo").style.display = "block";
+        }else{
+            document.getElementById("publicarChollo").style.display = "none";
+        }
+
+    }
+    
+    function opencloseUsuario(){
+        if (document.getElementById("verPerfil").style.display == "none"){
+             document.getElementById("verPerfil").style.display = "block"
+        }else{
+            document.getElementById("verPerfil").style.display = "none";
+        }
+    }
+    
+    </script>
+    
+</body>
 </html>

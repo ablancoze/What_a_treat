@@ -196,6 +196,30 @@ public class JDBCShopDAOImpl implements ShopDAO {
 		return shops;
 	}
 	
+	
+	@Override
+	public String getShopNameById(Long id) {
+		
+		if (conn == null) 
+			return null;
+		
+		try {
+			Statement stmt;
+			ResultSet rs;
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT name FROM shop WHEN id =" +id);
+			if (!rs.next()) 
+				return null; 
+			return rs.getString("name");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+	
 
 	@Override
 	public long add(Shop shop) {

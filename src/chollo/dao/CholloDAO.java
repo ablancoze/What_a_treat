@@ -66,6 +66,12 @@ public interface CholloDAO {
 	public List<Chollo> getAllBySearchDescription(String search);
 	
 	/**
+	 * 
+	 * @return
+	 */
+	public List<Chollo> getTresChollosHot();
+	
+	/**
 	 * Gets all the chollos from the database that contain a text either in the title or in the description.
 	 * 
 	 * @param search

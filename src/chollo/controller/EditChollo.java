@@ -2,18 +2,34 @@ package chollo.controller;
 
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.util.List;
+import java.util.logging.Logger;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import chollo.dao.CategoryDAO;
+import chollo.dao.CholloDAO;
+import chollo.dao.JDBCCategoryDAOImpl;
+import chollo.dao.JDBCCholloDAOImpl;
+import chollo.dao.JDBCShopDAOImpl;
+import chollo.dao.ShopDAO;
+import chollo.model.Chollo;
+import chollo.model.User;
 
 /**
  * Servlet implementation class EditChollo
  */
-@WebServlet("/EditChollo")
+@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/EditChollo" })
 public class EditChollo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -27,16 +43,78 @@ public class EditChollo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// servlet context es como un servlet de tomcat, al inciarse tomcat carga la basde datos y la añade como atributo
+		Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
+		
+		//Agrego una nueva sesion a la requeste que ha hecho el usuario
+		HttpSession session = request.getSession();
+		
+		//Le doy los chollos y los conecyo con la base de datospara que pueda verlos
+		CholloDAO cholloDAO = new JDBCCholloDAOImpl();
+		cholloDAO.setConnection(conn);
+		
+		ShopDAO shopDAO = new JDBCShopDAOImpl();
+		shopDAO.setConnection(conn);
+		
+		CategoryDAO categoryDAO = new JDBCCategoryDAOImpl();
+		categoryDAO.setConnection(conn);
+		
+
+		
+		User u = (User) session.getAttribute("user");
+		
+		if (u!=null) {
+			String sid = request.getParameter("id");
+			long id = Long.parseLong(sid);
+			List <String> shopList = shopDAO.getAllShopName();
+			List <String> categoryList = categoryDAO.getAllCategoryName();
+			Chollo c =  cholloDAO.get(id);
+			session.setAttribute("chollo", c);
+			String shop = shopDAO.getNameById(c.getIds());
+			request.setAttribute("user", u);
+			request.setAttribute("shopList", shopList);
+			request.setAttribute("categoryList", categoryList);
+			request.setAttribute("tienda", shop);
+			request.setAttribute("chollo", c);
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/editar_chollo.jsp");
+			view.forward(request,response);	
+		}
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// servlet context es como un servlet de tomcat, al inciarse tomcat carga la basde datos y la añade como atributo
+		Connection conn = (Connection) getServletContext().getAttribute("dbWhat");
+
+		// Agrego una nueva sesion a la requeste que ha hecho el usuario
+		HttpSession session = request.getSession();
+
+		// Le doy los chollos y los conecyo con la base de datospara que pueda verlos
+		CholloDAO cholloDAO = new JDBCCholloDAOImpl();
+		cholloDAO.setConnection(conn);
+
+		ShopDAO shopDAO = new JDBCShopDAOImpl();
+		shopDAO.setConnection(conn);
+
+		User u = (User) session.getAttribute("user");
+		
+		if (u!=null) {
+			Chollo c = (Chollo) session.getAttribute("chollo");
+			
+			c.setTitle(request.getParameter("titulo"));
+			c.setDescription(request.getParameter("descripcion"));
+			c.setPrice(Long.parseLong(request.getParameter("precio")));
+			c.setIds(shopDAO.getIdByName(request.getParameter("shop")));
+			c.setImagen(request.getParameter("imagen"));
+			cholloDAO.save(c);
+			session.removeAttribute("chollo");
+			response.sendRedirect("UserProfile");
+		}
+				
+				
 	}
 
 }

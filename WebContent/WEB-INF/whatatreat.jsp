@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/cssResponsive.css" type="text/css"><link>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -26,12 +27,14 @@
         </div>
         
         <div class="buscador">
-            <div class="searchBox">
-                <input type="search" id="search" placeholder="What are you looking for?" >
-            </div>
-            <div>
-                <button type="submit"><i  class="material-icons">search</i></button>
-            </div>
+        	<form method="post" action="whatAtreat">
+	        	<div class="searchBox">
+	                <input name="search" type="search" id="search" placeholder="What are you looking for?" >
+	            </div>
+	            <div>
+	                <button type="submit"><i  class="material-icons">search</i></button>
+	            </div>
+        	</form>
         </div>
         
         <div class="botonesUsuario">
@@ -64,13 +67,13 @@
             <div>
             <c:choose>
         		<c:when test="${user == null}">
-        			<a alt="Publicar un chollo" href="<c:url value = "/Registro"/>">
+        			<a alt="Publicar un chollo" href="<c:url value = "/Login"/>">
                     	<i class="material-icons">
                         	local_offer
                     	</i>
                     Publicar Chollo
                 	</a> 
-                	<a alt="Publicar un cupon" href="<c:url value = "/Registro"/>">
+                	<a alt="Publicar un cupon" href="<c:url value = "/Login"/>">
                         <i class="material-icons">
                             local_activity
                         </i>
@@ -100,11 +103,11 @@
         <section class="verPerfil" id="verPerfil" style="display: none">
             <div>
                 <a alt="Ir a tu perfil" href="<c:url value = "/UserProfile"/>">
-                    <i class="material-icons">
-                        account_circle
-                    </i>
-                    ${user.username} 
-                </a>  
+					Mi cuenta
+                </a> 
+                <a alt="Salir de tu perfil" href="<c:url value = "/Logout"/>">
+					Cerrar sesion
+                </a> 
             </div>
         </section>
         <p>La mejor paginda de chollos</p>
@@ -112,24 +115,14 @@
     
     <div class="row">
         <div class="eventBox" id="eventBoxid">
-            <div class="cholloEventBox">
-                <a href="#home">
-                    <img class="imagenEvent" alt="carrito bebe" src="10021021841-6-118x118.jpg">
-                </a>
-                <p>Riñonera putimadre para el pc o lo que sea XD</p>
-            </div>
-            <div class="cholloEventBox">
-                <a href="#home">
-                    <img class="imagenEvent" alt="carrito bebe" src="10021021841-6-118x118.jpg">
-                </a>
-                <p>Riñonera putimadre para el pc o lo que sea XD</p>
-            </div>
-            <div class="cholloEventBox">
-                <a href="#home">
-                    <img class="imagenEvent" alt="carrito bebe" src="10021021841-6-118x118.jpg">
-                </a>
-                <p>Riñonera putimadre para el pc o lo que sea XD</p>
-            </div>
+        	<c:forEach var="cholloHot" items="${chollosHot}">
+        		<div class="cholloEventBox">
+	                <a href="">
+	                    <img class="imagenEvent" alt="carrito bebe" src = "${cholloHot.imagen}">
+	                </a>
+	                <p>${cholloHot.description}</p>
+            	</div>
+        	</c:forEach>
         </div>
         <ul id="navegador" class="navegacion">
             <li>Tiendas
@@ -177,14 +170,22 @@
 							</a>
 						</div>
 						<div class="textoChollo">
-							<div class="progressBar">
-								<i class="material-icons">mood</i> <i class="material-icons">mood_bad</i>
-								<div class="progress"></div>
+							<div>
+								<i class="material-icons">mood</i> 
+								<i class="material-icons">mood_bad</i>
+								<p>Likes: ${chollo.first.likes}</p>
 							</div>
 							<h3>${chollo.first.title}</h3>
 							<div class="precioTienda">
 								<h4>${chollo.first.price}</h4>
-								<a href="">#tienda</a>
+								<c:choose>
+									<c:when test="${chollo.third.name != null}">
+										<a href=""># ${chollo.third.name}</a>
+									</c:when>
+									<c:otherwise>
+										<p> Tienda desconocida </p>
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<p>${chollo.first.description}</p>
 							<div class="autorVerChollo">
@@ -209,16 +210,35 @@
     </div>
 
 <footer class="footer">
-  <p>Resize the browser window to see how the content respond to the resizing.</p>
+	<div class="Ayudausurio">
+		<img alt="" src="logo_60.png">
+	</div>
+	<div class="IconosSocialMedia">
+		<a href="https://www.facebook.com/alvaro.blancomangut.37">
+			<i class="fa fa-facebook-square" style="font-size:36px;color:#002531"></i>
+		</a>			
+		<a href="https://github.com/ablancoze">	
+			<i class="fa fa-github" style="font-size:36px;color:#002531"></i>
+		</a>		
+		<a href="https://www.linkedin.com/in/%C3%A1lvaro-blanco-mangut-ab2313163/">
+			<i class="fa fa-linkedin-square" style="font-size:36px;color:#002531"></i>	
+		</a>		
+		<a href="https://www.starwars.com/">
+			<i class="fa fa-rebel" style="font-size:36px;color:#002531"></i>
+		</a>
+		<a href="https://www.youtube.com/watch?v=sNbGxOccYWc">
+			<i class="fa fa-youtube-play" style="font-size:36px;color:#002531"></i>
+		</a>
+	</div>
 </footer> 
 <script>
 
     function openclosenav(){
 
         if(document.getElementById("navegador").style.width == "0px"){
-            document.getElementById("navegador").style.width = "250px"; 
+            document.getElementById("navegador").style.width = "200px"; 
             document.getElementById("principal").style.width = "80%";
-            document.getElementById("navegadorSecundario").style.width = "87%";
+            document.getElementById("navegadorSecundario").style.width = "100%";
             
         }else{
             document.getElementById("navegador").style.width = "0";

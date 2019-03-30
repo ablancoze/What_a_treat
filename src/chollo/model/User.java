@@ -7,6 +7,30 @@ public class User {
 	private String email;
 	private String password;
 	
+	
+	
+	public  boolean comprobarCampos(String username, String email, String password) {
+		
+		String emailRegexp = "^[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+		String usernameRegexp = "[a-zA-Z1-9]";
+		String passRegexp = "";
+		
+		
+		return false;
+	}
+	
+	public  boolean comprobarPasword(String password) {
+		
+		if (password.equals(this.password)) {
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -34,15 +58,7 @@ public class User {
 	}
 	
 	
-	public boolean comprobarPasword(String password) {
-		
-		if (password.equals(this.password)) {
-			return true;
-		}
-		
-		return false;
-		
-	}
+
 	
 	
 }

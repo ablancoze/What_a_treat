@@ -46,7 +46,7 @@ public class JDBCUserDAOImpl implements UserDAO {
 		
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username ='"+username+"'");			 
+			ResultSet rs = stmt.executeQuery(" SELECT * FROM users WHERE username ='" +username+ "'");			 
 			if (!rs.next()) return null; 
 			user  = new User();	 
 			user.setId(rs.getInt("id"));
@@ -59,6 +59,45 @@ public class JDBCUserDAOImpl implements UserDAO {
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	@Override
+	public String getEmail(String gmail) {
+		if (conn == null) {
+			return null;
+		}
+		String s = null;
+		try {
+			
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE email ='" +gmail+ "'");		
+			if (!rs.next()) return null; 
+			s=rs.getString("email");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
+	}
+	
+	@Override
+	public String getUserName(String userName) {
+		if (conn == null) {
+			return null;
+		}
+		String s = null;
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username ='"+userName+"'");		
+			if (!rs.next()) return null;
+			s=rs.getString("username");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
 	}
 	
 	
