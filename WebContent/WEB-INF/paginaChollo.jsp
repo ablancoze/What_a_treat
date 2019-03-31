@@ -6,7 +6,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<link rel="stylesheet" href="css/cssResponsive.css" type="text/css"><link>
+<link rel="stylesheet" href="css/cssPaginaChollo.css" type="text/css"><link>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -162,34 +162,74 @@
         <div id="principal" class="mainContainer">
             
             <div class="col-6 col-s-9">
-                    <form method="post" action="EditProfile" id="formularioEditarPerfil" class="editContainer">
-                        <div class="infoFoto">
-                            <div class="imagenChollo">
-                                <img src = "FotoPerfilAlvaroAlumno.jpg">
-                            </div>
-
+                
+                <div class="cholloBox">
+                    <div class="imgTitleUser">
+                        <div>
+                            <img src="${chollo.imagen}">
+                        </div>
+                        <div class="TitleUser">
+                            <h1>${chollo.title}</h1>
                             <div>
-                                <input id="imagen" name="imagen" type="text" placeholder="Cambiar foto de perfil">
-                                <i class="material-icons">link</i>
+                            	<div>
+                          			<img src="FotoPerfilAlvaroAlumno.jpg"> <% //${userPublicacion.imagen} %>
+                                	<a>${userPublicacion.username}</a>
+                            	</div>
+                                <% //${chollo.fecha} %>
+                                <a>${shop.name}</a>
                             </div>
                         </div>
-
-                        <div class="infoChollo">
-                            <h4>${user.username}</h4>
-                            <input id="username" name="username" type="text" placeholder="Introduce un nuevo nombre de usuario" value="${user.username}">
-                            <h4>${user.email}</h4>
-                            <input id="email" name="email" type="text" placeholder="Introduce el nuevo precio del chollo" value="${user.email}">
-                            <p>Para cambiar la password primero debes introducir tu contraseña actual</p>
-                            <input id="Oldpass" name="Oldpass" type="password">
-                            <p>Nueva password</p>
-                            <input id="Newpass" name="Newpass" type="password" placeholder="Introduce tu nueva password">
+                    </div>
+                    
+                    <div class="likesPrecio">
+                        <div class="like">
+                        	
+                        		 <h3>Puntuacion    ${chollo.likes}</h3>
+                        	
+                        	
+                        		<i class='fas fa-thumbs-up' style='font-size:24px;color: aqua'></i>
+                            	<i class='fas fa-thumbs-down' style='font-size:24px;color: aqua'></i>
+                        	
                         </div>
-                        <button id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">Aplicar cambios</button>
-                    </form>
+                        
+                        <div class="precio">
+                            <h2>${chollo.price} &#8364</h2>
+                            <button>Ver Chollo</button>
+                        </div>
+
+                    </div>
+                    
+                    <div>
+                    	<p>${chollo.description}</p>
+                    </div>
+                    
+                    <div class="comentarios">
+                    	<h3>Comentarios</h3>
+                    	<div class="boxComentarios">
+                    		<div class="infoUserComent">
+                    			<img src = "FotoPerfilAlvaroAlumno.jpg">
+                    		</div>
+                    		<div class="comentarioUser">
+                    		</div>
+                    	</div>
+                	</div>
+                    
+                </div>
+            </div>
+            
+            <div class="col-3 col-s-12">
+                <div class="aside">		
+                    <h2>What?</h2>		
+                    <p>Chania is a city on the island of Crete.</p>		
+                    <h2>Where?</h2>		
+                    <p>Crete is a Greek island in the Mediterranean Sea.</p>                   		
+                    <h2>How?</h2>	
+                    <p>You can reach Chania airport from all over Europe.</p>
                 </div>
             </div>
         </div>
-        
+    </div>
+
 <footer class="footer">
 	<div class="Ayudausurio">
 		<img alt="" src="logo_60.png">

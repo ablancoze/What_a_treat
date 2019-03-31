@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import chollo.dao.JDBCUserDAOImpl;
 import chollo.dao.UserDAO;
+import chollo.model.Category;
 import chollo.model.Chollo;
 import chollo.model.Shop;
 import chollo.model.User;
@@ -83,6 +84,10 @@ public class WhatAtreat extends HttpServlet {
 		ChollosCategoryDAO chollosCategoryDAO = new JDBCChollosCategoryDAOImpl();
 		chollosCategoryDAO.setConnection(conn);
 		
+		List<Category> categoryList = categoryDAO.getAll();
+		
+		List<Shop> shoptList = shopDAO.getAll();
+		
 		//Lista con todos los chollos que hay en base de datos
 		List<Chollo> cholloList = cholloDAO.getAll();
 		
@@ -124,15 +129,20 @@ public class WhatAtreat extends HttpServlet {
 		request.setAttribute("chollosList",chollosUserShopList);
 		//Tambien guardo el map de usuarios.
 		request.setAttribute("usersMap", userChollosMap);
-		request.setAttribute("chollosHot", ListaChollosHOT);
 		
+		
+		request.setAttribute("chollosHot", ListaChollosHOT);
+		request.setAttribute("ListaCategorias", categoryList);
+		request.setAttribute("ListaTiendas", shoptList);
 		User u = (User) session.getAttribute("user");
 		
 		if (u!=null) {
 			request.setAttribute("user", u);
 		}
 		
-		
+		session.setAttribute("chollosHot", ListaChollosHOT);
+		session.setAttribute("ListaCategorias", categoryList);
+		session.setAttribute("ListaTiendas", shoptList);
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/whatatreat.jsp");
 		view.forward(request,response);	
 	}

@@ -16,16 +16,39 @@
 
 
 .row {
-	background-color: #F7F7F7;
+	background-color: #809298;
 }
 
 body {
 	display: block;
 	margin: 0;
+	margin-bottom: 90px;
 }
 
 html {
 	font-family: "Robot", sans-serif;
+	min-height: 100%;
+    position: relative;
+    background-color: #F7F7F7;
+}
+
+button{
+	font-family: "Robot", sans-serif;
+}
+
+.imagenUsuarioPublicaccion{
+	width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    margin-right: 10px;
+	
+}
+
+a{
+	width: fit-content;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 @media only screen and (min-width: 1368px) {
@@ -269,7 +292,7 @@ html {
 	/*------Seccion Navegacion desplegable------------*/
 	.row .navegacion {
 		height: 100%;
-		width: 200px;
+		width: 250px;
 		position: fixed;
 		z-index: 1;
 		left: 0;
@@ -314,11 +337,18 @@ html {
 	}
 	.row .navegacion li:hover>div {
 		visibility: visible;
-		width: 100px;
-		height: 217px;
+		width: 108px;
+		height: 290px;
 		opacity: 1;
 		transition: width 0.6s, height 0.6s, opacity 1s;
 	}
+	
+	.row .navegacion li:hover>div>a{
+		display: list-item;
+		margin-bottom: 15px;
+		margin-top: 15px;
+	}
+	
 	.mainContainer {
 		display: table;
 		float: right;
@@ -333,18 +363,23 @@ html {
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	}
 	.footer {
-		background-color: #0099cc;
-		color: #ffffff;
-		font-size: 12px;
-		padding: 15px;
-		display: grid;
-		grid-template-columns: 80% 20%;
-		padding-left: 15%;
-		padding-right: 2%;
+	    background-color: #002531;
+	    color: #ffffff;
+	    font-size: 12px;
+	    padding: 15px;
+	    display: grid;
+	    grid-template-columns: 70% 30%;
+	    padding-left: 15%;
+	    padding-right: 2%;
+	    position: absolute;
+	    bottom: 0;
+	    width: 100%;
+	    height: 90px;
 	}
 	.footer > .IconosSocialMedia{
 		display: inline-flex;
     	justify-content: space-between;
+    	align-items: center;
 	}
 	
 	
@@ -353,7 +388,7 @@ html {
 		float: left;
 		text-align: center;
 		margin-top: 2%;
-		background-color: #F7F7F7;
+		
 	}
 	.mainContainer>.col-6>.cholloBox {
 		margin-bottom: 2%;
@@ -362,6 +397,7 @@ html {
 		grid-template-columns: 20% 80%;
 		background-color: white;
 		box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);
+		padding: 11px;
 	}
 	.mainContainer>.col-6>.cholloBox>.textoChollo>.progressBar {
 		display: inline-flex;
@@ -399,10 +435,21 @@ html {
 		text-align: initial;
 	}
 	.mainContainer>.col-6>.cholloBox>.textoChollo>.autorVerChollo {
-		display: grid;
-		grid-template-columns: 40% 60%;
-		text-align: initial;
 	}
+	
+	.mainContainer>.col-6>.cholloBox>.textoChollo>.autorVerChollo>button{
+	    float: right;
+	    width: 100px;
+	    background-color: #0099cc;
+	    color: white;
+	    border: none;
+		height: 29px;
+	    font: 700 15px/17px 'Roboto', trebuchet ms;
+	    border-radius: 5px;
+	    box-shadow: 0 2px 2px #E7E7E7;
+	    cursor: pointer;
+	}
+	
 	.mainContainer>.col-6>.cholloBox>.textoChollo>h3, h4, p {
 		margin: 0;
 	}
@@ -486,6 +533,9 @@ html {
         text-align: initial;
         margin-bottom: 30px;
         margin-top: 15px;
+        border: 1px solid #ddd;
+    	padding-top: 5px;
+    	box-shadow: 0 1px 1px #ededed;
     }
     
     .iconoEditar{

@@ -6,7 +6,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<link rel="stylesheet" href="css/cssResponsive.css" type="text/css"><link>
+<link rel="stylesheet" href="css/cssPaginaChollo.css" type="text/css"><link>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -162,53 +162,46 @@
         <div id="principal" class="mainContainer">
             
             <div class="col-6 col-s-9">
-                    <form method="post" action="EditProfile" id="formularioEditarPerfil" class="editContainer">
-                        <div class="infoFoto">
-                            <div class="imagenChollo">
-                                <img src = "FotoPerfilAlvaroAlumno.jpg">
-                            </div>
 
-                            <div>
-                                <input id="imagen" name="imagen" type="text" placeholder="Cambiar foto de perfil">
-                                <i class="material-icons">link</i>
-                            </div>
-                        </div>
 
-                        <div class="infoChollo">
-                            <h4>${user.username}</h4>
-                            <input id="username" name="username" type="text" placeholder="Introduce un nuevo nombre de usuario" value="${user.username}">
-                            <h4>${user.email}</h4>
-                            <input id="email" name="email" type="text" placeholder="Introduce el nuevo precio del chollo" value="${user.email}">
-                            <p>Para cambiar la password primero debes introducir tu contraseña actual</p>
-                            <input id="Oldpass" name="Oldpass" type="password">
-                            <p>Nueva password</p>
-                            <input id="Newpass" name="Newpass" type="password" placeholder="Introduce tu nueva password">
-                        </div>
-                        <button id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">Aplicar cambios</button>
-                    </form>
+
+
+
+
+
+	    </div>
+            <div class="col-3 col-s-12">
+                <div class="aside">		
+                    <h2>What?</h2>		
+                    <p>Chania is a city on the island of Crete.</p>		
+                    <h2>Where?</h2>		
+                    <p>Crete is a Greek island in the Mediterranean Sea.</p>                   		
+                    <h2>How?</h2>	
+                    <p>You can reach Chania airport from all over Europe.</p>
                 </div>
             </div>
         </div>
-        
+    </div>
+
 <footer class="footer">
 	<div class="Ayudausurio">
 		<img alt="" src="logo_60.png">
 	</div>
 	<div class="IconosSocialMedia">
 		<a href="https://www.facebook.com/alvaro.blancomangut.37">
-			<i  style="font-size:36px;color:#2a80b9" class='fab'>&#xf09a;</i>
+			<i  style="font-size:36px;color:#002531" class='fab'>&#xf09a;</i>
 		</a>			
 		<a href="https://github.com/ablancoze">	
-			<i style="font-size:36px;color:#2a80b9" class='fab'>&#xf09b;</i>
+			<i style="font-size:36px;color:#002531" class='fab'>&#xf09b;</i>
 		</a>		
 		<a href="https://www.linkedin.com/in/%C3%A1lvaro-blanco-mangut-ab2313163/">
-			<i style="font-size:36px;color:#2a80b9" class='fab'>&#xf08c;</i>	
+			<i style="font-size:36px;color:#002531" class='fab'>&#xf08c;</i>	
 		</a>		
 		<a href="https://www.starwars.com/">
-			<i style="font-size:36px;color:#2a80b9" class='fab'>&#xf1d0;</i>
+			<i style="font-size:36px;color:#002531" class='fab'>&#xf1d0;</i>
 		</a>
 		<a href="https://www.youtube.com/watch?v=sNbGxOccYWc">
-			<i style="font-size:36px;color:#2a80b9" class='fab'>&#xf167;</i>
+			<i style="font-size:36px;color:#002531" class='fab'>&#xf167;</i>
 		</a>
 	</div>
 </footer> 

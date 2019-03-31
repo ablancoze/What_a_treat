@@ -127,19 +127,18 @@
         <ul id="navegador" class="navegacion">
             <li>Tiendas
                 <div>
-                    <a href="#">Aliexpress</a>
-                    <a href="#">Amazon</a>
-                    <a href="#">MediaMarkt</a>
-                    <a href="#">PCcomponentes</a>
-                    <a href="#">Banggood</a>
-                    <a href="#">Ebay</a>
-                    <a href="#">Gearbest</a>
-                    <a href="#">Steam</a>
+                	<c:forEach var="Tiendas" items="${ListaTiendas}">
+                    	<a href="#">${Tiendas.name}</a>
+                    </c:forEach>
                 </div>
             </li>
             
             <li>Categorias
-                <a href="#home"></a>
+            	<div>
+            		<c:forEach var="Categorias" items="${ListaCategorias}">
+            			<a href="#home">${Categorias.name}</a>
+            		</c:forEach>
+            	</div>
             </li>
             
             <li>Chollos Aliexpress
@@ -165,14 +164,12 @@
 				<c:forEach var="chollo" items="${chollosList}">
 					<div class="cholloBox">
 						<div class="cholloImagen">
-							<a href="">
+							<a href="<c:url value = '/VerChollo?cholloid=${chollo.first.id}&userid=${chollo.second.id}&shopid=${chollo.third.id}'/>" alt="">
 							<img src = "${chollo.first.imagen}">
 							</a>
 						</div>
 						<div class="textoChollo">
 							<div>
-								<i class="material-icons">mood</i> 
-								<i class="material-icons">mood_bad</i>
 								<p>Likes: ${chollo.first.likes}</p>
 							</div>
 							<h3>${chollo.first.title}</h3>
@@ -189,6 +186,7 @@
 							</div>
 							<p>${chollo.first.description}</p>
 							<div class="autorVerChollo">
+								<img class="imagenUsuarioPublicaccion" src="FotoPerfilAlvaroAlumno.jpg">
 								<a href="">${chollo.second.username}</a>
 								<button href="">Ver Chollo</button>
 							</div>
@@ -214,20 +212,20 @@
 		<img alt="" src="logo_60.png">
 	</div>
 	<div class="IconosSocialMedia">
-		<a href="https://www.facebook.com/alvaro.blancomangut.37">
-			<i class="fa fa-facebook-square" style="font-size:36px;color:#002531"></i>
+		<a href="https://www.facebook.com/alvaro.blancomangut.37"  target=”_blank”>
+			<i class="fa fa-facebook-square" style="font-size:36px;color:#2a80b9"></i>
 		</a>			
-		<a href="https://github.com/ablancoze">	
-			<i class="fa fa-github" style="font-size:36px;color:#002531"></i>
+		<a href="https://github.com/ablancoze"  target=”_blank”>	
+			<i class="fa fa-github" style="font-size:36px;color:#2a80b9"></i>
 		</a>		
-		<a href="https://www.linkedin.com/in/%C3%A1lvaro-blanco-mangut-ab2313163/">
-			<i class="fa fa-linkedin-square" style="font-size:36px;color:#002531"></i>	
+		<a href="https://www.linkedin.com/in/%C3%A1lvaro-blanco-mangut-ab2313163/"  target=”_blank”>
+			<i class="fa fa-linkedin-square" style="font-size:36px;color:#2a80b9"></i>	
 		</a>		
-		<a href="https://www.starwars.com/">
-			<i class="fa fa-rebel" style="font-size:36px;color:#002531"></i>
+		<a href="https://www.starwars.com/"  target=”_blank”>
+			<i class="fa fa-rebel" style="font-size:36px;color:#2a80b9"></i>
 		</a>
-		<a href="https://www.youtube.com/watch?v=sNbGxOccYWc">
-			<i class="fa fa-youtube-play" style="font-size:36px;color:#002531"></i>
+		<a href="https://www.youtube.com/watch?v=sNbGxOccYWc"  target=”_blank”>
+			<i class="fa fa-youtube-play" style="font-size:36px;color:#2a80b9"></i>
 		</a>
 	</div>
 </footer> 
@@ -236,7 +234,7 @@
     function openclosenav(){
 
         if(document.getElementById("navegador").style.width == "0px"){
-            document.getElementById("navegador").style.width = "200px"; 
+            document.getElementById("navegador").style.width = "250px"; 
             document.getElementById("principal").style.width = "80%";
             document.getElementById("navegadorSecundario").style.width = "100%";
             
