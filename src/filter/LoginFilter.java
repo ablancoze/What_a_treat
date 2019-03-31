@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 //TODO Comlete the urlpattern for this Filter
 
-@WebFilter(urlPatterns = {"/UserProfile", "/Logout" , "/ConfirmarRegistro", "/EditProfile", "/PublicarChollo", "/EditChollo" })
+@WebFilter(urlPatterns = {"/UserProfile", "/Logout" , "/EditProfile", "/PublicarChollo", "/EditChollo" })
 public class LoginFilter implements Filter{
 
 	private FilterConfig fc;

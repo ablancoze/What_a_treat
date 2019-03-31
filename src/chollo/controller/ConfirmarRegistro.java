@@ -2,6 +2,7 @@ package chollo.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ import chollo.model.User;
 @WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/ConfirmarRegistro" })
 public class ConfirmarRegistro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,6 +36,7 @@ public class ConfirmarRegistro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.info("Handling GET ConfirmarRegistro");
 		//Obtengo la base de datos
 		Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
 		

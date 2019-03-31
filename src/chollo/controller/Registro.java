@@ -46,7 +46,7 @@ public class Registro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("Handling POST PublicarChollo");
+		logger.info("Handling POST registro");
 		
 		// servlet context es como un servlet de tomcat, al inciarse tomcat carga la basde datos y la añade como atributo
 		Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
@@ -73,6 +73,7 @@ public class Registro extends HttpServlet {
 		
 		
 		if (userDAO.getEmail(email)!=null) {
+			logger.info("Que esta pasando aqui");
 			request.setAttribute("emailProblem","Este email ya existe");
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
 			view.forward(request,response);	
@@ -89,7 +90,7 @@ public class Registro extends HttpServlet {
 		session.setAttribute("username",userName);
 		session.setAttribute("pass",pass);
 		session.setAttribute("email",email);
-		
+		logger.info("Que esta pasando aqui"+userName+pass+email);
 		response.sendRedirect("ConfirmarRegistro");
 		
 	}
