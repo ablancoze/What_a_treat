@@ -42,6 +42,8 @@
                 <div class="icono">
                     <i class="material-icons">add_circle</i>
                 </div>
+                <div id="trianguloPublicar" class="triangulo-equilatero-bottom" style="display: none">
+        		</div>
             </a>
             <c:choose>
             	<c:when test="${user == null}">
@@ -56,6 +58,8 @@
 		                <div class="icono">
 		                    <i class="material-icons md-41">account_circle</i>
 		                </div>
+		                <div id="trianguloUsuario" class="triangulo-equilatero-bottom" style="display: none">
+        				</div>
 		            </a>
 		        </c:otherwise>
 		     </c:choose>     
@@ -124,7 +128,7 @@
             	</div>
         	</c:forEach>
         </div>
-        <ul id="navegador" class="navegacion">
+        <ul id="navegador" class="navegacion" style="width: 0px">
             <li>Tiendas
                 <div>
                 	<c:forEach var="Tiendas" items="${ListaTiendas}">
@@ -246,16 +250,21 @@
     function openclosePublicar(){
         if (document.getElementById("publicarChollo").style.display == "none"){
             document.getElementById("publicarChollo").style.display = "block";
+            document.getElementById("trianguloPublicar").style.display = "block";
+            
         }else{
             document.getElementById("publicarChollo").style.display = "none";
+            document.getElementById("trianguloPublicar").style.display = "none";
         }
     }
     
     function opencloseUsuario(){
         if (document.getElementById("verPerfil").style.display == "none"){
-             document.getElementById("verPerfil").style.display = "block"
+             document.getElementById("verPerfil").style.display = "block";
+             document.getElementById("trianguloUsuario").style.display = "block";
         }else{
             document.getElementById("verPerfil").style.display = "none";
+            document.getElementById("trianguloUsuario").style.display = "none";
         }
     }
     

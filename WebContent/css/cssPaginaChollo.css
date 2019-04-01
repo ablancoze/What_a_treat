@@ -499,6 +499,8 @@ h1,h2,h3,h4,h5{
 		padding-top: 10px;
     	padding-bottom: 10px;
     	border: 1px solid #ddd;
+    	    margin-right: 70px;
+    margin-left: 70px;
     }
     
     .mainContainer>.col-6>.cholloBox>.comentarios>.boxComentarios>.infoUserComent {
@@ -522,7 +524,7 @@ h1,h2,h3,h4,h5{
     
     
     .mainContainer>.col-6>.cholloBox>.comentarios>.boxComentarios>.comentarioUser{
-    
+    	    padding: 9px;
     }
 
     
