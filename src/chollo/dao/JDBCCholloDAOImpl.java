@@ -304,15 +304,15 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 				lastid=rs.getInt("seq");
 								
 			} catch (SQLException e) {
-				logger.info("Venga a ver que cojones pasa aqui  primer catch");
+				
 				e.printStackTrace();
 			}
 			
 			
 			try {
-				logger.info("Venga a ver que cojones pasa aqui ");
+				
 				stmt = conn.createStatement();
-				stmt.executeUpdate("INSERT INTO chollo (title,description,link,price,idu,ids,likes,soldout,imagen) VALUES( '"+chollo.getTitle()+"' , '"+chollo.getDescription()+"' , '"+ chollo.getLink() +"' , "+ chollo.getPrice()+" , "+ chollo.getIdu()+" , "+ chollo.getIds() +" , "+chollo.getLikes()+" , "+chollo.getSoldout()+" , '"+chollo.getImagen()+"' )");
+				stmt.executeUpdate("INSERT INTO chollo (title,description,link,price,idu,ids,likes,soldout,imagen) VALUES( '"+chollo.getTitle()+"','"+chollo.getDescription()+"', '"+ chollo.getLink() +"',"+ chollo.getPrice()+","+ chollo.getIdu()+","+ chollo.getIds() +","+chollo.getLikes()+" , "+chollo.getSoldout()+",'"+chollo.getImagen()+"')");
 				
 								
 			} catch (SQLException e) {
@@ -345,7 +345,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 			Statement stmt;
 			try {
 				stmt = conn.createStatement();
-				stmt.executeUpdate("UPDATE Chollo SET title= '"+chollo.getTitle() +"', description= '"+chollo.getDescription()+"', link= '"+chollo.getLink()+"', price="+chollo.getPrice()+", idu="+chollo.getIdu()+", ids="+chollo.getIds()+", likes="+chollo.getLikes()+", soldout="+chollo.getSoldout()+", imagen='"+chollo.getImagen()+"' WHERE id = "+chollo.getId());
+				stmt.executeUpdate("UPDATE Chollo SET title='"+chollo.getTitle()+"', description='"+chollo.getDescription()+"',link='"+chollo.getLink()+"',price="+chollo.getPrice()+",idu="+chollo.getIdu()+",ids="+chollo.getIds()+",likes="+chollo.getLikes()+",soldout="+chollo.getSoldout()+",imagen='"+chollo.getImagen()+"' WHERE id = "+chollo.getId());
 				
 				logger.info("updating Chollo: "+chollo.getId()+" "+chollo.getTitle()+" "+chollo.getDescription());
 						

@@ -192,7 +192,9 @@
 							<div class="autorVerChollo">
 								<img class="imagenUsuarioPublicaccion" src="FotoPerfilAlvaroAlumno.jpg">
 								<a href="">${chollo.second.username}</a>
-								<button href="">Ver Chollo</button>
+								<a href="<c:url value = '${chollo.first.link}'/>" target="”_blank”">
+									<button alt="link al chollo">Ver Chollo</button>
+								</a>
 							</div>
 						</div>
 					</div>

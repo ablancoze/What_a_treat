@@ -2,12 +2,8 @@ package chollo.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,22 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import chollo.dao.ComentarioDAO;
+import chollo.dao.JDBCComentarioDAOImpl;
 import chollo.dao.JDBCUserDAOImpl;
 import chollo.dao.UserDAO;
+import chollo.model.Comentario;
 import chollo.model.User;
 
 /**
- * Servlet implementation class Registro
+ * Servlet implementation class PublicarComentario
  */
-@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/Registro" })
-public class Registro extends HttpServlet {
+@WebServlet(description = "Servlet para lanzar la pagina de inicio de la app de chollos", urlPatterns = { "/PublicarComentario" })
+public class PublicarComentario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Registro() {
+    public PublicarComentario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,7 +45,8 @@ public class Registro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("Handling POST registro");
+		
+		logger.info("Handling GET PublicarComentario");
 		
 		// servlet context es como un servlet de tomcat, al inciarse tomcat carga la basde datos y la añade como atributo
 		Connection conn = (Connection) getServletContext().getAttribute("dbWhat"); 
@@ -55,43 +55,31 @@ public class Registro extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		
+		ComentarioDAO comentarioDAO = new JDBCComentarioDAOImpl();
+		comentarioDAO.setConnection(conn);
 		
-		UserDAO userDAO = new JDBCUserDAOImpl();
-		userDAO.setConnection(conn);
-		
-		String userName = request.getParameter("userName");
-		String pass = request.getParameter("pass");
-		String email =request.getParameter("email");
-		
-		/**
-		 * User u;
-		 * 
-		 * hay que comprobar los elementos que se consultan en la bd para evitar inyecciones.
-		 */
+		User u = (User) session.getAttribute("user");
 		
 		
+		String username=u.getUsername();
+		String comentario=request.getParameter("comentario");
+		String cid=request.getParameter("cid");
+		
+		Comentario c = new Comentario();
+		
+		c.setUsername(username);
+		c.setCid(Long.parseLong(cid));
+		c.setComentario(comentario);
+		c.setPuntos(0);
+		comentarioDAO.add(c);
 		
 		
-		if (userDAO.getEmail(email)!=null) {
-			logger.info("Que esta pasando aqui");
-			request.setAttribute("emailProblem","Este email ya existe");
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
-			view.forward(request,response);	
-		}
+		//TODO VAYA COSO FEO ESTO SE TIENE QUE PODER HACER DE OTRA MANERA
+		response.sendRedirect(request.getRequestURL().substring(0, 35)+"/VerChollo?cholloid=" +request.getParameter("cid")+"&userid="+request.getParameter("uid")+"&shopid="+request.getParameter("sid"));
 		
-		if (userDAO.getUserName(userName)!=null) {
-			request.setAttribute("usernameProblem","Este nombre de usuario ya existe");
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
-			view.forward(request,response);	
-			
-		}
 		
-
-		session.setAttribute("username",userName);
-		session.setAttribute("pass",pass);
-		session.setAttribute("email",email);
-		logger.info("Que esta pasando aqui"+userName+pass+email);
-		response.sendRedirect("ConfirmarRegistro");
+		
+		
 		
 	}
 

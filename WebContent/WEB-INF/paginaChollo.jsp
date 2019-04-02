@@ -191,14 +191,14 @@
                         		 <h3>Puntuacion    ${chollo.likes}</h3>
                         	
                         	
-                        		<i class='fas fa-thumbs-up' style='font-size:24px;color: aqua'></i>
-                            	<i class='fas fa-thumbs-down' style='font-size:24px;color: aqua'></i>
+                        		<i class='fas fa-thumbs-up' style='font-size:24px;color: #00BF00 ;cursor: pointer' onmouseover="this.style.color='#00DF00'" onMouseOut="this.style.color='#00BF00'"></i>
+                            	<i class='fas fa-thumbs-down' style='font-size:24px;color: #BF0000;cursor: pointer' onmouseover="this.style.color='#DF0000'" onMouseOut="this.style.color='#BF0000'"></i>
                         	
                         </div>
                         
                         <div class="precio">
-                            <h2>${chollo.price} &#8364</h2>
-                            <button>Ver Chollo</button>
+                            <h2 style="ma">${chollo.price} &#8364</h2>
+                            <button class="botonPublicarComentario" style="margin-top: 0" >Ver Chollo</button>
                         </div>
 
                     </div>
@@ -208,14 +208,50 @@
                     </div>
                     
                     <div class="comentarios">
-                    	<h3>Comentarios</h3>
-                    	<div class="boxComentarios">
-                    		<div class="infoUserComent">
-                    			<img src = "FotoPerfilAlvaroAlumno.jpg">
-                    		</div>
-                    		<div class="comentarioUser">
-                    		</div>
-                    	</div>
+                    	<h3 style="font: 700 19px/21px 'Roboto', trebuchet ms;margin-bottom: 26px;">Comentarios</h3>
+                    	<c:forEach var="comentario" items="${comentarios}">
+	                    	<div class="boxComentarios">
+	                    		<div class="infoUserComent">
+	                    			<img src = "FotoPerfilAlvaroAlumno.jpg">
+	                    			<p style="font: 700 15px/15px 'Roboto', trebuchet ms;text-transform: uppercase;display: block;margin-left: 10px;margin-bottom: 0;height: 16px;">${comentario.username}</p>
+	                    		</div>
+	                    		<div class="comentarioUser">
+	                    			<p style="font: 15px Arial, Helvetica, trebuchet ms;">${comentario.comentario}</p>
+	                    		</div>
+	                    	</div>
+                    	</c:forEach>
+
+                	</div>
+                	
+                	<div class="formComentario">
+                		<form method="post" action="PublicarComentario" >
+                			<fieldset style="padding: 20px 24px;border: 1px solid #ededed;margin-bottom: 30px;box-shadow: 0 1px 1px #EDEDED;background: #fff;">
+                				<legend style="font: 700 19px/21px 'Roboto', trebuchet ms; text-align: center">DEJANOS TU COMENTARIO</legend>
+                				<textarea id="comentario" type="text"  name="comentario" rows="10" cols="30" aria-required="true" required="required" style="width: 100%;background: #f2f2f2;font: 400 15px 'helvetica', trebuchet ms;height: 150px;resize: none;margin-bottom: 20px;border: 1px solid #cbd0d2;padding: 10px;clear: both"></textarea>
+                				
+                				<c:if test="${user==null}">
+	                				<div>
+	                					<div style="background: none #002531;width: 38px;height: 38px;text-align: center;line-height: 38px;">
+	                						<i style="font-size:15px;color:#2a80b9" class='fas'>&#xf007;</i>
+	                					</div>
+	                					<input id="username" type="text" name="username" placeholder="Nombre" required="required" style="padding: 0 0 0 5px">
+	                				</div>
+	                				<div>
+	                					<div style="background: none #002531;width: 38px;height: 38px;text-align: center;line-height: 38px;">
+	                						<i style="font-size:15px;color:#2a80b9" class='fas'>&#xf0e0;</i>
+	                					</div>
+	                					<input id="email" type="text" name="email" placeholder="Correo electronico" required="required" style="padding: 0 0 0 5px">
+	                				</div>
+                				</c:if>
+                				
+                				<button type="submit" class="botonPublicarComentario">
+                					<input type="hidden" name="cid" value="${chollo.id}" id="cid">
+                					<input type="hidden" name="uid" value="${userPublicacion.id}" id="uid">
+                					<input type="hidden" name="sid" value="${shop.id}" id="sid">
+                					Publicar
+                				</button>	
+                			</fieldset>
+                		</form>
                 	</div>
                     
                 </div>
@@ -262,12 +298,12 @@
 
         if(document.getElementById("navegador").style.width == "0px"){
             document.getElementById("navegador").style.width = "250px"; 
-            document.getElementById("principal").style.width = "80%";
+            document.getElementById("principal").style.width = "75%";
             document.getElementById("navegadorSecundario").style.width = "100%";
             
         }else{
             document.getElementById("navegador").style.width = "0";
-            document.getElementById("principal").style.width = "90%";
+            document.getElementById("principal").style.width = "75%";
             document.getElementById("navegadorSecundario").style.width = "100%";
         }
     }

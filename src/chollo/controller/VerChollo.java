@@ -2,6 +2,7 @@ package chollo.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -13,12 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import chollo.dao.CholloDAO;
+import chollo.dao.ComentarioDAO;
 import chollo.dao.JDBCCholloDAOImpl;
+import chollo.dao.JDBCComentarioDAOImpl;
 import chollo.dao.JDBCShopDAOImpl;
 import chollo.dao.JDBCUserDAOImpl;
 import chollo.dao.ShopDAO;
 import chollo.dao.UserDAO;
 import chollo.model.Chollo;
+import chollo.model.Comentario;
 import chollo.model.Shop;
 import chollo.model.User;
 
@@ -61,29 +65,33 @@ public class VerChollo extends HttpServlet {
 				ShopDAO shopDAO = new JDBCShopDAOImpl();
 				shopDAO.setConnection(conn);
 				
+				ComentarioDAO comentarioDAO = new JDBCComentarioDAOImpl();
+				comentarioDAO.setConnection(conn);
+				
+				
 				
 				User u = (User) session.getAttribute("user");
 				
-					String cid = request.getParameter("cholloid");
-					logger.info("Handling GET VerChollo ");
-					String uid = request.getParameter("userid");
-					String sid= request.getParameter("shopid");
+				String cid = request.getParameter("cholloid");
+				String uid = request.getParameter("userid");
+				String sid= request.getParameter("shopid");
 					
-					Shop s = shopDAO.get(Long.parseLong(sid));
-					Chollo c = cholloDAO.get(Long.parseLong(cid));
-					User userPublicacion = userDAO.get(Long.parseLong(uid));
+				List<Comentario>comentariosChollo;
+				comentariosChollo=comentarioDAO.getComentAndUser(Long.parseLong(cid));
+					
+				Shop s = shopDAO.get(Long.parseLong(sid));
+				Chollo c = cholloDAO.get(Long.parseLong(cid));
+				User userPublicacion = userDAO.get(Long.parseLong(uid));
 					
 					
-					request.setAttribute("chollosHot", session.getAttribute("chollosHot"));
-					request.setAttribute("ListaCategorias", session.getAttribute("ListaCategorias"));
-					request.setAttribute("ListaTiendas", session.getAttribute("ListaTiendas"));
-					
-					request.setAttribute("chollo", c);
-					request.setAttribute("userPublicacion", userPublicacion);
-					request.setAttribute("shop", s);
-					
-					RequestDispatcher view = request.getRequestDispatcher("WEB-INF/paginaChollo.jsp");
-					view.forward(request,response);	
+				request.setAttribute("chollo", c);
+				request.setAttribute("userPublicacion", userPublicacion);
+				request.setAttribute("shop", s);
+				request.setAttribute("comentarios", comentariosChollo);
+				
+				
+				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/paginaChollo.jsp");
+				view.forward(request,response);	
 					
 				
 				

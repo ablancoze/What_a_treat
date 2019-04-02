@@ -163,9 +163,9 @@
             
         </ul>
     
-        <div id="principal" class="mainContainer">
+        <div id="principal" class="mainContainer" style="width: 75%;">
             
-            <div class="col-6 col-s-9">
+            <div class="col-6 col-s-9" style="width: 65%">
                     <div class="userContainer">
 
                         <div class="infoUser">
@@ -177,19 +177,14 @@
                                 <p>${user.username}</p>
                                 <p>${user.email}</p>
                             </div>
-                            <div>
-                            	<a href = "<c:url value = "/EditProfile"/>">
-                            		Configurar cuenta
-                            	</a>
-                            </div>
-
                         </div>
-
                         <div class="chollosUser">
                             <c:forEach var="chollo" items="${cholloList}">
 								<div class="cholloBoxPequeña">
 									<div class="cholloImagen">
-										<img src="${chollo.imagen}">
+										<a href="<c:url value = '/VerChollo?cholloid=${chollo.id}&userid=${user.id}&shopid=${chollo.ids}'/>" alt="">
+											<img style="width: 80px;height: 80px;" src="${chollo.imagen}">
+										</a>
 									</div>
 	
 									<div>
@@ -199,7 +194,9 @@
 									</div>
 									<div class="iconoEditar">
 										<a href="<c:url value = '/EditChollo?id=${chollo.id}'/>" alt=""> 
-											<i style="font-size:24px;color:#0099cc" class='fas'>&#xf044;</i>
+											<i style="font-size:24px;color:#60BFDF" class='fas' onmouseover="this.style.color='#0099CC'" onMouseOut="this.style.color='#60BFDF'">&#xf044;</i>
+											
+											
 										</a>
 									</div>
 								</div>
@@ -215,7 +212,7 @@
 	</div>
 	<div class="IconosSocialMedia">
 		<a href="https://www.facebook.com/alvaro.blancomangut.37">
-			<i  style="font-size:36px;color:#002531" class='fab'>&#xf09a;</i>
+			<i  style="font-size:36px;color:#2a80b9" class='fab'>&#xf09a;</i>
 		</a>			
 		<a href="https://github.com/ablancoze">	
 			<i style="font-size:36px;color:#2a80b9" class='fab'>&#xf09b;</i>
@@ -233,19 +230,19 @@
 </footer> 
 <script>
 
-    function openclosenav(){
-
-        if(document.getElementById("navegador").style.width == "0px"){
-            document.getElementById("navegador").style.width = "250px"; 
-            document.getElementById("principal").style.width = "80%";
-            document.getElementById("navegadorSecundario").style.width = "100%";
-            
-        }else{
-            document.getElementById("navegador").style.width = "0";
-            document.getElementById("principal").style.width = "90%";
-            document.getElementById("navegadorSecundario").style.width = "100%";
-        }
-    }
+	function openclosenav(){
+	
+	    if(document.getElementById("navegador").style.width == "0px"){
+	        document.getElementById("navegador").style.width = "250px"; 
+	        document.getElementById("principal").style.width = "75%";
+	        document.getElementById("navegadorSecundario").style.width = "100%";
+	        
+	    }else{
+	        document.getElementById("navegador").style.width = "0";
+	        document.getElementById("principal").style.width = "75%";
+	        document.getElementById("navegadorSecundario").style.width = "100%";
+	    }
+	}
     
     function openclosePublicar(){
         if (document.getElementById("publicarChollo").style.display == "none"){

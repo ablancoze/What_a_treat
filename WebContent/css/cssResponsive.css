@@ -29,7 +29,7 @@ html {
 	font-family: "Robot", sans-serif;
 	min-height: 100%;
     position: relative;
-    background-color: #F7F7F7;
+    background-color: #809298;
 }
 
 button{
@@ -58,6 +58,10 @@ a{
     border-left: 20px solid transparent;
     border-bottom: 20px solid #308CAA;
     margin-top: 6px;
+}
+
+h1, h2, h3, h4 {
+    text-rendering: optimizeLegibility;
 }
 
 @media only screen and (min-width: 1368px) {
@@ -451,7 +455,7 @@ a{
 	.mainContainer>.col-6>.cholloBox>.textoChollo>.autorVerChollo {
 	}
 	
-	.mainContainer>.col-6>.cholloBox>.textoChollo>.autorVerChollo>button{
+	.mainContainer>.col-6>.cholloBox>.textoChollo>.autorVerChollo>a>button{
 	    float: right;
 	    width: 100px;
 	    background-color: #0099cc;
@@ -503,7 +507,7 @@ a{
         display: grid;
         grid-template-columns: 20% 80%;
         background: white;
-        padding-right: 20px;
+        padding: 15px;
         margin-bottom: 30px;
         box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);
     }
@@ -562,6 +566,35 @@ a{
         margin-bottom: 30px;
         margin-top: 15px;
     }
+    
+    
+    
+    /***********************************************************************/
+    /***************************              ******************************/
+    /***************************CUENTA USUARIO******************************/
+    /**************************               ******************************/
+    /***********************************************************************/
+    /***********************************************************************/
+    
+    .My_account_box{
+		background-color: white;
+		text-align: initial;
+   		padding: 20px;
+    }
+    
+    .optionbox{
+	    display: grid;
+	    grid-template-columns: 20% 76%;
+	    grid-column-gap: 16px;
+	    height: 84px;
+	    padding: 10px;
+    }
+    
+    .My_account_box>div>div>a:hover{
+    	background: #eee;
+    }
+        
+    
     
     
     

@@ -2,8 +2,6 @@ package chollo.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -15,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
 import chollo.dao.CholloDAO;
 import chollo.dao.JDBCCholloDAOImpl;
 import chollo.dao.JDBCShopDAOImpl;
@@ -24,22 +20,20 @@ import chollo.dao.JDBCUserDAOImpl;
 import chollo.dao.ShopDAO;
 import chollo.dao.UserDAO;
 import chollo.model.Chollo;
-import chollo.model.Shop;
 import chollo.model.User;
-import chollo.util.Triplet;
 
 /**
- * Servlet implementation class UserProfile
+ * Servlet implementation class ChollosUser
  */
-@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/UserProfile" })
-public class UserProfile extends HttpServlet {
+@WebServlet(description = "Servlet para el registro de usuarios", urlPatterns = { "/ChollosUser" })
+public class ChollosUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(HttpServlet.class.getName());
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserProfile() {
+    public ChollosUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -62,16 +56,21 @@ public class UserProfile extends HttpServlet {
 		ShopDAO shopDAO = new JDBCShopDAOImpl();
 		shopDAO.setConnection(conn);
 		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/CuentaUsuario.jsp");
-		view.forward(request,response);	
-
+		User u = (User) session.getAttribute("user");
+		List<Chollo> cholloList = cholloDAO.getAllByUser(u.getId());
+		request.setAttribute("user", u);
+		request.setAttribute("cholloList", cholloList);
+		
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/perfilUsuario.jsp");
+		view.forward(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

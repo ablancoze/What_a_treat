@@ -46,7 +46,7 @@ public class JDBCUserDAOImpl implements UserDAO {
 		
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(" SELECT * FROM users WHERE username ='" +username+ "'");			 
+			ResultSet rs = stmt.executeQuery(" SELECT * FROM users WHERE username ='"+username+"'");			 
 			if (!rs.next()) return null; 
 			user  = new User();	 
 			user.setId(rs.getInt("id"));
@@ -154,7 +154,7 @@ public class JDBCUserDAOImpl implements UserDAO {
 			
 			try {
 				stmt = conn.createStatement();
-				stmt.executeUpdate("INSERT INTO Users (username,email,password) VALUES(' "+user.getUsername()+" ',' "+user.getEmail()+" ',' "+user.getPassword()+" ')");
+				stmt.executeUpdate("INSERT INTO Users (username,email,password) VALUES('"+user.getUsername()+"','"+user.getEmail()+"','"+user.getPassword()+"')");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

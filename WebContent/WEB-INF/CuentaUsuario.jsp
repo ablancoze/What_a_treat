@@ -6,12 +6,12 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<link rel="stylesheet" href="css/cssPaginaChollo.css" type="text/css"><link>
+<link rel="stylesheet" href="css/cssResponsive.css" type="text/css"><link>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
-<title>What a Treat</title>
+
 </head>
 <body>
 
@@ -42,7 +42,7 @@
                 <div class="icono">
                     <i class="material-icons">add_circle</i>
                 </div>
-              	<div id="trianguloPublicar" class="triangulo-equilatero-bottom" style="display: none">
+                <div id="trianguloPublicar" class="triangulo-equilatero-bottom" style="display: none">
         		</div>
             </a>
             <c:choose>
@@ -58,7 +58,7 @@
 		                <div class="icono">
 		                    <i class="material-icons md-41">account_circle</i>
 		                </div>
-		              	<div id="trianguloUsuario" class="triangulo-equilatero-bottom" style="display: none">
+		                <div id="trianguloUsuario" class="triangulo-equilatero-bottom" style="display: none">
         				</div>
 		            </a>
 		        </c:otherwise>
@@ -128,7 +128,7 @@
             	</div>
         	</c:forEach>
         </div>
-        <ul id="navegador" class="navegacion">
+        <ul id="navegador" class="navegacion" style="width: 0px">
             <li>Tiendas
                 <div>
                 	<c:forEach var="Tiendas" items="${ListaTiendas}">
@@ -163,81 +163,116 @@
             
         </ul>
     
-        <div id="principal" class="mainContainer">
+        <div id="principal" class="mainContainer" style="width: 75%;">
             
-            <div class="col-6 col-s-9">
-
-
-
-
-
-
-
-	    </div>
-            <div class="col-3 col-s-12">
-                <div class="aside">		
-                    <h2>What?</h2>		
-                    <p>Chania is a city on the island of Crete.</p>		
-                    <h2>Where?</h2>		
-                    <p>Crete is a Greek island in the Mediterranean Sea.</p>                   		
-                    <h2>How?</h2>	
-                    <p>You can reach Chania airport from all over Europe.</p>
-                </div>
+            <div class="col-6 col-s-9" style="width: 74%">
+            
+            	<div class="My_account_box">
+            	
+            		<h1 style="margin: 0;margin-bottom: 20px;border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: #ddd;">Mi cuenta</h1>
+            		<div style="display: flex;justify-content: center;">
+	            		<div style="display: grid;grid-template-columns: 330px 330px;grid-column-gap: 21px;grid-row-gap: 21px;">
+		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;" href="<c:url value = "/ChollosUser"/>">
+			            		<div class="optionbox">
+					            	<img src="archive.svg">
+					            	<div>
+						            	<h2 style="margin: 0;font-size: 17px;" >Mis chollos</h2>
+						            	<p style="color: #555!important;font-size: 13px;font-weight: bold;">Mira o edita los chollos que has publicado en la comunidad</p>
+						            </div>
+				            	</div>
+		            		</a>
+		            		
+		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;">
+			            		<div class="optionbox">
+					            	<img src="lock-open-alt.svg">
+					            	<div>
+						            	<h2 style="margin: 0;font-size: 17px;">Inicio de sesion y seguridad</h2>
+						            	<p style="color: #555!important;font-size: 13px;font-weight: bold;">Edita tu nombre de usuario, email y contraseña</p>
+						            </div>
+				            	</div>
+		            		</a>
+		            		
+		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;">
+			            		<div class="optionbox">
+					            	<img src="shopping-trolley.svg">
+					            	<div>
+						            	<h2 style="margin: 0;font-size: 17px;">Chollos guardados</h2>
+						            	<p style="color: #555!important;font-size: 13px;font-weight: bold;">Mira los chollos que has guardado</p>
+						            </div>
+				            	</div>
+		            		</a>
+		            		
+		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;">
+			            		<div class="optionbox">
+					            	<img src="question-circle.svg">
+					            	<div>
+						            	<h2 style="margin: 0;font-size: 17px;">Ayuda</h2>
+						            	<p style="color: #555!important;font-size: 13px;font-weight: bold;">¿Tienes dudas o algun problema? contacta con nostros y te ayudaremos</p>
+						            </div>
+				            	</div>
+		            		</a>
+		            	</div>            		
+            		</div>
+            	</div>
             </div>
         </div>
     </div>
-
 <footer class="footer">
 	<div class="Ayudausurio">
 		<img alt="" src="logo_60.png">
 	</div>
 	<div class="IconosSocialMedia">
 		<a href="https://www.facebook.com/alvaro.blancomangut.37">
-			<i  style="font-size:36px;color:#002531" class='fab'>&#xf09a;</i>
+			<i  style="font-size:36px;color:#2a80b9" class='fab'>&#xf09a;</i>
 		</a>			
 		<a href="https://github.com/ablancoze">	
-			<i style="font-size:36px;color:#002531" class='fab'>&#xf09b;</i>
+			<i style="font-size:36px;color:#2a80b9" class='fab'>&#xf09b;</i>
 		</a>		
 		<a href="https://www.linkedin.com/in/%C3%A1lvaro-blanco-mangut-ab2313163/">
-			<i style="font-size:36px;color:#002531" class='fab'>&#xf08c;</i>	
+			<i style="font-size:36px;color:#2a80b9" class='fab'>&#xf08c;</i>	
 		</a>		
 		<a href="https://www.starwars.com/">
-			<i style="font-size:36px;color:#002531" class='fab'>&#xf1d0;</i>
+			<i style="font-size:36px;color:#2a80b9" class='fab'>&#xf1d0;</i>
 		</a>
 		<a href="https://www.youtube.com/watch?v=sNbGxOccYWc">
-			<i style="font-size:36px;color:#002531" class='fab'>&#xf167;</i>
+			<i style="font-size:36px;color:#2a80b9" class='fab'>&#xf167;</i>
 		</a>
 	</div>
-</footer> 
+</footer>  
 <script>
 
-    function openclosenav(){
-
-        if(document.getElementById("navegador").style.width == "0px"){
-            document.getElementById("navegador").style.width = "250px"; 
-            document.getElementById("principal").style.width = "80%";
-            document.getElementById("navegadorSecundario").style.width = "100%";
-            
-        }else{
-            document.getElementById("navegador").style.width = "0";
-            document.getElementById("principal").style.width = "90%";
-            document.getElementById("navegadorSecundario").style.width = "100%";
-        }
-    }
+	function openclosenav(){
+	
+	    if(document.getElementById("navegador").style.width == "0px"){
+	        document.getElementById("navegador").style.width = "250px"; 
+	        document.getElementById("principal").style.width = "75%";
+	        document.getElementById("navegadorSecundario").style.width = "100%";
+	        
+	    }else{
+	        document.getElementById("navegador").style.width = "0";
+	        document.getElementById("principal").style.width = "75%";
+	        document.getElementById("navegadorSecundario").style.width = "100%";
+	    }
+	}
     
     function openclosePublicar(){
         if (document.getElementById("publicarChollo").style.display == "none"){
             document.getElementById("publicarChollo").style.display = "block";
+            document.getElementById("trianguloPublicar").style.display = "block";
+            
         }else{
             document.getElementById("publicarChollo").style.display = "none";
+            document.getElementById("trianguloPublicar").style.display = "none";
         }
     }
     
     function opencloseUsuario(){
         if (document.getElementById("verPerfil").style.display == "none"){
-             document.getElementById("verPerfil").style.display = "block"
+             document.getElementById("verPerfil").style.display = "block";
+             document.getElementById("trianguloUsuario").style.display = "block";
         }else{
             document.getElementById("verPerfil").style.display = "none";
+            document.getElementById("trianguloUsuario").style.display = "none";
         }
     }
     
@@ -245,3 +280,7 @@
 
 </body>
 </html>
+            
+            
+            
+            
