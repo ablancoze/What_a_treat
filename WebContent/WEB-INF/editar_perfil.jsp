@@ -164,7 +164,7 @@
     
         <div id="principal" class="mainContainer">
             
-            <div class="col-6 col-s-9">
+            <div class="col-6 col-s-9" style="background: white;box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);">
                     <form method="post" action="EditProfile" id="formularioEditarPerfil" class="editContainer">
                         <div class="infoFoto">
                             <div class="imagenChollo">
@@ -188,6 +188,9 @@
                             <input id="Newpass" name="Newpass" type="password" placeholder="Introduce tu nueva password">
                         </div>
                         <button id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">Aplicar cambios</button>
+                    </form>
+                    <form method="post" action="EliminarCuenta">
+                    	<button style="margin-bottom: 15px;margin-left: 86%;;background-color: #fafbfc;color: #cb2431;border: 1px solid rgba(27,31,35,.2);cursor: pointer;font-weight: 600;border-radius: .25em;padding: 7px;font-size: 14px;" type="submit" >Eliminiar cuenta</button>                   
                     </form>
                 </div>
             </div>

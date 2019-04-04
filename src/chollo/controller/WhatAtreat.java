@@ -100,6 +100,9 @@ public class WhatAtreat extends HttpServlet {
 		while(itCholloList.hasNext()) {
 			Chollo chollo = (Chollo) itCholloList.next();
 			User user = userDAO.get(chollo.getIdu());
+			if(user==null) {
+				user=userDAO.get(0);
+			}
 			logger.info("Usuario " + user.getUsername());
 			Shop shop = shopDAO.get(chollo.getIds());
 
@@ -189,9 +192,10 @@ public class WhatAtreat extends HttpServlet {
 				while(itCholloList.hasNext()) {
 					Chollo chollo = (Chollo) itCholloList.next();
 					User user = userDAO.get(chollo.getIdu());
-					logger.info("Usuario " + user.getUsername());
+					if(user==null) {
+						user=userDAO.get(0);
+					}
 					Shop shop = shopDAO.get(chollo.getIds());
-
 					chollosUserShopList.add(new Triplet<Chollo, User, Shop>(chollo,user,shop));
 				}
 				

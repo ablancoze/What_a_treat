@@ -182,7 +182,7 @@
 				            	</div>
 		            		</a>
 		            		
-		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;">
+		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;" href="<c:url value = "/EditProfile"/>">
 			            		<div class="optionbox">
 					            	<img src="lock-open-alt.svg">
 					            	<div>
