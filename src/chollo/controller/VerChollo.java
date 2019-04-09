@@ -17,12 +17,15 @@ import chollo.dao.CholloDAO;
 import chollo.dao.ComentarioDAO;
 import chollo.dao.JDBCCholloDAOImpl;
 import chollo.dao.JDBCComentarioDAOImpl;
+import chollo.dao.JDBCLikesDAO;
 import chollo.dao.JDBCShopDAOImpl;
 import chollo.dao.JDBCUserDAOImpl;
+import chollo.dao.LikesDAO;
 import chollo.dao.ShopDAO;
 import chollo.dao.UserDAO;
 import chollo.model.Chollo;
 import chollo.model.Comentario;
+import chollo.model.Likes;
 import chollo.model.Shop;
 import chollo.model.User;
 
@@ -68,26 +71,36 @@ public class VerChollo extends HttpServlet {
 				ComentarioDAO comentarioDAO = new JDBCComentarioDAOImpl();
 				comentarioDAO.setConnection(conn);
 				
+				LikesDAO likesDAO = new JDBCLikesDAO();
+				likesDAO.setConnection(conn);
+				
 				
 				
 				User u = (User) session.getAttribute("user");
 				
 				String cid = request.getParameter("cholloid");
-				String uid = request.getParameter("userid");
-				String sid= request.getParameter("shopid");
+
 					
 				List<Comentario>comentariosChollo;
 				comentariosChollo=comentarioDAO.getComentAndUser(Long.parseLong(cid));
+				
 					
-				Shop s = shopDAO.get(Long.parseLong(sid));
 				Chollo c = cholloDAO.get(Long.parseLong(cid));
-				User userPublicacion = userDAO.get(Long.parseLong(uid));
-					
-					
+				Shop s = shopDAO.get(c.getIds());
+				User userPublicacion = userDAO.get(c.getIdu());
+				if (u!=null) {
+					Likes l = likesDAO.getByChollo(Long.parseLong(cid),u.getId());
+					if (l!=null) {
+						request.setAttribute("likes", l);
+					}else {
+						request.setAttribute("likes", null);
+					}
+				}	
 				request.setAttribute("chollo", c);
 				request.setAttribute("userPublicacion", userPublicacion);
 				request.setAttribute("shop", s);
 				request.setAttribute("comentarios", comentariosChollo);
+				
 				
 				
 				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/paginaChollo.jsp");

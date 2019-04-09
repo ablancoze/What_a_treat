@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AñadirTienda
  */
-@WebServlet("/AñadirTienda")
-public class AñadirTienda extends HttpServlet {
+@WebServlet("/A�adirTienda")
+public class A�adirTienda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AñadirTienda() {
+    public A�adirTienda() {
         super();
         // TODO Auto-generated constructor stub
     }

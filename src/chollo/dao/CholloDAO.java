@@ -25,6 +25,13 @@ public interface CholloDAO {
 	 * @return Chollo object with that id.
 	 */
 	public Chollo get(long id);
+	
+	/**
+	 * 
+	 * @param search
+	 * @return
+	 */
+	public List<Chollo> getAllBySearchShop(long search);
 
 	/**
 	 * Gets all the notes from the database.

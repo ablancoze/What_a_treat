@@ -164,7 +164,7 @@
         </ul>
     
         <div id="principal" class="mainContainer">
-            <div class="col-6 col-s-9">
+			<div class="col-6 col-s-9" style="background-color: white;box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);">>
                     <form method="post" action="EditChollo" id="formularioEditarChollo" class="editContainer">
                         <div class="infoFoto">
                             <div class="imagenChollo">
@@ -183,22 +183,24 @@
                             <h4>${chollo.price}</h4>
                             <input id="precio" name="precio" type="number" placeholder="Introduce el nuevo precio del chollo" value="${chollo.price}">
                             <textarea name="descripcion" rows="10" cols="40" value="${chollo.description}" >${chollo.description}</textarea>
-                            <select name="shop" autofocus="" required="">
-                	           <option value="${tienda}">${tienda}</option>
-					           <% ArrayList listaTiendas= (ArrayList)request.getAttribute("shopList");
-                		          for (int i=0; i<listaTiendas.size();i++){%>
-                			         <option value="<%=listaTiendas.get(i)%>"><%=listaTiendas.get(i) %></option>
-                	           <%}%>
+                            <select name="shop" autofocus="" required="">                           
+                	        	<option value="NoTienda">Escoga una tienda</option>
+								<c:forEach var="Tiendas" items="${shopList}">
+									<option value="${Tiendas.name}">${Tiendas.name}</option>
+								</c:forEach>  							  
 				            </select>
                             <select name="category" autofocus="" required="">
-                	           <option value="noCategoria">Escoga una categoria</option>
-                	           <% ArrayList listaCategorias= (ArrayList)request.getAttribute("categoryList");
-                		          for (int i=0; i<listaCategorias.size();i++){%>
-                			         <option value="<%=listaCategorias.get(i)%>"><%=listaCategorias.get(i) %></option>
-                		      <%}%>
+                	        	<option value="NoCategoria">Escoga una categoria</option>
+								<c:forEach var="Categorias" items="${categoryList}">
+									<option value="${Categorias.name}">${Categorias.name}</option>
+								</c:forEach>
 				            </select>
                         </div>
                         <button id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">Editar Chollo</button>
+                    </form>
+                    <form method="post" action="EliminarChollo">
+                    	<input type="hidden" name="cholloid" value="${chollo.id}">
+                    	<button style="margin-bottom: 15px;margin-left: 86%;;background-color: #fafbfc;color: #cb2431;border: 1px solid rgba(27,31,35,.2);cursor: pointer;font-weight: 600;border-radius: .25em;padding: 7px;font-size: 14px;" type="submit">Eliminiar chollo</button>
                     </form>
                 </div>
             </div>

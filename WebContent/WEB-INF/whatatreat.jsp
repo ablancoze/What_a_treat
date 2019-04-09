@@ -132,7 +132,7 @@
             <li>Tiendas
                 <div>
                 	<c:forEach var="Tiendas" items="${ListaTiendas}">
-                    	<a href="#">${Tiendas.name}</a>
+                    	<a  href="<c:url value = "/WhatAtreatShops?shopSerch=${Tiendas.id}"/>">${Tiendas.name}</a>
                     </c:forEach>
                 </div>
             </li>
@@ -140,7 +140,7 @@
             <li>Categorias
             	<div>
             		<c:forEach var="Categorias" items="${ListaCategorias}">
-            			<a href="#home">${Categorias.name}</a>
+            			<a href="#">${Categorias.name}</a>
             		</c:forEach>
             	</div>
             </li>
@@ -168,7 +168,7 @@
 				<c:forEach var="chollo" items="${chollosList}">
 					<div class="cholloBox">
 						<div class="cholloImagen">
-							<a href="<c:url value = '/VerChollo?cholloid=${chollo.first.id}&userid=${chollo.second.id}&shopid=${chollo.third.id}'/>" alt="">
+							<a href="<c:url value = '/VerChollo?cholloid=${chollo.first.id}'/>" alt="">
 							<img src = "${chollo.first.imagen}">
 							</a>
 						</div>
@@ -189,13 +189,25 @@
 								</c:choose>
 							</div>
 							<p>${chollo.first.description}</p>
-							<div class="autorVerChollo">
-								<img class="imagenUsuarioPublicaccion" src="FotoPerfilAlvaroAlumno.jpg">
-								<a href="">${chollo.second.username}</a>
-								<a href="<c:url value = '${chollo.first.link}'/>" target="”_blank”">
-									<button alt="link al chollo">Ver Chollo</button>
-								</a>
-							</div>
+							<c:choose>
+								<c:when test="${chollo.second.id == 0}">
+									<div class="autorVerChollo">
+										<a href="">unknown</a>
+										<a href="<c:url value = '${chollo.first.link}'/>" target="”_blank”">
+											<button alt="link al chollo">Ver Chollo</button>
+										</a>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="autorVerChollo">
+										<img class="imagenUsuarioPublicaccion" src="FotoPerfilAlvaroAlumno.jpg">
+										<a href="">${chollo.second.username}</a>
+										<a href="<c:url value = '${chollo.first.link}'/>" target="”_blank”">
+											<button alt="link al chollo">Ver Chollo</button>
+										</a>
+									</div>								
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</c:forEach>

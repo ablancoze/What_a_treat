@@ -23,7 +23,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 		
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Chollo WHERE id ="+id);			 
+			ResultSet rs = stmt.executeQuery("SELECT  id, title,description,link,price,idu,ids,(SELECT SUM(likes)FROM like WHERE idc = id) as likes,soldout,imagen FROM chollo WHERE id = "+id+"");			 
 			if (!rs.next()) return null; 
 			chollo  = new Chollo();	 
 			chollo.setId(rs.getInt("id"));
@@ -58,7 +58,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 			Statement stmt;
 			ResultSet rs;
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Chollo");
+			rs = stmt.executeQuery("SELECT  id, title,description,link,price,idu,ids,(SELECT SUM(likes)FROM like WHERE idc = id) as likes,soldout,imagen FROM chollo ORDER BY id DESC");
 			while ( rs.next() ) {
 				Chollo chollo = new Chollo();
 				chollo.setId(rs.getInt("id"));
@@ -139,7 +139,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 		ArrayList<Chollo> chollos = new ArrayList<Chollo>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Chollo WHERE UPPER(title) LIKE '%" + search + "%'");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM chollo WHERE UPPER(title) LIKE '%" + search + "%' ORDER BY id DESC");
 
 			while (rs.next()) {
 				Chollo chollo = new Chollo();
@@ -153,6 +153,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 				chollo.setIds(rs.getInt("ids"));
 				chollo.setLikes(rs.getInt("likes"));
 				chollo.setSoldout(rs.getInt("soldout"));
+				chollo.setImagen(rs.getString("imagen"));
 				
 				chollos.add(chollo);
 				
@@ -177,7 +178,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 		ArrayList<Chollo> chollos = new ArrayList<Chollo>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Chollo WHERE UPPER(description) LIKE '%" + search + "%'");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM chollo WHERE UPPER(description) LIKE '%" + search + "%' ORDER BY id DESC");
 
 			while (rs.next()) {
 				Chollo chollo = new Chollo();
@@ -191,6 +192,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 				chollo.setIds(rs.getInt("ids"));
 				chollo.setLikes(rs.getInt("likes"));
 				chollo.setSoldout(rs.getInt("soldout"));
+				chollo.setImagen(rs.getString("imagen"));
 				
 				chollos.add(chollo);
 				
@@ -215,7 +217,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 		ArrayList<Chollo> chollos = new ArrayList<Chollo>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Chollo WHERE UPPER(title) LIKE '%" + search + "%' OR UPPER(description) LIKE '%" + search + "%'");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM chollo WHERE UPPER(title) LIKE '%" + search + "%' OR UPPER(description) LIKE '%" + search + "%' ORDER BY id DESC");
 
 			while (rs.next()) {
 				Chollo chollo = new Chollo();
@@ -226,9 +228,49 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 				chollo.setLink(rs.getString("link"));
 				chollo.setPrice(rs.getFloat("price"));
 				chollo.setIdu(rs.getInt("idu"));
-				chollo.setIdu(rs.getInt("ids"));
+				chollo.setIds(rs.getInt("ids"));
 				chollo.setLikes(rs.getInt("likes"));
 				chollo.setSoldout(rs.getInt("soldout"));
+				chollo.setImagen(rs.getString("imagen"));
+				
+				chollos.add(chollo);
+				
+				logger.info("fetching chollos by text either in the title or in the description: "+chollo.getId()+" "+chollo.getTitle()+" "+chollo.getDescription()+ " " + chollo.getLink() + " " + chollo.getPrice() 
+				+ " " + chollo.getIdu()+ " " + chollo.getIds() + " " + chollo.getLikes() + " " + chollo.getSoldout());				
+				
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return chollos;
+	}
+	
+	
+	public List<Chollo> getAllBySearchShop(long search) {
+		if (conn == null)
+			return null;
+
+		ArrayList<Chollo> chollos = new ArrayList<Chollo>();
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM chollo WHERE ids =" + search +" ORDER BY id DESC");
+
+			while (rs.next()) {
+				Chollo chollo = new Chollo();
+				
+				chollo.setId(rs.getInt("id"));
+				chollo.setTitle(rs.getString("title"));
+				chollo.setDescription(rs.getString("description"));
+				chollo.setLink(rs.getString("link"));
+				chollo.setPrice(rs.getFloat("price"));
+				chollo.setIdu(rs.getInt("idu"));
+				chollo.setIds(rs.getInt("ids"));
+				chollo.setLikes(rs.getInt("likes"));
+				chollo.setSoldout(rs.getInt("soldout"));
+				chollo.setImagen(rs.getString("imagen"));
 				
 				chollos.add(chollo);
 				
@@ -254,7 +296,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 		ArrayList<Chollo> chollos = new ArrayList<Chollo>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Chollo WHERE idu = "+ idu);
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Chollo WHERE idu = "+ idu + "ORDER BY id DESC");
 
 			while (rs.next()) {
 				Chollo chollo = new Chollo();

@@ -175,25 +175,56 @@
                         <div class="TitleUser">
                             <h1>${chollo.title}</h1>
                             <div>
-                            	<div>
-                          			<img src="FotoPerfilAlvaroAlumno.jpg"> <% //${userPublicacion.imagen} %>
-                                	<a>${userPublicacion.username}</a>
-                            	</div>
-                                <% //${chollo.fecha} %>
+                            	<c:choose>
+                            		<c:when test="${userPublicacion.id == 0}">
+		                            	<div>
+		                                	<a>unknown</a>
+		                            	</div>                              		
+                            	 	</c:when>
+                            	 	<c:otherwise>
+		                            	<div>
+		                          			<img src="FotoPerfilAlvaroAlumno.jpg">
+		                                	<a>${userPublicacion.username}</a>
+		                            	</div>                            	 		
+                            	 	</c:otherwise>
+                            	</c:choose>
                                 <a>${shop.name}</a>
                             </div>
                         </div>
                     </div>
                     
                     <div class="likesPrecio">
-                        <div class="like">
-                        	
+                        <div class="like">                     
                         		 <h3>Puntuacion    ${chollo.likes}</h3>
                         	
-                        	
-                        		<i class='fas fa-thumbs-up' style='font-size:24px;color: #00BF00 ;cursor: pointer' onmouseover="this.style.color='#00DF00'" onMouseOut="this.style.color='#00BF00'"></i>
-                            	<i class='fas fa-thumbs-down' style='font-size:24px;color: #BF0000;cursor: pointer' onmouseover="this.style.color='#DF0000'" onMouseOut="this.style.color='#BF0000'"></i>
-                        	
+                        		<c:if test="${user != null}">
+                        				<c:if test="${likes.like == 1}">                   	
+	                        				<button class='fas fa-thumbs-up' style='font-size:24px;color: #00DF00;background-color: inherit;border: unset;'></button>
+	                        				<form method="post" action="PuntuarChollo">
+	                        					<input type="hidden" name="like" value="0">
+	                        					<input type="hidden" name="chollo" value="${chollo.id}">
+	                        					<button type="submit" class='fas fa-thumbs-down' style='font-size:24px;color: #600000;cursor: pointer;background-color: inherit;border: unset;' onmouseover="this.style.color='#DF0000'" onMouseOut="this.style.color='#600000'"></button>
+	                        				</form>	
+                        				</c:if>
+                        				
+                        				<c:if test="${likes.like == 0}">                   	
+                        					<form method="post" action="PuntuarChollo">
+	                        					<input type="hidden" name="like" value="1">
+	                        					<input type="hidden" name="chollo" value="${chollo.id}">
+	                        					<button type="submit" class='fas fa-thumbs-up' style='font-size:24px;color: #006000 ;cursor: pointer;background-color: inherit;border: unset;' onmouseover="this.style.color='#00DF00'" onMouseOut="this.style.color='#006000'"></button>
+	                        				</form>                        				
+	                        					<button type="submit" class='fas fa-thumbs-down' style='font-size:24px;color: #600000;cursor: not-allowed;background-color: inherit;border: unset;' onmouseover="this.style.color='#DF0000'" onMouseOut="this.style.color='#600000'"></button>  
+                        				</c:if> 
+                        				                       				
+                        				<c:if test="${likes == null}">
+                        					<form method="post" action="PuntuarChollo">
+	                        					<input type="hidden" name="like" value="1">
+	                        					<input type="hidden" name="chollo" value="${chollo.id}">
+	                        					<button type="submit" class='fas fa-thumbs-up' style='font-size:24px;color: #006000 ;cursor: pointer;background-color: inherit;border: unset;' onmouseover="this.style.color='#00DF00'" onMouseOut="this.style.color='#006000'"></button>
+	                        				</form>                        				
+	                        					<button type="submit" class='fas fa-thumbs-down' style='font-size:24px;color: #600000;cursor: not-allowed;background-color: inherit;border: unset;' onmouseover="this.style.color='#DF0000'" onMouseOut="this.style.color='#600000'"></button>                      				
+                        				</c:if>
+                        		</c:if>	
                         </div>
                         
                         <div class="precio">
@@ -246,8 +277,6 @@
                 				
                 				<button type="submit" class="botonPublicarComentario">
                 					<input type="hidden" name="cid" value="${chollo.id}" id="cid">
-                					<input type="hidden" name="uid" value="${userPublicacion.id}" id="uid">
-                					<input type="hidden" name="sid" value="${shop.id}" id="sid">
                 					Publicar
                 				</button>	
                 			</fieldset>

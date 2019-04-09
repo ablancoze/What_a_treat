@@ -75,7 +75,7 @@ public class PublicarComentario extends HttpServlet {
 		
 		
 		//TODO VAYA COSO FEO ESTO SE TIENE QUE PODER HACER DE OTRA MANERA
-		response.sendRedirect(request.getRequestURL().substring(0, 35)+"/VerChollo?cholloid=" +request.getParameter("cid")+"&userid="+request.getParameter("uid")+"&shopid="+request.getParameter("sid"));
+		response.sendRedirect(request.getRequestURL().substring(0, 35)+"/VerChollo?cholloid=" +request.getParameter("cid"));
 		
 		
 		

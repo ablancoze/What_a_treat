@@ -20,7 +20,9 @@ import chollo.dao.JDBCCategoryDAOImpl;
 import chollo.dao.JDBCCholloDAOImpl;
 import chollo.dao.JDBCShopDAOImpl;
 import chollo.dao.ShopDAO;
+import chollo.model.Category;
 import chollo.model.Chollo;
+import chollo.model.Shop;
 import chollo.model.User;
 
 /**
@@ -66,8 +68,8 @@ public class EditChollo extends HttpServlet {
 		if (u!=null) {
 			String sid = request.getParameter("id");
 			long id = Long.parseLong(sid);
-			List <String> shopList = shopDAO.getAllShopName();
-			List <String> categoryList = categoryDAO.getAllCategoryName();
+			List <Shop> shopList = shopDAO.getAll();
+			List <Category> categoryList = categoryDAO.getAll();
 			Chollo c =  cholloDAO.get(id);
 			session.setAttribute("chollo", c);
 			String shop = shopDAO.getNameById(c.getIds());
