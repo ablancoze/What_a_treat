@@ -229,7 +229,9 @@
                         
                         <div class="precio">
                             <h2 style="ma">${chollo.price} &#8364</h2>
-                            <button class="botonPublicarComentario" style="margin-top: 0" >Ver Chollo</button>
+                            <a href="<c:url value = '${chollo.link}'/>" target="”_blank”">
+                            	<button class="botonPublicarComentario" style="margin-top: 0" >Ver Chollo</button>
+                            </a>
                         </div>
 
                     </div>
@@ -258,27 +260,18 @@
                 		<form method="post" action="PublicarComentario" >
                 			<fieldset style="padding: 20px 24px;border: 1px solid #ededed;margin-bottom: 30px;box-shadow: 0 1px 1px #EDEDED;background: #fff;">
                 				<legend style="font: 700 19px/21px 'Roboto', trebuchet ms; text-align: center">DEJANOS TU COMENTARIO</legend>
-                				<textarea id="comentario" type="text"  name="comentario" rows="10" cols="30" aria-required="true" required="required" style="width: 100%;background: #f2f2f2;font: 400 15px 'helvetica', trebuchet ms;height: 150px;resize: none;margin-bottom: 20px;border: 1px solid #cbd0d2;padding: 10px;clear: both"></textarea>
-                				
-                				<c:if test="${user==null}">
-	                				<div>
-	                					<div style="background: none #002531;width: 38px;height: 38px;text-align: center;line-height: 38px;">
-	                						<i style="font-size:15px;color:#2a80b9" class='fas'>&#xf007;</i>
-	                					</div>
-	                					<input id="username" type="text" name="username" placeholder="Nombre" required="required" style="padding: 0 0 0 5px">
-	                				</div>
-	                				<div>
-	                					<div style="background: none #002531;width: 38px;height: 38px;text-align: center;line-height: 38px;">
-	                						<i style="font-size:15px;color:#2a80b9" class='fas'>&#xf0e0;</i>
-	                					</div>
-	                					<input id="email" type="text" name="email" placeholder="Correo electronico" required="required" style="padding: 0 0 0 5px">
-	                				</div>
-                				</c:if>
-                				
-                				<button type="submit" class="botonPublicarComentario">
-                					<input type="hidden" name="cid" value="${chollo.id}" id="cid">
-                					Publicar
-                				</button>	
+                				<c:choose>
+                					<c:when test="${user==null}">
+										<textarea id="comentario" type="text"  name="comentario" rows="10" cols="30" aria-required="true" required="required" style="width: 100%;background: #f2f2f2;font: 400 15px 'helvetica', trebuchet ms;height: 150px;resize: none;margin-bottom: 20px;border: 1px solid #cbd0d2;padding: 10px;clear: both" placeholder="TIENES QUE ESTAR REGISTRADO PARA DEJAR UN COMENTARIO"></textarea>          
+                					</c:when>
+                					<c:otherwise>
+										<textarea id="comentario" type="text"  name="comentario" rows="10" cols="30" aria-required="true" required="required" style="width: 100%;background: #f2f2f2;font: 400 15px 'helvetica', trebuchet ms;height: 150px;resize: none;margin-bottom: 20px;border: 1px solid #cbd0d2;padding: 10px;clear: both"></textarea>
+		                				<button type="submit" class="botonPublicarComentario">
+		                					<input type="hidden" name="cid" value="${chollo.id}" id="cid">
+		                					Publicar
+		                				</button>                					            
+                					</c:otherwise>                					
+                				</c:choose>	
                 			</fieldset>
                 		</form>
                 	</div>

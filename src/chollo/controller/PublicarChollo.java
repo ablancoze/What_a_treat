@@ -65,11 +65,16 @@ public class PublicarChollo extends HttpServlet {
 		
 		ShopDAO shopDAO = new JDBCShopDAOImpl();
 		shopDAO.setConnection(conn);
-		List <String> shopList = shopDAO.getAllShopName();
+		
 		
 		CategoryDAO categoryDAO = new JDBCCategoryDAOImpl();
 		categoryDAO.setConnection(conn);
-		List<String> categoryList = categoryDAO.getAllCategoryName();
+
+		List<Shop> shopList = shopDAO.getAll();
+		List<Category> categoryList = categoryDAO.getAll();
+		
+		
+		
 		
 		request.setAttribute("shop", shopList);
 		request.setAttribute("category", categoryList);
@@ -107,7 +112,7 @@ public class PublicarChollo extends HttpServlet {
 			c.setDescription(request.getParameter("descripcion"));
 			c.setLink(request.getParameter("link"));
 			c.setPrice(Long.parseLong(request.getParameter("precio")));
-			c.setIds(shopDAO.getIdByName(request.getParameter("shop")));
+			c.setIds(Long.parseLong(request.getParameter("shop")));
 			c.setIdu(u.getId());
 			c.setLikes(0);
 			c.setSoldout(0);

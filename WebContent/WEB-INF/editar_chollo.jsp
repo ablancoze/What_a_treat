@@ -181,20 +181,28 @@
                             <h4>${chollo.title}</h4>
                             <input id="titulo" name="titulo" type="text" placeholder="Introduce el nuevo titulo para el chollo" value="${chollo.title}">
                             <h4>${chollo.price}</h4>
-                            <input id="precio" name="precio" type="number" placeholder="Introduce el nuevo precio del chollo" value="${chollo.price}">
+                            <input id="precio" name="precio" type="number" placeholder="Introduce el nuevo precio del chollo" value="">
                             <textarea name="descripcion" rows="10" cols="40" value="${chollo.description}" >${chollo.description}</textarea>
-                            <select name="shop" autofocus="" required="">                           
-                	        	<option value="NoTienda">Escoga una tienda</option>
+                            
+                            <select name="shop">                           
+                	        	<option value="">Escoga una tienda</option>
 								<c:forEach var="Tiendas" items="${shopList}">
-									<option value="${Tiendas.name}">${Tiendas.name}</option>
+									<option value="${Tiendas.id}">${Tiendas.name}</option>
 								</c:forEach>  							  
 				            </select>
-                            <select name="category" autofocus="" required="">
-                	        	<option value="NoCategoria">Escoga una categoria</option>
+                            <select name="category">
+                	        	<option value="">Escoga una categoria</option>
 								<c:forEach var="Categorias" items="${categoryList}">
-									<option value="${Categorias.name}">${Categorias.name}</option>
+									<option value="${Categorias.id}">${Categorias.name}</option>
 								</c:forEach>
 				            </select>
+    						<div>
+                                <label for="soldout">Producto agotado</label>
+                                <input type="radio" name="soldout" id="soldout" value="1"><br>  
+                                
+                                <label for="soldout">Aun quedan productos a la venta</label>
+                                <input type="radio" name="soldout" id="soldout" value="0" required="required" ><br> 
+    						</div>
                         </div>
                         <button id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">Editar Chollo</button>
                     </form>

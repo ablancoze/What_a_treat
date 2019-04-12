@@ -86,12 +86,22 @@ public class Registro extends HttpServlet {
 			
 		}
 		
-
-		session.setAttribute("username",userName);
-		session.setAttribute("pass",pass);
-		session.setAttribute("email",email);
-		logger.info("Que esta pasando aqui"+userName+pass+email);
-		response.sendRedirect("ConfirmarRegistro");
+		User u = new User();
+		
+		u.setUsername(userName);
+		u.setEmail(email);
+		u.setPassword(pass);
+		
+		userDAO.add(u);
+		
+		u = userDAO.get(u.getUsername());
+		
+		session.setAttribute("user", u);
+		
+		logger.info("USUARIO REGISTRADO CON EL ID : " +u.getId());
+		
+		
+		response.sendRedirect("whatAtreat");
 		
 	}
 

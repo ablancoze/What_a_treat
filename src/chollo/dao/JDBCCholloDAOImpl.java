@@ -99,7 +99,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 			Statement stmt;
 			ResultSet rs;
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM chollo ORDER by likes DESC");
+			rs = stmt.executeQuery("SELECT  id, title,description,link,price,idu,ids,(SELECT SUM(likes)FROM like WHERE idc = id) as likes,soldout,imagen FROM chollo WHERE soldout != 1 ORDER by likes DESC, id DESC");
 			int i = 0;
 			while ( rs.next() && i<3 ) {
 				Chollo chollo = new Chollo();
@@ -296,7 +296,7 @@ public class JDBCCholloDAOImpl implements CholloDAO {
 		ArrayList<Chollo> chollos = new ArrayList<Chollo>();
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Chollo WHERE idu = "+ idu + "ORDER BY id DESC");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Chollo WHERE idu = "+ idu + " ORDER BY id DESC");
 
 			while (rs.next()) {
 				Chollo chollo = new Chollo();

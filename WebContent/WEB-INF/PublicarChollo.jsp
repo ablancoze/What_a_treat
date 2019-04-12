@@ -57,20 +57,17 @@
                 <h3>Tienda</h3>
                 <select name="shop" autofocus="" required="">
                 	<option value="">Escoga una tienda</option>
-					 <% ArrayList listaTiendas= (ArrayList)request.getAttribute("shop");
-                		for (int i=0; i<listaTiendas.size();i++){%>
-                			<option value="<%=listaTiendas.get(i)%>"><%=listaTiendas.get(i) %></option>
-                	<%}%>
+					<c:forEach var="shopList" items="${shop}">
+						<option value="${shopList.id}">${shopList.name}</option>
+					</c:forEach>
 				</select>
                 
                 <h3>Categoria</h3>
                 <select name="category" autofocus="" required="">
                 	<option value="">Escoga una categoria</option>
-                	<% ArrayList listaCategorias= (ArrayList)request.getAttribute("category");
-                		for (int i=0; i<listaCategorias.size();i++){%>
-                			<option value="<%=listaCategorias.get(i)%>"><%=listaCategorias.get(i) %></option>
-                		<%}%>
-  						
+					<c:forEach var="categoryList" items="${category}">
+						<option value="${categoryList.id}">${categoryList.name}</option>
+					</c:forEach>                	
 				</select>
                 
                 <h3>Palabra destacada</h3>

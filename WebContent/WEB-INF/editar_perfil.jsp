@@ -178,11 +178,11 @@
                         </div>
 
                         <div class="infoChollo">
-                            <h4>${user.username}</h4>
-                            <input id="username" name="username" type="text" placeholder="Introduce un nuevo nombre de usuario" value="${user.username}">
-                            <h4>${user.email}</h4>
-                            <input id="email" name="email" type="text" placeholder="Introduce el nuevo precio del chollo" value="${user.email}">
-                            <p>Para cambiar la password primero debes introducir tu contraseña actual</p>
+                            <h4>${user.username}</h4> <p style="color: red;font-weight: bolder;margin-left: auto;">${usernameProblem}</p>
+                            <input id="username" name="username" type="text" placeholder="Introduce un nuevo nombre de usuario" value="">
+                            <h4>${user.email}</h4> <p style="color: red;font-weight: bolder;margin-left: auto;">${emailProblem}</p>
+                            <input id="email" name="email" type="text" placeholder="Introduce un nuevo email" value="">
+                            <p>Para cambiar la password primero debes introducir tu contraseña actual</p> <p style="color: red;font-weight: bolder;margin-left: auto;">${messages}</p>
                             <input id="Oldpass" name="Oldpass" type="password">
                             <p>Nueva password</p>
                             <input id="Newpass" name="Newpass" type="password" placeholder="Introduce tu nueva password">

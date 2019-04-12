@@ -48,7 +48,13 @@ public class EditProfile extends HttpServlet {
 		
 		User u = (User) session.getAttribute("user");
 		
-
+		request.setAttribute("emailProblem", session.getAttribute("emailProblem"));
+		request.setAttribute("usernameProblem", session.getAttribute("usernameProblem"));
+		request.setAttribute("messages", session.getAttribute("messages"));
+		
+		session.removeAttribute("emailProblem");
+		session.removeAttribute("usernameProblem");
+		session.removeAttribute("messages");
 			
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/editar_perfil.jsp");
 		view.forward(request,response);	
@@ -73,29 +79,51 @@ public class EditProfile extends HttpServlet {
 		
 		User u = (User) session.getAttribute("user");
 		
-		if (u!=null) {
+		String username = request.getParameter("username");
+		String email = request.getParameter("email");
+		String Newpass = request.getParameter("Newpass");
+		
+		boolean  bandera = false;
+		
+		if (!email.equals("") || !username.equals("") || !Newpass.equals("") ) {
 			
-			u.setEmail(request.getParameter("email"));
-			u.setUsername(request.getParameter("username"));
+			if (!email.equals("")) {
+				if (userDAO.getEmail(email)==null) {
+					u.setEmail(email);
+					bandera = true;
+				}else{
+					session.setAttribute("emailProblem","El correo al que intenta cambiar ya existe");
+				}
+			}
 			
+			if (!username.equals("")) {
+				if (userDAO.getUserName(username)==null) {
+					u.setUsername(username);
+					bandera = true;
+				}else{
+					session.setAttribute("usernameProblem","El nombre de usuario al que intenta cambiar ya existe");
+				}
+			}
 			
-			if (!request.getParameter("Newpass").equals("")) {
+			if (!Newpass.equals("")) {
 				
 				if (u.comprobarPasword(request.getParameter("Oldpass"))) {
 					u.setPassword(request.getParameter("Newpass"));
-					
+					bandera = true;
 				}else{
-					request.setAttribute("messages"," password incorrecta");
-					RequestDispatcher view = request.getRequestDispatcher("WEB-INF/editar_perfil.jsp");
-					view.forward(request,response);	
+					session.setAttribute("messages"," password incorrecta");
 				}
-				
 			}
-			session.removeAttribute("user");
-			session.setAttribute("user", u);
-			userDAO.save(u);
-			response.sendRedirect("UserProfile");
+			
 		}
+		
+		if (bandera == true) {
+			userDAO.save(u);
+			u= userDAO.get(u.getUsername());
+			session.setAttribute("user", u);
+		}
+		
+		response.sendRedirect("EditProfile");
 	}
 
 }

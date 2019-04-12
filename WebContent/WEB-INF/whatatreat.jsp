@@ -27,7 +27,7 @@
         </div>
         
         <div class="buscador">
-        	<form method="post" action="whatAtreat">
+        	<form method="get" action="WhatAtreatSearch">
 	        	<div class="searchBox">
 	                <input name="search" type="search" id="search" placeholder="What are you looking for?" >
 	            </div>
@@ -121,8 +121,8 @@
         <div class="eventBox" id="eventBoxid">
         	<c:forEach var="cholloHot" items="${chollosHot}">
         		<div class="cholloEventBox">
-	                <a href="">
-	                    <img class="imagenEvent" alt="carrito bebe" src = "${cholloHot.imagen}">
+	                <a href="<c:url value = '/VerChollo?cholloid=${cholloHot.id}'/>">
+	                    <img class="imagenEvent" alt="${cholloHot.title}" src = "${cholloHot.imagen}">
 	                </a>
 	                <p>${cholloHot.description}</p>
             	</div>
@@ -167,6 +167,9 @@
 			<div class="col-6 col-s-9">
 				<c:forEach var="chollo" items="${chollosList}">
 					<div class="cholloBox">
+						<c:if test="${chollo.first.soldout == 1}">
+						<p style="position: absolute;width: 1143px;background: red;opacity: 0.5;height: 165px;text-align: center;color: teal;font-size: -webkit-xxx-large;font-weight: bold;">SOLDOUT</p>
+						</c:if>
 						<div class="cholloImagen">
 							<a href="<c:url value = '/VerChollo?cholloid=${chollo.first.id}'/>" alt="">
 							<img src = "${chollo.first.imagen}">

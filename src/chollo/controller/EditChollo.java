@@ -108,8 +108,24 @@ public class EditChollo extends HttpServlet {
 			
 			c.setTitle(request.getParameter("titulo"));
 			c.setDescription(request.getParameter("descripcion"));
-			c.setPrice(Long.parseLong(request.getParameter("precio")));
-			c.setIds(shopDAO.getIdByName(request.getParameter("shop")));
+			
+			if (!request.getParameter("precio").equals("")) {
+				c.setPrice(Long.parseLong(request.getParameter("precio")));
+			}
+			
+			if (!request.getParameter("shop").equals("")) {
+				c.setIds(Long.parseLong(request.getParameter("shop")));
+			}
+			
+			if (!request.getParameter("soldout").equals("")) {
+				if (Integer.parseInt(request.getParameter("soldout"))==1) {
+					c.setSoldout(1);
+				}else {
+					c.setSoldout(0);
+				}
+			}
+
+			
 			c.setImagen(request.getParameter("imagen"));
 			cholloDAO.save(c);
 			session.removeAttribute("chollo");

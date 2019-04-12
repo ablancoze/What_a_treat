@@ -64,11 +64,11 @@ public class EliminarCuenta extends HttpServlet {
 		User u = (User) session.getAttribute("user");
 		
 		if (u!=null) {
-//			List<Chollo> c = cholloDAO.getAllByUser(u.getId());
-//			for (int i = 0; i < c.size(); i++) {
-//				c.get(i).setIdu(null);
-//				cholloDAO.save(c.get(i));
-//			}
+			List<Chollo> c = cholloDAO.getAllByUser(u.getId());
+			for (int i = 0; i < c.size(); i++) {
+				c.get(i).setIdu(0);
+				cholloDAO.save(c.get(i));
+			}
 			
 			
 			userDAO.delete(u.getId());
