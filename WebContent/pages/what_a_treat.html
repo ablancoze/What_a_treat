@@ -9,6 +9,15 @@
 	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
     <title>What a Treat</title>
+    
+    <!-- Include the AngularJS library -->
+    <script src="../js/angular/angular.js"></script>
+	<script src="../js/angular/angular-route.js"></script>
+<!-- Modules -->
+
+    <script src="../js/factories/chollosFactory.js"></script>
+	<script src="../js/controllers/chollosCtrl.js"></script>
+	
 </head>
 <body>
 
@@ -18,7 +27,7 @@
                 <span style="font-size:30px;cursor:pointer;display: flex;" onclick="openclosenav()"><i  class="material-icons">menu</i></span>
             </a>
             <a href="">
-                <img class="Logo" src="img/LogoWeb.png">
+                <img class="Logo" src="../img/LogoWeb.png">
             </a>
             
         </div>
@@ -84,12 +93,12 @@
     </nav>
     
    <div class="row">
-   		<div data-ng-controller="chollosHotCtrl as chollosHotVM" class="eventBox" id="eventBoxid">
-       		<div class="cholloEventBox">
+   		<div data-ng-controller="chollosCtrl as chollosVM" class="eventBox" id="eventBoxid">
+       		<div data-ng-repeat="chollo in chollosVM.chollosHot" class="cholloEventBox">
 	        	<a href="">
-	            	<img class="imagenEvent" alt="{{chollosHotVM.chollo.title}}" src = "chollosHotVM.chollo.imagen">
+	            	<img class="imagenEvent" alt="{{chollo.description}}" src = "{{chollo.imagen}}">
 	            </a>
-	        	<p>{{chollosHotVM.chollo.description}}</p>
+	        	<p>{{ chollo.description }}</p>
             </div>
         </div>
         <ul id="navegador" class="navegacion">

@@ -1,23 +1,26 @@
 package chollo.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AñadirTienda
+ * Servlet implementation class Inicio
  */
-@WebServlet("/A�adirTienda")
-public class AñadirTienda extends HttpServlet {
+@WebServlet(description = "Servlet para lanzar la pagina de inicio de la app de chollos", urlPatterns = { "/Inicio" })
+public class Inicio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AñadirTienda() {
+    public Inicio() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +29,9 @@ public class AñadirTienda extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
+		HttpSession session = request.getSession();
+		response.sendRedirect("pages/what_a_treat.html");
 	}
 
 	/**
