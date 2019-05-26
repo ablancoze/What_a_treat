@@ -39,8 +39,9 @@ public class ServletContextListener implements javax.servlet.ServletContextListe
 		
 		try {
             Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:file:"+System.getProperty("user.home")+"/sqlite_dbs/chollos.db";
-            conn = DriverManager.getConnection(dbURL);
+            String dbURLLinux = "jdbc:sqlite:file:"+System.getProperty("user.home")+"/sqlite_dbs/chollos.db";
+            String dbURLWindows = "jdbc:sqlite:file:"+System.getProperty("user.home")+"/sqlite_dbs/chollos.db";
+            conn = DriverManager.getConnection(dbURLWindows);
             if (conn != null) {
                 System.out.println("Connected to the database");
                 DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();

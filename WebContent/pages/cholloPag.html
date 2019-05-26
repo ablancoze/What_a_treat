@@ -1,0 +1,109 @@
+                <div class="cholloBox">
+                    <div class="imgTitleUser">
+                        <div>
+                            <img src="${chollo.imagen}">
+                        </div>
+                        <div class="TitleUser">
+                            <h1>${chollo.title}</h1>
+                            <div>
+                            	<c:choose>
+                            		<c:when test="${userPublicacion.id == 0}">
+		                            	<div>
+		                                	<a>unknown</a>
+		                            	</div>                              		
+                            	 	</c:when>
+                            	 	<c:otherwise>
+		                            	<div>
+		                          			<img src="FotoPerfilAlvaroAlumno.jpg">
+		                                	<a>${userPublicacion.username}</a>
+		                            	</div>                            	 		
+                            	 	</c:otherwise>
+                            	</c:choose>
+                                <a>${shop.name}</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="likesPrecio">
+                        <div class="like">                     
+                        		 <h3>Puntuacion    ${chollo.likes}</h3>
+                        	
+                        		<c:if test="${user != null}">
+                        				<c:if test="${likes.like == 1}">                   	
+	                        				<button class='fas fa-thumbs-up' style='font-size:24px;color: #00DF00;background-color: inherit;border: unset;'></button>
+	                        				<form method="post" action="PuntuarChollo">
+	                        					<input type="hidden" name="like" value="0">
+	                        					<input type="hidden" name="chollo" value="${chollo.id}">
+	                        					<button type="submit" class='fas fa-thumbs-down' style='font-size:24px;color: #600000;cursor: pointer;background-color: inherit;border: unset;' onmouseover="this.style.color='#DF0000'" onMouseOut="this.style.color='#600000'"></button>
+	                        				</form>	
+                        				</c:if>
+                        				
+                        				<c:if test="${likes.like == 0}">                   	
+                        					<form method="post" action="PuntuarChollo">
+	                        					<input type="hidden" name="like" value="1">
+	                        					<input type="hidden" name="chollo" value="${chollo.id}">
+	                        					<button type="submit" class='fas fa-thumbs-up' style='font-size:24px;color: #006000 ;cursor: pointer;background-color: inherit;border: unset;' onmouseover="this.style.color='#00DF00'" onMouseOut="this.style.color='#006000'"></button>
+	                        				</form>                        				
+	                        					<button type="submit" class='fas fa-thumbs-down' style='font-size:24px;color: #600000;cursor: not-allowed;background-color: inherit;border: unset;' onmouseover="this.style.color='#DF0000'" onMouseOut="this.style.color='#600000'"></button>  
+                        				</c:if> 
+                        				                       				
+                        				<c:if test="${likes == null}">
+                        					<form method="post" action="PuntuarChollo">
+	                        					<input type="hidden" name="like" value="1">
+	                        					<input type="hidden" name="chollo" value="${chollo.id}">
+	                        					<button type="submit" class='fas fa-thumbs-up' style='font-size:24px;color: #006000 ;cursor: pointer;background-color: inherit;border: unset;' onmouseover="this.style.color='#00DF00'" onMouseOut="this.style.color='#006000'"></button>
+	                        				</form>                        				
+	                        					<button type="submit" class='fas fa-thumbs-down' style='font-size:24px;color: #600000;cursor: not-allowed;background-color: inherit;border: unset;' onmouseover="this.style.color='#DF0000'" onMouseOut="this.style.color='#600000'"></button>                      				
+                        				</c:if>
+                        		</c:if>	
+                        </div>
+                        
+                        <div class="precio">
+                            <h2 style="ma">${chollo.price} &#8364</h2>
+                            <a href="<c:url value = '${chollo.link}'/>" target="”_blank”">
+                            	<button class="botonPublicarComentario" style="margin-top: 0" >Ver Chollo</button>
+                            </a>
+                        </div>
+
+                    </div>
+                    
+                    <div>
+                    	<p>${chollo.description}</p>
+                    </div>
+                    
+                    <div class="comentarios">
+                    	<h3 style="font: 700 19px/21px 'Roboto', trebuchet ms;margin-bottom: 26px;">Comentarios</h3>
+                    	<c:forEach var="comentario" items="${comentarios}">
+	                    	<div class="boxComentarios">
+	                    		<div class="infoUserComent">
+	                    			<img src = "FotoPerfilAlvaroAlumno.jpg">
+	                    			<p style="font: 700 15px/15px 'Roboto', trebuchet ms;text-transform: uppercase;display: block;margin-left: 10px;margin-bottom: 0;height: 16px;">${comentario.username}</p>
+	                    		</div>
+	                    		<div class="comentarioUser">
+	                    			<p style="font: 15px Arial, Helvetica, trebuchet ms;">${comentario.comentario}</p>
+	                    		</div>
+	                    	</div>
+                    	</c:forEach>
+
+                	</div>
+                	
+                	<div class="formComentario">
+                		<form method="post" action="PublicarComentario" >
+                			<fieldset style="padding: 20px 24px;border: 1px solid #ededed;margin-bottom: 30px;box-shadow: 0 1px 1px #EDEDED;background: #fff;">
+                				<legend style="font: 700 19px/21px 'Roboto', trebuchet ms; text-align: center">DEJANOS TU COMENTARIO</legend>
+                				<c:choose>
+                					<c:when test="${user==null}">
+										<textarea id="comentario" type="text"  name="comentario" rows="10" cols="30" aria-required="true" required="required" style="width: 100%;background: #f2f2f2;font: 400 15px 'helvetica', trebuchet ms;height: 150px;resize: none;margin-bottom: 20px;border: 1px solid #cbd0d2;padding: 10px;clear: both" placeholder="TIENES QUE ESTAR REGISTRADO PARA DEJAR UN COMENTARIO"></textarea>          
+                					</c:when>
+                					<c:otherwise>
+										<textarea id="comentario" type="text"  name="comentario" rows="10" cols="30" aria-required="true" required="required" style="width: 100%;background: #f2f2f2;font: 400 15px 'helvetica', trebuchet ms;height: 150px;resize: none;margin-bottom: 20px;border: 1px solid #cbd0d2;padding: 10px;clear: both"></textarea>
+		                				<button type="submit" class="botonPublicarComentario">
+		                					<input type="hidden" name="cid" value="${chollo.id}" id="cid">
+		                					Publicar
+		                				</button>                					            
+                					</c:otherwise>                					
+                				</c:choose>	
+                			</fieldset>
+                		</form>
+                	</div>
+                </div>

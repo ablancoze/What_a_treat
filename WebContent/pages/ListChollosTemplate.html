@@ -1,0 +1,18 @@
+
+<div data-ng-repeat="chollos in cholloListVM.listChollos"class="cholloBox">
+	<div class="cholloImagen">
+		<a href="" alt=""> <img data-ng-src="{{chollos.imagen}}">
+		</a>
+	</div>
+	<div class="textoChollo">
+		<div>
+			<p>Likes: {{ chollos.likes }}</p>
+		</div>
+		<h3>{{ chollos.title }}</h3>
+		<div class="precioTienda">
+			<h4>${{ chollos.price }}</h4>
+			<p>Tienda desconocida</p>
+		</div>
+		<p>{{ chollos.description }}</p>
+	</div>
+</div>

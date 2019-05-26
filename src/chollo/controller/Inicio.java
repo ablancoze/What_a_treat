@@ -31,7 +31,7 @@ public class Inicio extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection conn = (Connection) getServletContext().getAttribute("dbConn");
 		HttpSession session = request.getSession();
-		response.sendRedirect("pages/what_a_treat.html");
+		response.sendRedirect("pages/Index.html");
 	}
 
 	/**

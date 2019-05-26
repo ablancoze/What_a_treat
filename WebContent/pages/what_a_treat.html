@@ -104,17 +104,13 @@
         <ul id="navegador" class="navegacion">
             <li>Tiendas
                 <div>
-                	<c:forEach var="Tiendas" items="${ListaTiendas}">
-                    	<a  href="<c:url value = "/WhatAtreatShops?shopSerch=${Tiendas.id}"/>">${Tiendas.name}</a>
-                    </c:forEach>
+                	<a  href="">Tiendas</a>
                 </div>
             </li>
             
             <li>Categorias
             	<div>
-            		<c:forEach var="Categorias" items="${ListaCategorias}">
-            			<a href="#">${Categorias.name}</a>
-            		</c:forEach>
+            		<a href="#">Categorias</a>
             	</div>
             </li>
             
@@ -169,7 +165,7 @@
 								<c:when test="${chollo.second.id == 0}">
 									<div class="autorVerChollo">
 										<a href="">unknown</a>
-										<a href="<c:url value = '${chollo.first.link}'/>" target="”_blank”">
+										<a href="<c:url value = '${chollo.first.link}'/>" target="â€�_blankâ€�">
 											<button alt="link al chollo">Ver Chollo</button>
 										</a>
 									</div>
@@ -178,7 +174,7 @@
 									<div class="autorVerChollo">
 										<img class="imagenUsuarioPublicaccion" src="FotoPerfilAlvaroAlumno.jpg">
 										<a href="">${chollo.second.username}</a>
-										<a href="<c:url value = '${chollo.first.link}'/>" target="”_blank”">
+										<a href="<c:url value = '${chollo.first.link}'/>" target="â€�_blankâ€�">
 											<button alt="link al chollo">Ver Chollo</button>
 										</a>
 									</div>								
@@ -206,19 +202,19 @@
 		<img alt="" src="img/logo_60.png">
 	</div>
 	<div class="IconosSocialMedia">
-		<a href="https://www.facebook.com/alvaro.blancomangut.37"  target=”_blank”>
+		<a href="https://www.facebook.com/alvaro.blancomangut.37"  target=â€�_blankâ€�>
 			<i class="fa fa-facebook-square" style="font-size:36px;color:#2a80b9"></i>
 		</a>			
-		<a href="https://github.com/ablancoze"  target=”_blank”>	
+		<a href="https://github.com/ablancoze"  target=â€�_blankâ€�>	
 			<i class="fa fa-github" style="font-size:36px;color:#2a80b9"></i>
 		</a>		
-		<a href="https://www.linkedin.com/in/%C3%A1lvaro-blanco-mangut-ab2313163/"  target=”_blank”>
+		<a href="https://www.linkedin.com/in/%C3%A1lvaro-blanco-mangut-ab2313163/"  target=â€�_blankâ€�>
 			<i class="fa fa-linkedin-square" style="font-size:36px;color:#2a80b9"></i>	
 		</a>		
-		<a href="https://www.starwars.com/"  target=”_blank”>
+		<a href="https://www.starwars.com/"  target=â€�_blankâ€�>
 			<i class="fa fa-rebel" style="font-size:36px;color:#2a80b9"></i>
 		</a>
-		<a href="https://www.youtube.com/watch?v=sNbGxOccYWc"  target=”_blank”>
+		<a href="https://www.youtube.com/watch?v=sNbGxOccYWc"  target=â€�_blankâ€�>
 			<i class="fa fa-youtube-play" style="font-size:36px;color:#2a80b9"></i>
 		</a>
 	</div>

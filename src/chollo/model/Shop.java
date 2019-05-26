@@ -1,5 +1,8 @@
 package chollo.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Shop {
 
 	private long id;
