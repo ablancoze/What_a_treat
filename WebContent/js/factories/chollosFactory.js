@@ -2,7 +2,7 @@
 /**
  * Modulo para gestionar los chollos
  */
-angular.module('WhatAtreat').factory('chollosFactory', ['$http',function($http){
+angular.module('WhatAtreat').factory("chollosFactory", ['$http',function($http){
 	
 	var url = 'https://localhost:8443/What_a_treat/rest/chollos/';
 	
@@ -17,6 +17,14 @@ angular.module('WhatAtreat').factory('chollosFactory', ['$http',function($http){
 	    	
 	    	getChollos : function(id){
 	    		var urlid = url + id;
+	            return $http.get(urlid)
+	            	.then(function(response){
+	            		return response.data;
+	         		});
+	    	},
+	    	
+	    	getChollosUser : function(id){
+	    		var urlid = url +"user"+ id;
 	            return $http.get(urlid)
 	            	.then(function(response){
 	            		return response.data;

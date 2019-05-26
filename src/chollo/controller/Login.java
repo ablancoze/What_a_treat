@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
 				HttpSession session = request.getSession();//obtengo la sesion de la requeste que ha hecho el usuario
 				session.setAttribute("user", u);
 				logger.info("USUARIO CONECTADO");
-				response.sendRedirect("whatAtreat");
+				response.sendRedirect("pages/Index.html");
 			}else{
 				request.setAttribute("messages","Nombre de usuario o password incorrecto");
 				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");

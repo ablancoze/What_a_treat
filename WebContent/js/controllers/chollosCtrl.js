@@ -47,11 +47,11 @@ angular.module('WhatAtreat').controller('chollosCtrl',['chollosFactory','$routeP
 					},function (response){
 						console.log("Error deleting chollo");
 					})
-				},
+				}
 				
 	 }		 
 	 
-	 chollosViewModel.fufunctions.readChollo();
+	 chollosViewModel.functions.readChollo();
 	 
 	 chollosViewModel.functions.readChollosHot();
 	 

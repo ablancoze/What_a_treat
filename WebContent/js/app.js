@@ -19,20 +19,28 @@ angular.module('WhatAtreat', ['ngRoute']).config(function($routeProvider){
     	.when ("/getChollo/:ID" , {
     		controller: "chollosCtrl",
     		controllerAs: "chollosVM",
-    		templateUrl: "cholloPag.html",
+    		templateUrl: "CholloPag.html",
     	})
     	
     	
-    	.when("/insertOrder", {
+    	.when("/user", {
     		controller: "orderHandlerCtrl",
     		controllerAs: "orderHandlerVM",
-    		templateUrl: "orderHandlerTemplate.html"
+    		templateUrl: "CuentaUsuario.html"
         })
-        .when("/editOrder/:ID", {
-        	controller: "orderHandlerCtrl",
-        	controllerAs: "orderHandlerVM",
+        
+        .when("/userSeting", {
+    		controller: "orderHandlerCtrl",
+    		controllerAs: "orderHandlerVM",
+    		templateUrl: "CuentaUsuario.html"
+        })
+        
+        .when("/cholloNew", {
+        	controller: "chollosCtrl",
+        	controllerAs: "chollosVM",
         	templateUrl: "orderHandlerTemplate.html"
         })
+        
         .when("/deleteOrder/:ID", {
         	controller: "orderHandlerCtrl",
         	controllerAs: "orderHandlerVM",

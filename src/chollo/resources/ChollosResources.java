@@ -61,13 +61,13 @@ public class ChollosResources {
 	  @Path("/{cholloid: [0-9]+}")	  
 	  @Produces(MediaType.APPLICATION_JSON)
 	  public Chollo getCholloJSON(@PathParam("cholloid") long cholloid, @Context HttpServletRequest request) {
-		Connection conn = (Connection) sc.getAttribute("dbConn");
-		CholloDAO cholloDao = new JDBCCholloDAOImpl();
-		cholloDao.setConnection(conn);
+		Connection conn = (Connection) sc.getAttribute("dbWhat");
+		CholloDAO cholloDAO = new JDBCCholloDAOImpl();
+		cholloDAO.setConnection(conn);
 		
 		HttpSession session = request.getSession();
 		
-		Chollo chollo = cholloDao.get(cholloid);
+		Chollo chollo = cholloDAO.get(cholloid);
 		
 		if ((chollo != null)) 
 			return chollo;
@@ -89,14 +89,37 @@ public class ChollosResources {
 		  List<Chollo> chollosHot;
 		  chollosHot = cholloDAO.getTresChollosHot();
 		  
-		  return chollosHot;
+		if ((chollosHot != null))
+			return chollosHot;
+		else
+			throw new CustomNotFoundException("Order no hay chollos is not found");
 	  }
+	  
+	  
+	  @GET
+	  @Path("/user{userid: [0-9]+}")	  //¿Esta bien? 
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public List<Chollo> getCholloByIdUserJSON(@PathParam("userid") long userid, @Context HttpServletRequest request) {
+		Connection conn = (Connection) sc.getAttribute("dbWhat");
+		CholloDAO cholloDAO = new JDBCCholloDAOImpl();
+		cholloDAO.setConnection(conn);
+		
+		HttpSession session = request.getSession();
+		List<Chollo> chollos;
+		chollos = cholloDAO.getAllByUser(userid);
+		
+		if ((chollos != null)) 
+			return chollos;
+		else 
+			throw new CustomNotFoundException("Order ("+ userid + ") is not found");		   
+	  }
+	  
 	  
 	  @POST	  	  
 	  @Consumes(MediaType.APPLICATION_JSON)
 	  public Response post(Chollo newChollo, @Context HttpServletRequest request) throws Exception {
 
-		Connection conn = (Connection) sc.getAttribute("dbConn");
+		Connection conn = (Connection) sc.getAttribute("dbWhat");
 		CholloDAO cholloDao = new JDBCCholloDAOImpl();
 		cholloDao.setConnection(conn);	  	 
 		
@@ -128,7 +151,7 @@ public class ChollosResources {
 	  @Consumes("application/x-www-form-urlencoded")
 	  public Response post(MultivaluedMap<String, String> formParams, @Context HttpServletRequest request) {
 		  
-		Connection conn = (Connection) sc.getAttribute("dbConn");
+		Connection conn = (Connection) sc.getAttribute("dbWhat");
 		CholloDAO cholloDAO = new JDBCCholloDAOImpl();
 		cholloDAO.setConnection(conn);
 		
@@ -171,7 +194,7 @@ public class ChollosResources {
 	  @Path("/{cholloid: [0-9]+}")
 		@Consumes(MediaType.APPLICATION_JSON)
 		public Response put(Chollo cholloUpdate, @PathParam("cholloid") long cholloid, @Context HttpServletRequest request) throws Exception{
-		  Connection conn = (Connection)sc.getAttribute("dbConn");
+		  Connection conn = (Connection)sc.getAttribute("dbWhat");
 		  CholloDAO cholloDAO = new JDBCCholloDAOImpl();
 		  cholloDAO.setConnection(conn);
 		  
@@ -202,7 +225,7 @@ public class ChollosResources {
 	@Path("/{cholloid: [0-9]+}")
 	public Response deleteOrder(@PathParam("cholloid") long cholloid, @Context HttpServletRequest request) {
 
-		Connection conn = (Connection) sc.getAttribute("dbConn");
+		Connection conn = (Connection) sc.getAttribute("dbWhat");
 		CholloDAO cholloDao = new JDBCCholloDAOImpl();
 		cholloDao.setConnection(conn);
 
