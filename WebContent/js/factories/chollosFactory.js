@@ -32,7 +32,7 @@ angular.module('WhatAtreat').factory("chollosFactory", ['$http',function($http){
 	    	},
 	    	
 			getChollosHot: function(){
-				var urlHot = url+"/hot";
+				var urlHot = url+"hot";
 	    		return $http.get(urlHot)
 	    			.then(function(response){
 	    				return response.data;

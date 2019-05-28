@@ -1,8 +1,7 @@
 /**
  * 
  */
-
-angular.module('WhatAtreat').controller('cholloList',['chollosFactory','userFactory','$routeParams','$location',function(chollosFactory){
+angular.module('WhatAtreat').controller('cholloList',['chollosFactory',function(chollosFactory){
 	
 	
 	 var chollosListViewModel = this;
@@ -22,7 +21,6 @@ angular.module('WhatAtreat').controller('cholloList',['chollosFactory','userFact
 						console.log("Error reading treats");
 					})
 				}
-	 }		 
-
+	 }
 	 chollosListViewModel.functions.readListChollos();
 }])

@@ -1,8 +1,7 @@
 /**
  * 
  */
-
-angular.module('WhatAtreat').controller('chollosCtrl',['chollosFactory','$routeParams','$location',function(chollosFactory){
+angular.module('WhatAtreat').controller('chollosCtrl',['chollosFactory','$routeParams','$location',function(chollosFactory,$routeParams,$location){
 	
 	
 	 var chollosViewModel = this;
@@ -20,12 +19,13 @@ angular.module('WhatAtreat').controller('chollosCtrl',['chollosFactory','$routeP
 		   			return $location.path() == route;
 		   		},
 				
-				readChollo : function() {
+				readChollo : function(id) {
 					chollosFactory.getChollos(id).then(function(response) {
 						chollosViewModel.chollo = response;
-						console.log("Reading all the treats: ", response);
+						console.log("Reading treats with id: ", id," Response: ", response);
 					}, function(response) {
-						console.log("Error reading treats");
+						console.log("Error reading chollo");
+						$location.path('/');
 					})
 				},
 				
@@ -35,7 +35,7 @@ angular.module('WhatAtreat').controller('chollosCtrl',['chollosFactory','$routeP
 						chollosViewModel.listChollosHot = response;
 						console.log("Reading three hot chollos", response);
 					}, function(response){
-						console.log("Error reading treats");
+						console.log("Error reading three hot chollos");
 					})
 				},
 				
@@ -49,11 +49,9 @@ angular.module('WhatAtreat').controller('chollosCtrl',['chollosFactory','$routeP
 					})
 				}
 				
-	 }		 
-	 
-	 chollosViewModel.functions.readChollo();
-	 
+	 }
 	 chollosViewModel.functions.readChollosHot();
-	 
-	 chollosViewModel.functions.deleteChollo();
+	 if ($routeParams.ID!=undefined){
+		 chollosViewModel.functions.readChollo($routeParams.ID);
+	 }
 }])

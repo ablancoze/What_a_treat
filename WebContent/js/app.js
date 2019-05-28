@@ -16,10 +16,10 @@ angular.module('WhatAtreat', ['ngRoute']).config(function($routeProvider){
     		}
     	})
     	
-    	.when ("/getChollo/:ID" , {
+    	.when ("/chollo/:ID" , {
     		controller: "chollosCtrl",
     		controllerAs: "chollosVM",
-    		templateUrl: "CholloPag.html",
+    		templateUrl: "CholloPag.html"
     	})
     	
     	

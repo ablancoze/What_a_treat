@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html ng-app = "WhatAtreat">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<link href="../css/cssResponsive.css" rel="stylesheet" >
+	<link rel="stylesheet" href="../css/cssPaginaChollo.css" type="text/css"><link>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" >
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -17,6 +20,7 @@
     <script src="../js/app.js"></script>
     <script src="../js/factories/chollosFactory.js"></script>
 	<script src="../js/controllers/chollosCtrl.js"></script>
+	<script src="../js/controllers/cholloList.js"></script>
 	
 </head>
 <body>
@@ -94,7 +98,7 @@
    <div class="row">
    		<div data-ng-controller ="chollosCtrl as chollosVM" class="eventBox" id="eventBoxid">
        		<div data-ng-repeat="cholloHot in chollosVM.listChollosHot" class="cholloEventBox">
-	        	<a ng-href= "#!/getChollo/{{ cholloHot.id }}">
+	        	<a ng-href= "#!/chollo/{{ cholloHot.id }}">
 	            	<img class="imagenEvent" alt="" data-ng-src="{{cholloHot.imagen}}">
 	            </a>
 	        	<p>{{ cholloHot.description }}</p>
@@ -131,8 +135,8 @@
             
         </ul>
 		<div id="principal" class="mainContainer">
-			<div class="col-6 col-s-9">
-				<div data-ng-view></div>
+			<div data-ng-view class="col-6 col-s-9">
+			
 			</div>
             <div class="col-3 col-s-12">
                 <div class="aside">

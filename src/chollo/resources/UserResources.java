@@ -52,7 +52,7 @@ public class UserResources {
 	  @GET
 	  @Path("/{userid: [0-9]+}")
 	  @Produces(MediaType.APPLICATION_JSON)
-	  public User getUserByIdJSON(@PathParam("userid") long userid,@Context HttpServletRequest request) {
+	  public User getUserByIdJSON(@PathParam("userid") long userid, @Context HttpServletRequest request) {
 		  
 		Connection conn = (Connection) sc.getAttribute("dbWhat");
 		UserDAO userDAO = new JDBCUserDAOImpl();
@@ -63,6 +63,20 @@ public class UserResources {
 		User returnUser = userDAO.get(userid);
 		
 		return returnUser; 
+	  }
+	  
+	  @GET
+	  @Path("/name{userid: [0-9]+}")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public String getUserName(@PathParam("userid") long userid, @Context HttpServletRequest request) {
+		  
+		Connection conn = (Connection) sc.getAttribute("dbWhat");
+		UserDAO userDAO = new JDBCUserDAOImpl();
+		userDAO.setConnection(conn);
+		HttpSession session = request.getSession();	
+		
+		String name = userDAO.get(userid).getUsername();
+		return name; 
 	  }
 	  
 		@DELETE

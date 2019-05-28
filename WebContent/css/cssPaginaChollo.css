@@ -420,6 +420,7 @@ h1,h2,h3,h4,h5{
 		padding-left: 15px;
     	padding-right: 15px;
     	padding-top: 15px;
+    	grid-template-columns: auto;
 	}
     .mainContainer>.col-6>.cholloBox>.imgTitleUser{
         display: grid;

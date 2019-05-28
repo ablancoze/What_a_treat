@@ -11,7 +11,7 @@ angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactor
 
 	 userViewModel.user = {};
 	 userViewModel.chollos = [];
-	 
+	 userViewModel.name = "";
 	 
 	 /*Funciones*/
 	 userViewModel.functions = {
@@ -24,6 +24,15 @@ angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactor
 					userFactory.getUser(id).then(function(response) {
 						userViewModel.user = response;
 						console.log("Geting an user", response);
+					}, function(response) {
+						console.log("Error reading user");
+					})
+				},
+				
+				readUserName : function() {
+					userFactory.getUserName(id).then(function(response){
+						userViewModel.name = response;
+						console.log("Geting name user", response);
 					}, function(response) {
 						console.log("Error reading user");
 					})
@@ -48,11 +57,5 @@ angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactor
 					})
 				}
 				
-	 }		 
-	 
-	 userViewModel.functions.readUser();
-	 
-	 userViewModel.functions.readUserChollos();
-	 
-	 chollosViewModel.functions.deleteUser();
+	 }
 }])
