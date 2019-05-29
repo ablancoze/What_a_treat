@@ -2,17 +2,17 @@
             		<h1 style="margin: 0;margin-bottom: 20px;border-bottom-style: solid;border-bottom-width: thin;border-bottom-color: #ddd;">Mi cuenta</h1>
             		<div style="display: flex;justify-content: center;">
 	            		<div style="display: grid;grid-template-columns: 330px 330px;grid-column-gap: 21px;grid-row-gap: 21px;">
-		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;" href="#!/user/chollosUser">
+		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;" ng-href="#!/user/{{ userVM.user.id }}" >
 			            		<div class="optionbox">
 					            	<img src="../img/archive.svg">
 					            	<div>
-						            	<h2 style="margin: 0;font-size: 17px;" >Mis chollos</h2>
+						            	<h2 style="margin: 0;font-size: 17px;">Mis chollos</h2>
 						            	<p style="color: #555!important;font-size: 13px;font-weight: bold;">Mira o edita los chollos que has publicado en la comunidad</p>
 						            </div>
 				            	</div>
 		            		</a>
 		            		
-		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;" href="#!/userSeting">
+		            		<a style="width: initial;border: 1px solid #ddd;box-shadow: 0 1px 1px #ededed;border-radius: 4px;" href="#!/user/settings/{{ userVM.user.id }}">
 			            		<div class="optionbox">
 					            	<img src="../img/lock-open-alt.svg">
 					            	<div>

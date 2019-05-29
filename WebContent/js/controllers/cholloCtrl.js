@@ -9,7 +9,7 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','$routePa
 	 /*Atributos*/
 	 chollosViewModel.listChollosHot = [];
 	 chollosViewModel.chollo = {};
-	 
+	 chollosViewModel.shopObj={};
 	 
 	 /*Funciones*/
 	 chollosViewModel.functions = {
@@ -22,6 +22,17 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','$routePa
 					chollosFactory.getChollo(id)
 						.then(function(response) {
 							chollosViewModel.chollo = response;
+							console.log("Reading treats with id: ", id," Response: ", response);
+						}, function(response) {
+							console.log("Error reading chollo");
+							$location.path('/');
+						})
+				},
+				
+				readShopName : function(id) {
+					shopFactory.getshop(id)
+						.then(function(response) {
+							chollosViewModel.shopObj = response;
 							console.log("Reading treats with id: ", id," Response: ", response);
 						}, function(response) {
 							console.log("Error reading chollo");
@@ -75,11 +86,11 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','$routePa
 						console.log($location.path());
 						chollosViewModel.functions.createChollo();
 					}
-					else if (chollosViewModel.functions.where('/editChollo/'+chollosViewModel.chollo.id)){
+					else if (chollosViewModel.functions.where('/user/updateChollo/'+chollosViewModel.chollo.id)){
 						console.log($location.path());
 						orderHandlerViewModel.functions.updateChollo();
 					}
-					else if (chollosViewModel.functions.where('/deleteChollo/'+chollosViewModel.chollo.id)){
+					else if (chollosViewModel.functions.where('/user/deleteChollo/'+chollosViewModel.chollo.id)){
 						console.log($location.path());
 						orderHandlerViewModel.functions.deleteChollo(chollosViewModel.chollo.id);
 					}

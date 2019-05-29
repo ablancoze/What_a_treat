@@ -3,7 +3,7 @@ angular.module('WhatAtreat', ['ngRoute']).config(function($routeProvider){
     	.when("/", {
     		controller: "cholloList",
     		controllerAs: "cholloListVM",
-    		templateUrl: "ListChollosTemplate.html",
+    		templateUrl: "ListChollos.html",
     		resolve: {
     			// produce 500 miliseconds (0,5 seconds) of delay that should be enough to allow the server
     			//does any requested update before reading the orders.
@@ -29,9 +29,15 @@ angular.module('WhatAtreat', ['ngRoute']).config(function($routeProvider){
     		controllerAs: "userVM",
     		templateUrl: "CuentaUsuario.html"
     	})
-    	.when ("/user/chollosUser" , {
-    		controller: "cholloCtrl",
-    		controllerAs: "chollosVM",
-    		templateUrl: "CholloPag.html"
+    	.when ("/user/:ID" , {
+    		controller: "userCtrl",
+    		controllerAs: "userVM",
+    		templateUrl: "ChollosUsuario.html"
+    	})
+    	
+    	.when ("/user/settings/:ID" , {
+    		controller: "userCtrl",
+    		controllerAs: "userVM",
+    		templateUrl: "SettingUser.html"
     	});
 })

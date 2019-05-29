@@ -58,18 +58,18 @@
 					Publica tu chollo
 				</span>
 				
-				<span data-ng-show="cholloVM.functions.where('/deleteChollo/'+cholloVM.chollo.id)" class="contact100-form-title">
+				<span data-ng-show="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" class="contact100-form-title">
 					Eliminar chollo
 				</span>
 				
-				<span data-ng-show="cholloVM.functions.where('/dupdateChollo/'+cholloVM.chollo.id)" class="contact100-form-title">
-					Actualizar chollo
+				<span data-ng-show="cholloVM.functions.where('/user/updateChollo/'+cholloVM.chollo.id)" class="contact100-form-title">
+					Editar el chollo
 				</span>
 
 				<div class="wrap-input100 validate-input bg1" data-validate="Porfavor Introduce el titulo del chollo">
 					<span class="label-input100">Titulo *</span>
 					<input data-ng-model="cholloVM.chollo.title" class="input100" type="text" name="titulo" placeholder="Titulo del chollo"
-					data-ng-readonly="cholloVM.functions.where('/deleteChollo/'+cholloVM.chollo.id)" required/>
+					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" required/>
 				</div>
                 
                 <div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "Porfavor introduzca una descripcion">
@@ -80,19 +80,19 @@
                 <div class="wrap-input100 validate-input bg1" data-validate="Link al chollo https://www.">
 					<span class="label-input100">Enlace al chollo *</span>
 					<input data-ng-model="cholloVM.chollo.link" class="input100" type="text" name="link" placeholder="https://www."
-					data-ng-readonly="cholloVM.functions.where('/deleteChollo/'+cholloVM.chollo.id)" required/>
+					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" required/>
 				</div>
                 
                 <div class="wrap-input100 validate-input bg1">
 					<span class="label-input100">Enlace de a la foto</span>
 					<input data-ng-model="cholloVM.chollo.imagen" class="input100" type="text" name="imagen" placeholder="https://www."
-					data-ng-readonly="cholloVM.functions.where('/deleteChollo/'+cholloVM.chollo.id)" required/>
+					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" required/>
 				</div>
 
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Introduzca el precio">
 					<span class="label-input100">Precio *</span>
 					<input data-ng-model="cholloVM.chollo.price" class="input100" type="number" name="precio" placeholder="Precio del chollo"
-					data-ng-readonly="cholloVM.functions.where('/deleteChollo/'+cholloVM.chollo.id)" required/>
+					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" required/>
 				</div>
                 
 				<div class="wrap-input100 input100-select bg1" style="width: calc((100% - 30px) / 2);">
@@ -110,6 +110,14 @@
 					<button data-ng-show="cholloVM.functions.where('/newChollo')" class="contact100-form-btn" type="submit">
 						<span>
 							Publicar
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+				<div class="container-contact100-form-btn">
+					<button data-ng-show="cholloVM.functions.where('/user/updateChollo/'+cholloVM.chollo.id)" class="contact100-form-btn" type="submit">
+						<span>
+							Editar
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>

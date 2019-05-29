@@ -97,7 +97,7 @@ public class ChollosResources {
 	  
 	  
 	  @GET
-	  @Path("/user{userid: [0-9]+}")	  //¿Esta bien? 
+	  @Path("/user/{userid: [0-9]+}")	  //¿Esta bien? 
 	  @Produces(MediaType.APPLICATION_JSON)
 	  public List<Chollo> getCholloByIdUserJSON(@PathParam("userid") long userid, @Context HttpServletRequest request) {
 		Connection conn = (Connection) sc.getAttribute("dbWhat");

@@ -13,6 +13,49 @@
 	display: table;
 }
 
+.btn-eliminar:hover {
+    background-color: #cb2431;
+    background-image: linear-gradient(-180deg,#de4450,#cb2431 90%);
+    border-color: rgba(27,31,35,.5);
+    color: #fff;
+
+}
+
+.btn-eliminar{
+	margin-bottom: 15px;
+    margin-left: 86%;
+    background-color: #fafbfc;
+    color: #cb2431;
+    border: 1px solid rgba(27, 31, 35, .2);
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: .25em;
+    padding: 7px;
+    font-size: 14px;
+}
+
+
+.btn-aplicar:hover {
+    background-color: #2a80b9;
+    background-image: linear-gradient(-180deg,#2a80b9,#2a80b9 90%);
+    border-color: rgba(27,31,35,.5);
+    color: #fafbfc;
+}
+
+.btn-aplicar{
+	background-color: #fafbfc;
+    color: #2a80b9;
+    border: 1px solid rgba(27, 31, 35, .2);
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: .25em;
+    padding: 7px;
+}
+
+
+.botonPublicarComentario:hover{
+	box-shadow: 0px -1px 12px 0px rgba(0,0,0,0.13);
+}
 
 
 .row {

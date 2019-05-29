@@ -1,0 +1,32 @@
+
+<form data-ng-submit="userVM.functions.userHandlerSwitcher()" id="formularioEditarPerfil"class="editContainer" style="box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);margin-bottom: 0;">
+	<div class="infoFoto">
+		<div class="imagenChollo">
+			<img src="../img/FotoPerfilAlvaroAlumno.jpg">
+		</div>
+		<div>
+			<input id="imagen" name="imagen" type="text"placeholder="Cambiar foto de perfil"> <i class="material-icons">link</i>
+		</div>
+	</div>
+
+	<div class="infoChollo">
+		<h4>{{userVM.user.username}}</h4><!-- <p style="color: red; font-weight: bolder; margin-left: auto;">${usernameProblem}</p>    POR SI EL FORMULARIO TIENE ERRORES-->
+		<input id="username" name="username" type="text"placeholder="Introduce un nuevo nombre de usuario" value="">
+		<h4>{{userVM.user.email}}</h4><!-- <p style="color: red; font-weight: bolder; margin-left: auto;">${emailProblem}</p>  -->
+		<input id="email" name="email" type="text"placeholder="Introduce un nuevo email" value="">
+		<p>Para cambiar la password primero debes introducir tu contraseña actual</p>
+		<!-- <p style="color: red; font-weight: bolder; margin-left: auto;">${messages}</p> -->
+		<input id="Oldpass" name="Oldpass" type="password">
+		<p>Nueva password</p>
+		<input id="Newpass" name="Newpass" type="password"placeholder="Introduce tu nueva password">
+	</div>
+	<button class="btn-aplicar" id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">
+		Aplicar cambios
+	</button>
+</form>
+
+<form method="post" action="EliminarCuenta" style="box-shadow: -1px 13px 12px 0px rgba(0,0,0,0.25);background-color: white;">
+	<button class="btn-eliminar"
+		type="submit">Eliminiar cuenta
+	</button>
+</form>

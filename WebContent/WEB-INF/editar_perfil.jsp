@@ -162,8 +162,7 @@
             
         </ul>
     
-        <div id="principal" class="mainContainer">
-            
+        <div id="principal" class="mainContainer"> 
             <div class="col-6 col-s-9" style="background: white;box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);">
                     <form method="post" action="EditProfile" id="formularioEditarPerfil" class="editContainer">
                         <div class="infoFoto">

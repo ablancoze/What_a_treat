@@ -24,7 +24,7 @@ angular.module('WhatAtreat').factory("chollosFactory", ['$http',function($http){
 	    	},
 	    	
 	    	getChollosUser : function(id){
-	    		var urlid = url +"user/chollo"+ id;
+	    		var urlid = url +"user/"+id;
 	            return $http.get(urlid)
 	            	.then(function(response){
 	            		return response.data;
