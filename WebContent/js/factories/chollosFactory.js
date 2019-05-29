@@ -15,7 +15,7 @@ angular.module('WhatAtreat').factory("chollosFactory", ['$http',function($http){
 	    			});
 	    	},
 	    	
-	    	getChollos : function(id){
+	    	getChollo : function(id){
 	    		var urlid = url + id;
 	            return $http.get(urlid)
 	            	.then(function(response){
@@ -24,7 +24,7 @@ angular.module('WhatAtreat').factory("chollosFactory", ['$http',function($http){
 	    	},
 	    	
 	    	getChollosUser : function(id){
-	    		var urlid = url +"user"+ id;
+	    		var urlid = url +"user/chollo"+ id;
 	            return $http.get(urlid)
 	            	.then(function(response){
 	            		return response.data;
@@ -38,6 +38,13 @@ angular.module('WhatAtreat').factory("chollosFactory", ['$http',function($http){
 	    				return response.data;
 	    			});
 	    	},
+	    	
+	    	postChollo:  function(chollo){
+	    		return $http.post(url,chollo)
+	            	.then(function(response){
+	            		return response.status;
+	     			});
+	    	}, 
 	    	
 	        deleteChollos : function(id){
 	        	var urlid = url+id;

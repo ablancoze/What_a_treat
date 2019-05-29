@@ -1,18 +1,14 @@
 
-<div class="cholloBox">
+<div class="cholloBox" style="margin-bottom: 2%;margin-top: 2%;display: grid;grid-gap: 10px;background-color: white;
+	box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);padding-left: 15px;padding-right: 15px;padding-top: 15px;grid-template-columns: auto;">
+	
 	<div class="imgTitleUser">
 		<div>
 			<img data-ng-src="{{ chollosVM.chollo.imagen }}">
 		</div>
-		<div class="TitleUser">
-			<h1> {{ chollosVM.chollo.title }} </h1>
-			<div>
-				<div>
-					<img src="../img/FotoPerfilAlvaroAlumno.jpg"> 
-					<a>unknoun</a>
-				</div>
-				<a>shop name</a>
-			</div>
+		<div class="TitleUser" style="padding-left: 10px;">
+			<h1 style="text-align: start;"> {{ chollosVM.chollo.title }} </h1>
+			<p style="text-align: start;margin-top: 10px;font-size: 1.2em;">{{chollosVM.chollo.description}}</p>
 		</div>
 	</div>
 	<div class="likesPrecio">
@@ -37,12 +33,16 @@
 		</div>
 	</div>
 	
-	<div>
-		<p>{{chollosVM.chollo.description}}</p>
+	<div style="display: inline-flex;justify-content: space-between;">
+		<div  style="display: inline-flex;">
+		<img src="../img/FotoPerfilAlvaroAlumno.jpg" style="width: 22px;height: 22px;border-radius: 50%;margin-right: 10px;"> 
+		<a style="padding-top: 3px;">unknoun</a>
+		</div>
+		<a style="padding-top: 3px;">shop name</a>
 	</div>
 
 	<div class="comentarios">
-		<h3 style="font: 700 19px/21px 'Roboto', trebuchet ms; margin-bottom: 26px;">Comentarios</h3>
+		<h3 style="font: 700 19px/21px 'Roboto', trebuchet ms; margin-bottom: 26px;margin-top: 26px">Comentarios</h3>
 	</div>
 	<div class="formComentario">
 		<form method="post" action="PublicarComentario">

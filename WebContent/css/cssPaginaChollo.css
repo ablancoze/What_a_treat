@@ -420,7 +420,6 @@ h1,h2,h3,h4,h5{
 		padding-left: 15px;
     	padding-right: 15px;
     	padding-top: 15px;
-    	grid-template-columns: auto;
 	}
     .mainContainer>.col-6>.cholloBox>.imgTitleUser{
         display: grid;
@@ -434,9 +433,7 @@ h1,h2,h3,h4,h5{
 		height: 160px;
 	}
 	
-	.mainContainer>.col-6>.cholloBox>.imgTitleUser>.TitleUser{
-		    padding-top: 25px;
-	}
+
 	
 	.mainContainer>.col-6>.cholloBox>.imgTitleUser>.TitleUser>div{
 		display: inline-flex;

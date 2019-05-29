@@ -1,7 +1,6 @@
-
 <div data-ng-repeat="chollos in cholloListVM.listChollos" class="cholloBox">
 	<div class="cholloImagen">
-		<a href="" alt=""> 
+		<a ng-href= "#!/chollo/{{ chollos.id }}" alt=""> 
 			<img data-ng-src="{{chollos.imagen}}">
 		</a>
 	</div>
@@ -11,7 +10,7 @@
 		</div>
 		<h3>{{ chollos.title }}</h3>
 		<div class="precioTienda">
-			<h4>${{ chollos.price }}</h4>
+			<h4>{{ chollos.price }}</h4>
 			<p>Tienda desconocida</p>
 		</div>
 		<p>{{ chollos.description }}</p>

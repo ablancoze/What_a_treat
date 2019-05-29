@@ -10,40 +10,28 @@ angular.module('WhatAtreat', ['ngRoute']).config(function($routeProvider){
     			// Extracted from script.js used as example on https://docs.angularjs.org/api/ngRoute/service/$route
     			delay: function($q, $timeout) {
     			var delay = $q.defer();
-    			$timeout(delay.resolve, 500);
+    			$timeout(delay.resolve, 200);
     			return delay.promise;
     			}
     		}
     	})
     	
     	.when ("/chollo/:ID" , {
-    		controller: "chollosCtrl",
+    		controller: "cholloCtrl",
     		controllerAs: "chollosVM",
     		templateUrl: "CholloPag.html"
     	})
     	
     	
-    	.when("/user", {
-    		controller: "orderHandlerCtrl",
-    		controllerAs: "orderHandlerVM",
+    	
+    	.when ("/user" , {
+    		controller: "userCtrl",
+    		controllerAs: "userVM",
     		templateUrl: "CuentaUsuario.html"
-        })
-        
-        .when("/userSeting", {
-    		controller: "orderHandlerCtrl",
-    		controllerAs: "orderHandlerVM",
-    		templateUrl: "CuentaUsuario.html"
-        })
-        
-        .when("/cholloNew", {
-        	controller: "chollosCtrl",
-        	controllerAs: "chollosVM",
-        	templateUrl: "orderHandlerTemplate.html"
-        })
-        
-        .when("/deleteOrder/:ID", {
-        	controller: "orderHandlerCtrl",
-        	controllerAs: "orderHandlerVM",
-        	templateUrl: "orderHandlerTemplate.html"
-        });
+    	})
+    	.when ("/user/chollosUser" , {
+    		controller: "cholloCtrl",
+    		controllerAs: "chollosVM",
+    		templateUrl: "CholloPag.html"
+    	});
 })

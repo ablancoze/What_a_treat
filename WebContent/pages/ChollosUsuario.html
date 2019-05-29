@@ -1,0 +1,40 @@
+
+<div class="userContainer">
+
+	<div class="infoUser">
+		<div class="foto">
+			<img src="FotoPerfilAlvaroAlumno.jpg">
+		</div>
+
+		<div class="datosUser">
+			<p>${user.username}</p>
+			<p>${user.email}</p>
+		</div>
+	</div>
+	<div class="chollosUser">
+			<div data-ng-repeat="chollos in  class="cholloBoxPequeña">
+				<div class="cholloImagen">
+					<a
+						href="<c:url value = '/VerChollo?cholloid=${chollo.id}&userid=${user.id}&shopid=${chollo.ids}'/>"
+						alt=""> <img style="width: 80px; height: 80px;"
+						src="${chollo.imagen}">
+					</a>
+				</div>
+
+				<div>
+					<h4>${chollo.title}</h4>
+					<h5>${chollo.price}</h5>
+					<p>${chollo.description}</p>
+				</div>
+				<div class="iconoEditar">
+					<a href="<c:url value = '/EditChollo?id=${chollo.id}'/>" alt="">
+						<i style="font-size: 24px; color: #60BFDF" class='fas'
+						onmouseover="this.style.color='#0099CC'"
+						onMouseOut="this.style.color='#60BFDF'">&#xf044;</i>
+
+
+					</a>
+				</div>
+			</div>
+	</div>
+</div>

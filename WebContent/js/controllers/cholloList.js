@@ -14,12 +14,13 @@ angular.module('WhatAtreat').controller('cholloList',['chollosFactory',function(
 			
 				/* Leer todos los chollos de la base de datos */
 				readListChollos : function() {
-					chollosFactory.getChollos().then(function(response) {
-						chollosListViewModel.listChollos = response;
-						console.log("Reading all the treats: ", response);
-					}, function(response) {
-						console.log("Error reading treats");
-					})
+					chollosFactory.getChollos()
+						.then(function(response) {
+							chollosListViewModel.listChollos = response;
+							console.log("Reading all the treats: ", response);
+						}, function(response) {
+							console.log("Error reading treats");
+						})
 				}
 	 }
 	 chollosListViewModel.functions.readListChollos();

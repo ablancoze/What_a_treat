@@ -158,21 +158,22 @@ public class ChollosResources {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		  
-		Response res = null;
+		Response res;
+		
 		
 		if (user != null) {
-	        Chollo chollo = new Chollo();
+			Chollo chollo = new Chollo();
 	        chollo.setTitle(formParams.getFirst("titulo"));
 	        chollo.setDescription(formParams.getFirst("descripcion"));
 	        chollo.setLink(formParams.getFirst("link"));
 	        chollo.setPrice(Long.parseLong(formParams.getFirst("precio")));
-	        chollo.setIds(Long.parseLong(formParams.getFirst("shop")));
+	        chollo.setIds(0);
+	        //chollo.setIds(Long.parseLong(formParams.getFirst("shop")));
 	        chollo.setIdu(user.getId());
 	        chollo.setLikes(0);
 	        chollo.setSoldout(0);
 	        chollo.setImagen(formParams.getFirst("imagen"));
 	        long id = cholloDAO.add(chollo);
-	        
 			res = Response //return 201 and Location: /orders/newid
 					   .created(
 						uriInfo.getAbsolutePathBuilder()
@@ -182,8 +183,9 @@ public class ChollosResources {
 						uriInfo.getAbsolutePathBuilder()
 						       .path(Long.toString(id))
 						       .build())
-						.build();
-			 return res; 
+						.build(); 
+			return res;
+			
 		}else {
 			throw new CustomBadRequestException("Errors in parameters");
 		}

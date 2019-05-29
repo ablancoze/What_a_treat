@@ -17,8 +17,8 @@
 <body>
     
     <header>
-        <a href="<c:url value = "/whatAtreat"/>">
-            <img class="Logo" src="Sin%20t%C3%ADtulo.png">
+        <a href="/What_a_treat/pages/Index.html">
+            <img class="Logo" src="/What_a_treat/img/LogoWeb.png">
         </a>
     </header>
     

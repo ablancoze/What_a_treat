@@ -13,31 +13,7 @@ angular.module('WhatAtreat').factory("userFactory", ['$http',function($http){
 	    			.then(function(response){
 	    				return response.data;
 	    			});
-	    	},
-	    	
-	    	getUser : function(id){
-	    		var urlid = url + id;
-	            return $http.get(urlid)
-	            	.then(function(response){
-	            		return response.data;
-	         		});
-	    	},
-	    	
-	    	getUserName : function(id){
-	    		var urlid = url +"name"+ id;
-	            return $http.get(urlid)
-	            	.then(function(response){
-	            		return response.data;
-	         		});
-	    	},
-	    	
-	        deleteChollos : function(id){
-	        	var urlid = url+id;
-	            return $http.delete(urlid)
-	            	.then(function(response){
-	            		return response.status;
-	            	});
-	        }     
+	    	} 	   
 	}
     return userInterface;
 }])

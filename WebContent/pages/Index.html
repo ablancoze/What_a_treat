@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html ng-app = "WhatAtreat">
+<html data-ng-app ="WhatAtreat" lang="es">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" url=http://www.mydomain.com/kam/index.jsp">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<link href="../css/cssResponsive.css" rel="stylesheet" >
-	<link rel="stylesheet" href="../css/cssPaginaChollo.css" type="text/css"><link>
+	<link rel="stylesheet" href="../css/cssPaginaChollo.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" >
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -16,11 +16,17 @@
     <!-- Include the AngularJS library -->
     <script src="../js/angular/angular.js"></script>
 	<script src="../js/angular/angular-route.js"></script>
-<!-- Modules -->
-    <script src="../js/app.js"></script>
+	<!-- Modules -->
+	<script src="../js/app.js"></script>
     <script src="../js/factories/chollosFactory.js"></script>
-	<script src="../js/controllers/chollosCtrl.js"></script>
+    <script src="../js/factories/userFactory.js"></script>
+    <script src="../js/controllers/userCtrl.js"></script>
+	<script src="../js/controllers/cholloCtrl.js"></script>
 	<script src="../js/controllers/cholloList.js"></script>
+	<script src="../js/controllers/loginCtrl.js"></script>
+	
+	
+	
 	
 </head>
 <body>
@@ -29,7 +35,7 @@
             <a class="boton">
                 <span style="font-size:30px;cursor:pointer;display: flex;" onclick="openclosenav()"><i  class="material-icons">menu</i></span>
             </a>
-            <a href="">
+            <a ng-href="#!/">
                 <img class="Logo" src="../img/LogoWeb.png">
             </a>
             
@@ -55,19 +61,33 @@
         		</div>
             </a>
 		    <a class="botonUsuario" onclick="opencloseUsuario()">
-		    	<div class="icono">
-		        	<i class="material-icons md-41">account_circle</i>
-		        </div>
+			    	<div class="icono">
+			        	<i class="material-icons md-41">account_circle</i>
+			        </div>
 		        <div id="trianguloUsuario" class="triangulo-equilatero-bottom" style="display: none">
         		</div>
 		   	</a>
         </div>
     </header>
 
-   <nav id="navegadorSecundario" class="navegadorLinks">
-        <section class="publicarChollo" id="publicarChollo" style="display: none">
-            <div>
-        		<a alt="Publicar un chollo" href="#!/cholloNew">
+   <nav data-ng-controller="loginCtrl as login" id="navegadorSecundario" class="navegadorLinks">
+        <section  class="publicarChollo" id="publicarChollo" style="display: none">
+            <div ng-if ="!login.functions.loging()">
+        		<a  alt="Publicar un chollo" href="../Login">
+                	<i class="material-icons">
+                        	local_offer
+                    </i>
+                    Publicar Chollo
+                </a> 
+                <a alt="Publicar un cupon" href="">
+                	<i class="material-icons">
+                            local_activity
+                    </i>
+                    Publicar Cupon
+                </a>
+            </div>
+            <div ng-if ="login.functions.loging()">
+        		<a  alt="Publicar un chollo" ng-href="/What_a_treat/pages/FormularioCholloNew.html#!/newChollo">
                 	<i class="material-icons">
                         	local_offer
                     </i>
@@ -82,21 +102,27 @@
             </div>
         </section>
         
-        <section class="verPerfil" id="verPerfil" style="display: none">
-            <div>
-                <a alt="Ir a tu perfil" href="#!/user">
+        <section  class="verPerfil" id="verPerfil" style="display: none">
+            <div ng-if ="!login.functions.loging()">
+                <a alt="Ir a tu perfil" href="../Login">
 					Mi cuenta
                 </a> 
+
+            </div>
+            <div ng-if ="login.functions.loging()">
+                <a alt="Ir a tu perfil" ng-href="#!/user">
+					Mi cuenta
+                </a>
                 <a alt="Salir de tu perfil" href="">
 					Cerrar sesion
-                </a> 
+                </a>  
             </div>
         </section>
         <p>La mejor paginda de chollos</p>
     </nav>
     
    <div class="row">
-   		<div data-ng-controller ="chollosCtrl as chollosVM" class="eventBox" id="eventBoxid">
+   		<div data-ng-controller ="cholloCtrl as chollosVM" class="eventBox" id="eventBoxid">
        		<div data-ng-repeat="cholloHot in chollosVM.listChollosHot" class="cholloEventBox">
 	        	<a ng-href= "#!/chollo/{{ cholloHot.id }}">
 	            	<img class="imagenEvent" alt="" data-ng-src="{{cholloHot.imagen}}">
@@ -152,7 +178,7 @@
     </div>
 <footer class="footer">
 	<div class="Ayudausurio">
-		<img alt="" src="img/logo_60.png">
+		<img alt="" src="../img/logo_60.png">
 	</div>
 	<div class="IconosSocialMedia">
 		<a href="https://www.facebook.com/alvaro.blancomangut.37"  target=â€�_blankâ€�>

@@ -41,12 +41,7 @@ public class UserResources {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		
-		if (user != null) {
-			User returnUser = userDao.get(user.getUsername());
-			return returnUser;
-		}
-		
-		return null; 
+		return user; 
 	  }
 	  
 	  @GET
