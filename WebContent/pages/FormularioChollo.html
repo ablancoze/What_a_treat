@@ -25,6 +25,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../vendor/noui/nouislider.min.css">
 <!--===============================================================================================-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+<!--===============================================================================================-->
 
 <!--============================ Include the AngularJS library =================================== -->
     <script src="../js/angular/angular.js"></script>
@@ -35,10 +37,13 @@
 	<script src="../js/app.js"></script>
     <script src="../js/factories/chollosFactory.js"></script>
     <script src="../js/factories/userFactory.js"></script>
+    <script src="../js/factories/shopFactory.js"></script>
     <script src="../js/controllers/userCtrl.js"></script>
 	<script src="../js/controllers/cholloCtrl.js"></script>
+	<script src="../js/controllers/shopCtrl.js"></script>
 	<link rel="stylesheet" type="text/css" href="../css/util.css">
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/checkbox.css">
 	<link href="../css/cssRegistro.css" rel="stylesheet" >
 <!--===============================================================================================-->
 <!--===============================================================================================-->
@@ -52,84 +57,102 @@
     </header>
     
 	<div class="container-contact100">
-		<div data-ng-controller = "cholloCtrl as cholloVM" class="wrap-contact100">
+		<div data-ng-controller="cholloCtrl as cholloVM" class="wrap-contact100">
 			<form data-ng-submit="cholloVM.functions.cholloHandlerSwitcher()" class="contact100-form validate-form">
 				<span data-ng-show="cholloVM.functions.where('/newChollo')" class="contact100-form-title">
 					Publica tu chollo
 				</span>
 				
-				<span data-ng-show="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" class="contact100-form-title">
+				<span data-ng-show="cholloVM.functions.where('/user/deleteChollo')" class="contact100-form-title">
 					Eliminar chollo
 				</span>
 				
-				<span data-ng-show="cholloVM.functions.where('/user/updateChollo/'+cholloVM.chollo.id)" class="contact100-form-title">
+				<span data-ng-show="cholloVM.functions.where('/user/updateChollo')" class="contact100-form-title">
 					Editar el chollo
 				</span>
 
 				<div class="wrap-input100 validate-input bg1" data-validate="Porfavor Introduce el titulo del chollo">
 					<span class="label-input100">Titulo *</span>
 					<input data-ng-model="cholloVM.chollo.title" class="input100" type="text" name="titulo" placeholder="Titulo del chollo"
-					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" required/>
+					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo')" ng-required="string"/>
 				</div>
                 
                 <div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "Porfavor introduzca una descripcion">
 					<span class="label-input100">Descripcion *</span>
-					<textarea data-ng-model="cholloVM.chollo.description" class="input100" name="descripcion" placeholder="Descripcion del chollo" required></textarea>
+					<textarea data-ng-model="cholloVM.chollo.description"  data-ng-readonly="cholloVM.functions.where('/user/deleteChollo')" class="input100" name="descripcion" placeholder="Descripcion del chollo" ng-required="string"></textarea>
 				</div>
                 
                 <div class="wrap-input100 validate-input bg1" data-validate="Link al chollo https://www.">
 					<span class="label-input100">Enlace al chollo *</span>
-					<input data-ng-model="cholloVM.chollo.link" class="input100" type="text" name="link" placeholder="https://www."
-					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" required/>
+					<input data-ng-model="cholloVM.chollo.link" class="input100" type="url" name="link" placeholder="https://www."
+					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo')" ng-required="string"/>
 				</div>
                 
                 <div class="wrap-input100 validate-input bg1">
 					<span class="label-input100">Enlace de a la foto</span>
-					<input data-ng-model="cholloVM.chollo.imagen" class="input100" type="text" name="imagen" placeholder="https://www."
-					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" required/>
+					<input data-ng-model="cholloVM.chollo.imagen" class="input100" type="url" name="imagen" placeholder="https://www."
+					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo')"/>
 				</div>
 
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Introduzca el precio">
 					<span class="label-input100">Precio *</span>
-					<input data-ng-model="cholloVM.chollo.price" class="input100" type="number" name="precio" placeholder="Precio del chollo"
-					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo/'+cholloVM.chollo.id)" required/>
+					<input data-ng-disabled="cholloVM.functions.where('/user/deleteChollo')" data-ng-model="cholloVM.chollo.price" class="input100" type="number" name="precio" placeholder="Precio del chollo"
+					data-ng-readonly="cholloVM.functions.where('/user/deleteChollo')" required/>
 				</div>
                 
-				<div class="wrap-input100 input100-select bg1" style="width: calc((100% - 30px) / 2);">
+				<div data-ng-controller="shopCtrl as shopVM" class="wrap-input100 input100-select bg1" style="width: calc((100% - 30px) / 2);">
 					<span class="label-input100">Tienda *</span>
 					<div>
-						<select class="js-select2" name="tienda">
-							<option>Please chooses</option>
-							<option>Amazon</option>
-							<option>La que sea</option>
+						<select  data-ng-disabled="cholloVM.functions.where('/user/deleteChollo')" class="js-select2" name="shop">
+							<option data-ng-model="cholloVM.chollo.ids" data-ng-repeat = "shop in shopVM.shopList" value={{shop.id}} ng-selected ="cholloVM.chollo.ids == shop.id">{{shop.name}}</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
 				</div>
-				<div class="container-contact100-form-btn">
-					<button data-ng-show="cholloVM.functions.where('/newChollo')" class="contact100-form-btn" type="submit">
+
+				<div data-ng-show="cholloVM.functions.where('/user/updateChollo')" class="container" style="width: fit-content;margin: inherit;">
+					<ul class="ks-cboxtags">
+						<li>
+						<input value="1" name="soldout" data-ng-model="cholloVM.chollo.soldout" type="checkbox" id="checkboxOne"><label for="checkboxOne">Agotado</label>
+						</li>
+					</ul>
+				</div>
+				
+				<div data-ng-show="cholloVM.functions.where('/user/deleteChollo')" class="container" style="width: fit-content;margin: inherit;">
+					<ul class="ks-cboxtags">
+						<li>
+						<input data-ng-disabled="cholloVM.functions.where('/user/deleteChollo')" type="checkbox" id="checkboxOne"value="Rainbow Dash"><label for="checkboxOne">Agotado</label>
+						</li>
+					</ul>
+				</div>
+
+				<div data-ng-show="cholloVM.functions.where('/newChollo')" class="container-contact100-form-btn">
+					<button  class="contact100-form-btn" type="submit">
 						<span>
 							Publicar
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							<i class="fas fa-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>
 				</div>
-				<div class="container-contact100-form-btn">
-					<button data-ng-show="cholloVM.functions.where('/user/updateChollo/'+cholloVM.chollo.id)" class="contact100-form-btn" type="submit">
+				
+				<div data-ng-show="cholloVM.functions.where('/user/updateChollo')" class="container-contact100-form-btn">
+					<button  class="contact100-form-btn" type="submit">
 						<span>
 							Editar
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							<i class="fas fa-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>
 				</div>
-				<div data-ng-show="cholloVM.functions.where('/deleteChollo/'+cholloVM.chollo.id)" class="container-contact100-form-btn">
-				<button class="contact100-form-btn" type="submit">
+				
+				<div data-ng-show="cholloVM.functions.where('/user/deleteChollo')" class="container-contact100-form-btn">
+				<button class="contact100-form-btn-delete" type="submit">
 						<span>
 							Eliminar
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							<i class="fas fa-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 				</button>
 				</div>
+				
 			</form>
 		</div>
 	</div>

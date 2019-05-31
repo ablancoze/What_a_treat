@@ -15,9 +15,9 @@ angular.module('WhatAtreat').factory("shopFactory", ['$http',function($http){
 	    			});
 	    	}, 
 	
-			getShop : function(id){
-				var urlid = url + id;
-				return $http.get(url)
+			getShopById : function(id){
+				var urlid = url+id;
+				return $http.get(urlid)
 					.then(function(response){
 						return response.data;
 					});

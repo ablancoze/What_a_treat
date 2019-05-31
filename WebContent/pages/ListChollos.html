@@ -11,7 +11,7 @@
 		<h3>{{ chollos.title }}</h3>
 		<div class="precioTienda">
 			<h4>{{ chollos.price }}</h4>
-			<p ng-on ="cholloListVM.function.readShopName({{chollos.ids}})">{{cholloListVM.shopObj.name}}</p>
+			<p data-ng-on ="cholloListVM.function.readShopName({{chollos.ids}})">{{cholloListVM.shopObj.name}}</p>
 		</div>
 		<p>{{ chollos.description }}</p>
 	</div>

@@ -39,17 +39,28 @@ angular.module('WhatAtreat').factory("chollosFactory", ['$http',function($http){
 	    			});
 	    	},
 	    	
+	    	putChollo : function (chollo){
+	    		var urlid = url+chollo.id;
+	            return $http.put(urlid, chollo)
+	            	.then(function(response){
+	            		 console.log("Creating chollo. Response:", response);
+	      				 return response.status;
+	  				}); 
+	    	},
+	    	
 	    	postChollo:  function(chollo){
 	    		return $http.post(url,chollo)
 	            	.then(function(response){
+	            		console.log("Updating chollo. Response:", response);
 	            		return response.status;
 	     			});
 	    	}, 
 	    	
-	        deleteChollos : function(id){
+	        deleteChollo : function(id){
 	        	var urlid = url+id;
 	            return $http.delete(urlid)
 	            	.then(function(response){
+	            		console.log("Deleting chollo. Response:", response);
 	            		return response.status;
 	            	});
 	        }     

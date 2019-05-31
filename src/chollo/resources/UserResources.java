@@ -22,6 +22,7 @@ import chollo.dao.UserDAO;
 import chollo.model.Chollo;
 import chollo.model.User;
 import chollo.resources.exceptions.CustomBadRequestException;
+import chollo.resources.exceptions.CustomNotFoundException;
 
 @Path("/user")
 public class UserResources {
@@ -39,9 +40,14 @@ public class UserResources {
 		userDao.setConnection(conn);
 		
 		HttpSession session = request.getSession();
+		
 		User user = (User) session.getAttribute("user");
 		
-		return user; 
+		if (user!=null) {
+			return user;
+		}else {
+			throw new CustomNotFoundException("User not connected");
+		}
 	  }
 	  
 	  @GET

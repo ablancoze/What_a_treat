@@ -8,7 +8,7 @@ angular.module('WhatAtreat').controller('loginCtrl',['userFactory',function(user
 	 var loginViewModel = this;
 	 
 	 /*Atributos*/
-	 loginViewModel.conected=false;
+	 loginViewModel.conected = false;
 	 
 	 /*Funciones*/
 	 loginViewModel.functions = {
@@ -19,7 +19,8 @@ angular.module('WhatAtreat').controller('loginCtrl',['userFactory',function(user
 		   			else
 		   				return true;
 		   		},
-			 	
+
+		   		
 				readUser : function() {
 					if (loginViewModel.conected==false){
 						userFactory.getUser().then(function(response) {
@@ -31,7 +32,7 @@ angular.module('WhatAtreat').controller('loginCtrl',['userFactory',function(user
 							console.log("error on chekin login user");
 						})
 					}
-				}		
+				}
 	 }
 	 loginViewModel.functions.readUser();
 }])

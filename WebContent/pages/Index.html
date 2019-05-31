@@ -21,11 +21,15 @@
     <script src="../js/factories/chollosFactory.js"></script>
     <script src="../js/factories/userFactory.js"></script>
     <script src="../js/factories/shopFactory.js"></script>
+    <script src="../js/factories/commentFactory.js"></script>
     <script src="../js/controllers/userCtrl.js"></script>
 	<script src="../js/controllers/cholloCtrl.js"></script>
 	<script src="../js/controllers/shopCtrl.js"></script>
 	<script src="../js/controllers/cholloList.js"></script>
 	<script src="../js/controllers/loginCtrl.js"></script>
+	<script src="../js/controllers/commentCtrl.js"></script>
+	
+	
 	
 	
 	
@@ -115,7 +119,7 @@
                 <a alt="Ir a tu perfil" ng-href="#!/user">
 					Mi cuenta
                 </a>
-                <a alt="Salir de tu perfil" href="">
+                <a alt="Salir de tu perfil" ng-href="../Logout">
 					Cerrar sesion
                 </a>  
             </div>
@@ -135,7 +139,7 @@
         <ul id="navegador" class="navegacion">
             <li data-ng-controller = "shopCtrl as shopVM">Tiendas
                 <div >
-                	<a ng-repeat = "shops in shopVM.shopList"  href="">{{shops.name}}</a>
+                	<a ng-repeat = "shop in shopVM.shopList"  ng-href="#!/shop/{{shop.id}}">{{shop.name}}</a>
                 </div>
             </li>
             

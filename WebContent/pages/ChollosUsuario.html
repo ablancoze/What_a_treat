@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div class="chollosUser">
-		<div data-ng-repeat="chollo in userVM.chollos" class="cholloBoxPequeña">
+		<div data-ng-repeat="chollo in userVM.chollos" class="cholloBoxPequena">
 			<div class="cholloImagen">
 				<a href=""alt=""> 
 					<img style="width: 80px; height: 80px;"ng-src="{{chollo.imagen}}">
@@ -22,9 +22,12 @@
 				<h5>{{chollo.price}}</h5>
 				<p>{{chollo.description}}</p>
 			</div>
-			<div class="iconoEditar">
-				<a ng-href="/What_a_treat/pages/FormularioChollo.html#!/user/updateChollo/{{chollo.id}}" alt="">
+			<div class="iconoEditar" style="margin-top: 15%;display: inline-grid;">
+				<a ng-href="/What_a_treat/pages/FormularioChollo.html#!/user/updateChollo#{{chollo.id}}" alt="">
 					<i style="font-size: 24px; color: #60BFDF" class='fas'onmouseover="this.style.color='#0099CC'"onMouseOut="this.style.color='#60BFDF'">&#xf044;</i>
+				</a>
+				<a ng-href="/What_a_treat/pages/FormularioChollo.html#!/user/deleteChollo#{{chollo.id}}" alt="">
+					<i style="font-size: 24px; color: #60BFDF" class='fas fa-trash' onmouseover="this.style.color='#0099CC'"onMouseOut="this.style.color='#60BFDF'"></i>
 				</a>
 			</div>
 		</div>

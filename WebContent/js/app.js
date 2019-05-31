@@ -22,7 +22,11 @@ angular.module('WhatAtreat', ['ngRoute']).config(function($routeProvider){
     		templateUrl: "CholloPag.html"
     	})
     	
-    	
+    	.when ("/shop/:ID" , {
+    		controller: "userCtrl",
+    		controllerAs: "userVM",
+    		templateUrl: "ChollosUsuario.html"
+    	})
     	
     	.when ("/user" , {
     		controller: "userCtrl",

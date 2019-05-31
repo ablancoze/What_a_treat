@@ -32,7 +32,7 @@ public class Logout extends HttpServlet {
 		if (session != null) {
 			session.invalidate();
 		}
-		response.sendRedirect("whatAtreat");
+		response.sendRedirect("pages/Index.html");
 	}
 
 	/**

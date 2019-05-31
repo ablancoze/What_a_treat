@@ -36,7 +36,7 @@ public class ShopResource {
 
 	  @GET
 	  @Produces(MediaType.APPLICATION_JSON)
-	  public List<Shop> getShopJSON(@Context HttpServletRequest request) {
+	  public List<Shop> getAllShopsJSON(@Context HttpServletRequest request) {
 		Connection conn = (Connection) sc.getAttribute("dbWhat");
 		ShopDAO shopDAO = new JDBCShopDAOImpl();
 		shopDAO.setConnection(conn);

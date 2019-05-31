@@ -2,7 +2,7 @@
  * 
  */
 
-angular.module('WhatAtreat').controller('userCtrl',['userFactory','$routeParams','chollosFactory',function(userFactory,chollosFactory,$routeParams){
+angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactory','$routeParams','$location',function(userFactory,chollosFactory,$routeParams,$location){
 	
 	
 	 var userViewModel = this;
@@ -11,9 +11,17 @@ angular.module('WhatAtreat').controller('userCtrl',['userFactory','$routeParams'
 	 userViewModel.user = {};
 	 userViewModel.chollos = [];
 	 userViewModel.name = "";
+	 userViewModel.oldPassword = "";
+	 userViewModel.newPassword = "";
+	 
+	 userViewModel.wrongPassword = "Password incorrecta";
 	 
 	 /*Funciones*/
 	 userViewModel.functions = {
+			 
+		   		where : function(route){
+		   			return $location.path() == route;
+		   		},
 			 	
 				readUser : function() {
 					userFactory.getUser().then(function(response) {
@@ -35,7 +43,48 @@ angular.module('WhatAtreat').controller('userCtrl',['userFactory','$routeParams'
 						}, function(response) {
 							console.log("Error reading treats");
 						})
-				}
+				},
+				
+				/*Actualiza un chollo de la lischa de chollos del usuario*/
+				updateUser : function() {
+					userFactory.putChollo(chollosViewModel.chollo)
+						.then(function(response){
+							console.log("Updating chollo with id:",chollosViewModel.chollo.id," Response:", response);
+		    			}, function(response){
+		    				console.log("Error updating chollo");
+		    			})
+				},
+				
+				/*Elimina un chollo de la lista de chollos de un usuario*/
+				deleteUser : function(id) {
+					userFactory.deleteChollo(id)
+						.then(function(response){
+							console.log("Deleting chollo with id:",id," Response:", response);
+						},function (response){
+							console.log("Error deleting chollo");
+						})
+				},
+				
+				
+				userHandlerSwitcher : function(){
+					if (userViewModel.oldPassword == userViewModel.user.password){
+						if (userViewModel.functions.where('/user/updateUser')){
+							console.log($location.path());
+							userViewModel.functions.updateUser();
+						}else{
+							if (userViewModel.functions.where('/user/deleteUser')){
+								console.log($location.path());
+								userViewModel.functions.deleteUser(userViewModel.user.id);
+							}else{
+								console.log($location.path());
+							}
+						}
+						$window.location.href = '/What_a_treat/pages/Index.html';
+					}else{
+						$location.path('/');
+					}
+					
+				}	
 	 }
 	 
 	 userViewModel.functions.readUser();

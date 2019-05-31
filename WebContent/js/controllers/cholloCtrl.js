@@ -1,7 +1,7 @@
 /**
  * 
  */
-angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','$routeParams','$location',function(chollosFactory,$routeParams,$location){
+angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','userFactory','shopFactory','$routeParams','$location','$window',function(chollosFactory,userFactory,shopFactory,$routeParams,$location,$window){
 	
 	
 	 var chollosViewModel = this;
@@ -19,25 +19,29 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','$routePa
 		   		},
 				
 				readChollo : function(id) {
-					chollosFactory.getChollo(id)
-						.then(function(response) {
-							chollosViewModel.chollo = response;
-							console.log("Reading treats with id: ", id," Response: ", response);
-						}, function(response) {
+					chollosFactory.getChollo(id).then(function(response1) {
+							chollosViewModel.chollo = response1;
+							console.log("Reading treats with id: ", id," Response: ", response1);
+							
+							shopFactory.getShopById(chollosViewModel.chollo.ids).then(function(response2){
+								chollosViewModel.shopObj = response2;
+								console.log("Reading shop of treats with id: ", id," Response: ", response2);
+							}, function(response2) {
+								console.log("Error reading shop");
+							})
+							
+						}, function(response1) {
 							console.log("Error reading chollo");
-							$location.path('/');
 						})
 				},
 				
 				readShopName : function(id) {
-					shopFactory.getshop(id)
-						.then(function(response) {
-							chollosViewModel.shopObj = response;
-							console.log("Reading treats with id: ", id," Response: ", response);
-						}, function(response) {
-							console.log("Error reading chollo");
-							$location.path('/');
-						})
+					shopFactory.getShopById(id).then(function(response){
+						chollosViewModel.shopObj = response;
+						console.log("Reading shop of treats with id: ", id," Response: ", response);
+					},function(response) {
+						console.log("Error reading shop");
+					})
 				},
 				
 				/*Lee los tres chollos mas importantes del dia*/
@@ -51,7 +55,16 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','$routePa
 						})
 				},
 				
-				/*Elimina un chollo de la lista de chollos de un usuario*/
+				readUserId : function () {
+					userFactory.getUser().then(function(response){
+						chollosViewModel.chollo.idu = response.id;
+							console.log("Reading User with id",response.id, "for cholloCtr");
+						}, function(response){
+							console.log("User not conected");
+						})
+				},
+				
+				/*Permite la creacion de un chollo*/
 				createChollo : function() {
 					chollosFactory.postChollo(chollosViewModel.chollo)
 						.then(function(response){
@@ -61,9 +74,12 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','$routePa
 		    			})
 				},
 				
-				/*Elimina un chollo de la lista de chollos de un usuario*/
+				/*Actualiza un chollo de la lischa de chollos del usuario*/
 				updateChollo : function() {
-					chollosFactory.putChollo(chollosViewModel.order)
+					if (chollosViewModel.chollo.soldout == true){
+						chollosViewModel.chollo.soldout = 1;
+					}
+					chollosFactory.putChollo(chollosViewModel.chollo)
 						.then(function(response){
 							console.log("Updating chollo with id:",chollosViewModel.chollo.id," Response:", response);
 		    			}, function(response){
@@ -72,7 +88,7 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','$routePa
 				},
 				
 				/*Elimina un chollo de la lista de chollos de un usuario*/
-				deleteChollo : function() {
+				deleteChollo : function(id) {
 					chollosFactory.deleteChollo(id)
 						.then(function(response){
 							console.log("Deleting chollo with id:",id," Response:", response);
@@ -86,23 +102,30 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','$routePa
 						console.log($location.path());
 						chollosViewModel.functions.createChollo();
 					}
-					else if (chollosViewModel.functions.where('/user/updateChollo/'+chollosViewModel.chollo.id)){
+					else if (chollosViewModel.functions.where('/user/updateChollo')){
 						console.log($location.path());
-						orderHandlerViewModel.functions.updateChollo();
+						chollosViewModel.functions.updateChollo();
 					}
-					else if (chollosViewModel.functions.where('/user/deleteChollo/'+chollosViewModel.chollo.id)){
+					else if (chollosViewModel.functions.where('/user/deleteChollo')){
 						console.log($location.path());
-						orderHandlerViewModel.functions.deleteChollo(chollosViewModel.chollo.id);
+						chollosViewModel.functions.deleteChollo(chollosViewModel.chollo.id);
 					}
 					else {
 					console.log($location.path());
 					}
-					$location.path('/');
-				}
-				
+					$window.location.href = '/What_a_treat/pages/Index.html';
+				}				
 	 }
+	 
+	 chollosViewModel.functions.readUserId();
 	 chollosViewModel.functions.readChollosHot();
+	 var cholloid=$location.hash();
 	 if ($routeParams.ID!=undefined){
 		 chollosViewModel.functions.readChollo($routeParams.ID);
 	 }
+	 
+	 if (cholloid!=""){
+		 chollosViewModel.functions.readChollo(cholloid);
+	 }
+	 
 }])

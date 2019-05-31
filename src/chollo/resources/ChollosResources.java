@@ -128,7 +128,7 @@ public class ChollosResources {
 		
 		Response res = null;
 
-		if (user != null) {
+		if (user != null && newChollo.getIdu()==user.getId()) {
 			long id = cholloDao.add(newChollo);
 			res = Response //return 201 and Location: /orders/newid
 					   .created(
@@ -167,11 +167,10 @@ public class ChollosResources {
 	        chollo.setDescription(formParams.getFirst("descripcion"));
 	        chollo.setLink(formParams.getFirst("link"));
 	        chollo.setPrice(Long.parseLong(formParams.getFirst("precio")));
-	        chollo.setIds(0);
-	        //chollo.setIds(Long.parseLong(formParams.getFirst("shop")));
+	        chollo.setIds(Long.parseLong(formParams.getFirst("shop")));
 	        chollo.setIdu(user.getId());
 	        chollo.setLikes(0);
-	        chollo.setSoldout(0);
+	        chollo.setSoldout((int) Long.parseLong(formParams.getFirst("soldout")));
 	        chollo.setImagen(formParams.getFirst("imagen"));
 	        long id = cholloDAO.add(chollo);
 			res = Response //return 201 and Location: /orders/newid
@@ -211,13 +210,14 @@ public class ChollosResources {
 		  
 		  if ((chollo != null) && (user.getId() == chollo.getIdu()) ){
 					if (chollo.getId()!=cholloid) { 
-						throw new CustomBadRequestException("Error in id, u are not allowed to modify this trat ");
+						throw new WebApplicationException(Response.Status.NOT_FOUND);
 					}else{
 						cholloDAO.save(cholloUpdate);
 					}
 					
 				}else {
-					throw new WebApplicationException(Response.Status.NOT_FOUND);	
+					throw new CustomBadRequestException("Error on id, u are not allowed to modify this trat ");
+						
 				}		
 		  return response;
 		}

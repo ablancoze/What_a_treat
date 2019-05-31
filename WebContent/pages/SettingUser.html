@@ -1,24 +1,23 @@
 
-<form data-ng-submit="userVM.functions.userHandlerSwitcher()" id="formularioEditarPerfil"class="editContainer" style="box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);margin-bottom: 0;">
-	<div class="infoFoto">
+<form data-ng-submit="userVM.functions.userHandlerSwitcher()" id="formularioEditarPerfil"class="editContainer" style="box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);margin-bottom: 0;grid-column-gap: 30px;">
+	<div class="infoFoto" style="margin-top: 0px;height: 1px;">
 		<div class="imagenChollo">
 			<img src="../img/FotoPerfilAlvaroAlumno.jpg">
 		</div>
-		<div>
+		<div style="margin-top: 26px;">
 			<input id="imagen" name="imagen" type="text"placeholder="Cambiar foto de perfil"> <i class="material-icons">link</i>
 		</div>
 	</div>
 
 	<div class="infoChollo">
-		<h4>{{userVM.user.username}}</h4><!-- <p style="color: red; font-weight: bolder; margin-left: auto;">${usernameProblem}</p>    POR SI EL FORMULARIO TIENE ERRORES-->
-		<input id="username" name="username" type="text"placeholder="Introduce un nuevo nombre de usuario" value="">
-		<h4>{{userVM.user.email}}</h4><!-- <p style="color: red; font-weight: bolder; margin-left: auto;">${emailProblem}</p>  -->
-		<input id="email" name="email" type="text"placeholder="Introduce un nuevo email" value="">
-		<p>Para cambiar la password primero debes introducir tu contraseña actual</p>
-		<!-- <p style="color: red; font-weight: bolder; margin-left: auto;">${messages}</p> -->
-		<input id="Oldpass" name="Oldpass" type="password">
-		<p>Nueva password</p>
-		<input id="Newpass" name="Newpass" type="password"placeholder="Introduce tu nueva password">
+		<h4 style="margin-bottom: 10px;">User name</h4>
+		<input data-ng-model="userVM.user.username" id="username" name="username" type="text" placeholder="{{userVM.user.username}}" value="" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
+		<h4 style="margin-bottom: 10px;">Email</h4>
+		<input data-ng-model="userVM.user.email" id="email" name="email" type="text" placeholder="{{userVM.user.email}}" value="" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
+		<p style="margin-bottom: 10px;">Old password</p>
+		<input data-ng-model="userVM.oldPassword" id="Oldpass" name="Oldpass" type="password" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
+		<p style="margin-bottom: 10px;">New password</p>
+		<input data-ng-model="userVM.newPassword" id="Newpass" name="Newpass" type="password"placeholder="Introduce tu nueva password" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
 	</div>
 	<button class="btn-aplicar" id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">
 		Aplicar cambios

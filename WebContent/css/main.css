@@ -289,7 +289,7 @@ textarea.input100 {
   width: 100%;
 }
 
-.contact100-form-btn {
+.contact100-form-btn-delete , .contact100-form-btn {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -321,11 +321,30 @@ textarea.input100 {
   transition: all 0.4s;
 }
 
+.contact100-form-btn-delete i {
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
 .contact100-form-btn:hover {
   background-color: #2a80b9;
 }
 
+.contact100-form-btn-delete:hover {
+	background-color: #cb2431;
+}
+
 .contact100-form-btn:hover i {
+  -webkit-transform: translateX(10px);
+  -moz-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  -o-transform: translateX(10px);
+  transform: translateX(10px);
+}
+
+.contact100-form-btn-delete:hover i{
   -webkit-transform: translateX(10px);
   -moz-transform: translateX(10px);
   -ms-transform: translateX(10px);

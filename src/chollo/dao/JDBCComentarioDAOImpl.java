@@ -66,12 +66,16 @@ public class JDBCComentarioDAOImpl implements ComentarioDAO {
 			Statement stmt;
 			ResultSet rs;
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT username,comentario FROM comentarios WHERE cid = "+cid+"");
+			rs = stmt.executeQuery("SELECT * FROM comentarios WHERE cid = "+cid+"");
 			while ( rs.next() ) {
 				
 				Comentario comentario = new Comentario();
+				comentario.setId(rs.getInt("id"));
 				comentario.setUsername(rs.getString("username"));
+				comentario.setCid(rs.getInt("cid"));
 				comentario.setComentario(rs.getString("comentario"));
+				comentario.setPuntos(rs.getInt("puntos"));
+				
 				comentarios.add(comentario);
 								
 			}
