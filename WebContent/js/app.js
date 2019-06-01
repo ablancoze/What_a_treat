@@ -22,6 +22,18 @@ angular.module('WhatAtreat', ['ngRoute']).config(function($routeProvider){
     		templateUrl: "CholloPag.html"
     	})
     	
+    	.when ("/chollo/search/:SEARCH" , {
+    		controller: "cholloListSearch",
+    		controllerAs: "cholloListVM",
+    		templateUrl: "ListChollos.html"
+    	})
+    	
+    	.when ("/chollo/search/shop/:ID" , {
+    		controller: "cholloListSearch",
+    		controllerAs: "cholloListVM",
+    		templateUrl: "ListChollos.html"
+    	})
+    	
     	.when ("/shop/:ID" , {
     		controller: "userCtrl",
     		controllerAs: "userVM",

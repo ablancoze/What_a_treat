@@ -26,8 +26,10 @@
 	<script src="../js/controllers/cholloCtrl.js"></script>
 	<script src="../js/controllers/shopCtrl.js"></script>
 	<script src="../js/controllers/cholloList.js"></script>
+	<script src="../js/controllers/cholloListSearch.js"></script>
 	<script src="../js/controllers/loginCtrl.js"></script>
 	<script src="../js/controllers/commentCtrl.js"></script>
+	
 	
 	
 	
@@ -48,12 +50,13 @@
         </div>
         
         <div class="buscador">
-        	<form method="get" action="WhatAtreatSearch">
+        	<form data-ng-submit="">
 	        	<div class="searchBox">
-	                <input name="search" type="search" id="search" placeholder="What are you looking for?" >
+	                <input ng-model="search" name="search" placeholder="What are you looking for?" >
 	            </div>
 	            <div>
-	                <button type="submit"><i  class="material-icons">search</i></button>
+	                <!-- <a ng-href="#!/chollo/search/{{search}}" style="background-color: transparent;border-style: solid;border-color: #0093c4;border-bottom-right-radius: 18px;border-top-right-radius: 18px;border-left: none;height: 33px;color: #0093c4;text-rendering: auto;text-align: center;cursor: default;border-width: 2px;border-image: initial;text-rendering: auto;letter-spacing: normal;word-spacing: normal;text-transform: none;text-indent: 0px;text-shadow: none;display: inline-block;margin: 0em;font: 400 13.3333px Arial;"><i  class="material-icons">search</i></a>  -->
+	                 <button type="submit"><i  class="material-icons">search</i></button>
 	            </div>
         	</form>
         </div>
@@ -139,7 +142,7 @@
         <ul id="navegador" class="navegacion">
             <li data-ng-controller = "shopCtrl as shopVM">Tiendas
                 <div >
-                	<a ng-repeat = "shop in shopVM.shopList"  ng-href="#!/shop/{{shop.id}}">{{shop.name}}</a>
+                	<a ng-repeat = "shop in shopVM.shopList"  ng-href="#!/chollo/search/shop/{{shop.id}}">{{shop.name}}</a>
                 </div>
             </li>
             

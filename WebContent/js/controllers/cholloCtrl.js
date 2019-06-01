@@ -10,6 +10,7 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','userFact
 	 chollosViewModel.listChollosHot = [];
 	 chollosViewModel.chollo = {};
 	 chollosViewModel.shopObj={};
+	 chollosViewModel.user="";
 	 
 	 /*Funciones*/
 	 chollosViewModel.functions = {
@@ -28,6 +29,13 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','userFact
 								console.log("Reading shop of treats with id: ", id," Response: ", response2);
 							}, function(response2) {
 								console.log("Error reading shop");
+							})
+							
+							userFactory.getUserName(chollosViewModel.chollo.idu).then(function(response3){
+								chollosViewModel.user = response3;
+								console.log("Reading User name from the chollo",chollosViewModel.chollo.id, response3);
+							}, function(response3){
+								console.log("User not conected");
 							})
 							
 						}, function(response1) {
@@ -63,6 +71,12 @@ angular.module('WhatAtreat').controller('cholloCtrl',['chollosFactory','userFact
 							console.log("User not conected");
 						})
 				},
+				
+				readUserNameChollo : function(id){
+
+				},
+				
+				
 				
 				/*Permite la creacion de un chollo*/
 				createChollo : function() {

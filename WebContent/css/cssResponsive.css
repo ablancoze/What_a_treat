@@ -409,7 +409,7 @@ h1, h2, h3, h4 {
 		margin-top: 2%;
 		
 	}
-	.mainContainer>.col-6>.cholloBox {
+	.mainContainer>.col-6>div>.cholloBox {
 		margin-bottom: 2%;
 		margin-top: 2%;
 		display: grid;
@@ -418,7 +418,7 @@ h1, h2, h3, h4 {
 		box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);
 		padding: 11px;
 	}
-	.mainContainer>.col-6>.cholloBox>.textoChollo>.progressBar {
+	.mainContainer>.col-6>div>.cholloBox>.textoChollo>.progressBar {
 		display: inline-flex;
 		margin-top: 10px;
 	}
@@ -443,7 +443,7 @@ h1, h2, h3, h4 {
 		width: 80px;
 		height: 80px;
 	}
-	.mainContainer>.col-6>.cholloBox>.textoChollo {
+	.mainContainer>.col-6>div>.cholloBox>.textoChollo {
 		display: grid;
 		grid-template-rows: auto auto auto auto auto;
 		text-align: initial;

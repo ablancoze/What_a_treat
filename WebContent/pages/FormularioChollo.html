@@ -104,7 +104,7 @@
 					<span class="label-input100">Tienda *</span>
 					<div>
 						<select  data-ng-disabled="cholloVM.functions.where('/user/deleteChollo')" class="js-select2" name="shop">
-							<option data-ng-model="cholloVM.chollo.ids" data-ng-repeat = "shop in shopVM.shopList" value={{shop.id}} ng-selected ="cholloVM.chollo.ids == shop.id">{{shop.name}}</option>
+							<option data-ng-model="cholloVM.chollo.ids" data-ng-repeat = "shop in shopVM.shopList" ng-value={{shop.id}} ng-selected ="cholloVM.chollo.ids == shop.id">{{shop.name}}</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
@@ -113,7 +113,7 @@
 				<div data-ng-show="cholloVM.functions.where('/user/updateChollo')" class="container" style="width: fit-content;margin: inherit;">
 					<ul class="ks-cboxtags">
 						<li>
-						<input value="1" name="soldout" data-ng-model="cholloVM.chollo.soldout" type="checkbox" id="checkboxOne"><label for="checkboxOne">Agotado</label>
+						<input  value="1" name="soldout" data-ng-model="cholloVM.chollo.soldout" type="checkbox" id="checkboxOne"><label for="checkboxOne">Agotado</label>
 						</li>
 					</ul>
 				</div>

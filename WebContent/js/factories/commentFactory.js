@@ -14,7 +14,15 @@ angular.module('WhatAtreat').factory("commentFactory", ['$http',function($http){
 					.then(function(response){
 						return response.data;
 					});
-			} 
+			},
+	
+	
+			postComment : function(comment){
+				return $http.post(url,comment)
+					.then(function(response){
+						return response.data;
+					});
+			}
 	}
     return commentInterface;
 }])

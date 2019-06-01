@@ -1,3 +1,4 @@
+<div>
 <div data-ng-repeat="chollos in cholloListVM.listChollos" class="cholloBox">
 	<div class="cholloImagen">
 		<a ng-href= "#!/chollo/{{ chollos.id }}" alt=""> 
@@ -15,4 +16,6 @@
 		</div>
 		<p>{{ chollos.description }}</p>
 	</div>
+	<img ng-if="chollos.soldout == 1" src="../img/sold-out.png" style="position: absolute;width: 584.047px;height: 175px;margin-left: 144px;">
+</div>
 </div>

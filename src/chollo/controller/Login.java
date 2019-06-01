@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();//obtengo la sesion de la requeste que ha hecho el usuario
 
 		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("pages/Registro.jsp");
 		view.forward(request,response);	
 		
 	}
@@ -74,7 +74,7 @@ public class Login extends HttpServlet {
 				response.sendRedirect("pages/Index.html");
 			}else{
 				request.setAttribute("messages","Nombre de usuario o password incorrecto");
-				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("pages/Registro.jsp");
 				view.forward(request,response);	
 			}
 

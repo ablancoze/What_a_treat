@@ -1,13 +1,15 @@
+
 /**
  * 
  */
-angular.module('WhatAtreat').controller('commentCtrl',['commentFactory','$routeParams','$location','$window',function(commentFactory,$routeParams,$location,$window){
+angular.module('WhatAtreat').controller('commentCtrl',['commentFactory','userFactory','$routeParams','$location','$window',function(commentFactory,userFactory,$routeParams,$location,$window){
 	
 	
 	 var commentListViewModel = this;
 	 
 	 /*Atributos*/
 	 commentListViewModel.listComment = [];
+	 commentListViewModel.comment={};
 	 
 	 /*Funciones*/
 	 commentListViewModel.functions = {
@@ -21,7 +23,31 @@ angular.module('WhatAtreat').controller('commentCtrl',['commentFactory','$routeP
 						}, function(response) {
 							console.log("Error reading comments");
 						})
+				},
+	 
+	 
+				/* Leer todos los chollos de la base de datos */
+				createComment : function() {
+					userFactory.getUser().then(function(response) {
+						if (angular.isObject(response)){
+							userViewModel.user = response;
+							console.log("Geting an user with username: ", response.username,"\n id: ",response.id);
+						}
+					}, function(response) {
+						console.log("Error reading user");
+					})
+					
+					commentFactory.postpostComment(commentListViewModel.comment)
+					.then(function(response1) {
+							console.log("creating comment: ", commentListViewModel.comment.comentario , "by the user: ", commentListViewModel.comment.username,"in the chollo", commentListViewModel.comment.idc);
+						}, function(response) {
+							console.log("Error reading comments");
+					})
+					
+					
 				}
+	 
+	 			
 	 }
 	 
 	 if ($routeParams.ID!=undefined){

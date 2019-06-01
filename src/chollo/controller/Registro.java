@@ -75,13 +75,13 @@ public class Registro extends HttpServlet {
 		if (userDAO.getEmail(email)!=null) {
 			logger.info("Que esta pasando aqui");
 			request.setAttribute("emailProblem","Este email ya existe");
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("page/Registro.jsp");
 			view.forward(request,response);	
 		}
 		
 		if (userDAO.getUserName(userName)!=null) {
 			request.setAttribute("usernameProblem","Este nombre de usuario ya existe");
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/Registro.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("page/Registro.jsp");
 			view.forward(request,response);	
 			
 		}
@@ -101,7 +101,7 @@ public class Registro extends HttpServlet {
 		logger.info("USUARIO REGISTRADO CON EL ID : " +u.getId());
 		
 		
-		response.sendRedirect("whatAtreat");
+		response.sendRedirect("pages/Index.html");
 		
 	}
 

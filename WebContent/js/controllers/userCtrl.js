@@ -2,7 +2,7 @@
  * 
  */
 
-angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactory','$routeParams','$location',function(userFactory,chollosFactory,$routeParams,$location){
+angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactory','$routeParams','$location','$route','$window',function(userFactory,chollosFactory,$routeParams,$location,$route,$window){
 	
 	
 	 var userViewModel = this;
@@ -10,14 +10,52 @@ angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactor
 	 /*Atributos*/
 	 userViewModel.user = {};
 	 userViewModel.chollos = [];
-	 userViewModel.name = "";
-	 userViewModel.oldPassword = "";
+	 userViewModel.oldPassword;
 	 userViewModel.newPassword = "";
 	 
-	 userViewModel.wrongPassword = "Password incorrecta";
+	 userViewModel.newUserName = "";
+	 userViewModel.newEmail = "";
+	 
+	 userViewModel.bandera = false;
+	 
+	 userViewModel.wrongPassword;
+	 userViewModel.wrongUserName;
+	 userViewModel.wrongEmail;
+	 
+	 userViewModel.userNameBoolean=false;
+	 userViewModel.userEmailBoolean=false;
 	 
 	 /*Funciones*/
 	 userViewModel.functions = {
+			 
+			 	passwordTest : function(){
+			 		if(userViewModel.oldPassword == userViewModel.user.password ){
+			 			return true;
+			 		}else{
+			 			userViewModel.wrongPassword = "Password incorrecta";
+			 			return false;
+			 		}
+			 	},
+			 	
+			 	userNameTest : function(){
+					userFactory.usernameTest(userViewModel.newUserName).then(function(response){
+						if (response.userName != ""){
+							userViewModel.wrongEmail = "ese username ya existe";
+							console.log("El usuario ya existe",response)
+							userViewModel.userNameBoolean=true;
+						}
+					},function (response){
+					})
+			 	},
+			 	
+			 	emailTest : function(){
+					userFactory.emailTest(userViewModel.newEmail).then(function(response){
+						userViewModel.wrongEmail = "El email ya existe";
+						return false;
+					},function (response){
+			 			return true;
+					})
+			 	},
 			 
 		   		where : function(route){
 		   			return $location.path() == route;
@@ -27,7 +65,7 @@ angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactor
 					userFactory.getUser().then(function(response) {
 						if (angular.isObject(response)){
 							userViewModel.user = response;
-							console.log("Geting an user", response);
+							console.log("Geting an user with username: ", response.username,"\n id: ",response.id);
 						}
 					}, function(response) {
 						console.log("Error reading user");
@@ -47,22 +85,60 @@ angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactor
 				
 				/*Actualiza un chollo de la lischa de chollos del usuario*/
 				updateUser : function() {
-					userFactory.putChollo(chollosViewModel.chollo)
-						.then(function(response){
-							console.log("Updating chollo with id:",chollosViewModel.chollo.id," Response:", response);
-		    			}, function(response){
-		    				console.log("Error updating chollo");
-		    			})
-				},
-				
-				/*Elimina un chollo de la lista de chollos de un usuario*/
-				deleteUser : function(id) {
-					userFactory.deleteChollo(id)
-						.then(function(response){
-							console.log("Deleting chollo with id:",id," Response:", response);
+					
+					if (userViewModel.newPassword != ""){
+						if (userViewModel.functions.passwordTest()){
+							userViewModel.user.password = userViewModel.newPassword;
+							userViewModel.bandera = true;
+						}else{
+							$window.location.href = '/What_a_treat/pages/Index.html#!/user/settings/'+userViewModel.user.id;
+						}
+					}
+					
+					if (userViewModel.newUserName != ""){
+						if (userViewModel.functions.userNameTest() || userViewModel.userNameBoolean==true){
+							userViewModel.user.username = userViewModel.newUserName;
+							userViewModel.bandera = true;
+						}else{
+							$window.location.href = '/What_a_treat/pages/Index.html#!/user/settings/'+userViewModel.user.id;
+						}
+						
+					}
+					
+					if (userViewModel.newEmail != ""){
+						userViewModel.functions.emailTest()
+						if (!userViewModel.userNameBoolean){
+							userViewModel.user.email = userViewModel.newEmail;
+							userViewModel.bandera = true;
+						}else{
+							$window.location.href = '/What_a_treat/pages/Index.html#!/user/settings/'+userViewModel.user.id;
+						}
+					}
+					
+					if (userViewModel.bandera){
+						userFactory.putUser(userViewModel.user).then(function(response){
+							console.log("Deleting user with id:",id," Response:", response);
 						},function (response){
 							console.log("Error deleting chollo");
 						})
+						
+						$window.location.href = '/What_a_treat/pages/Index.html';
+						
+					}else{
+						$window.location.href = '/What_a_treat/pages/Index.html#!/user/settings/'+userViewModel.user.id;
+					}
+
+				},
+				
+				/*Elimina un chollo de la lista de chollos de un usuario*/
+				deleteUser : function() {
+					userFactory.deleteUser(userViewModel.user.id)
+						.then(function(response){
+							console.log("Deleting user with id:",id," Response:", response);
+						},function (response){
+							console.log("Error deleting chollo");
+						})
+						$window.location.href = '/What_a_treat/pages/Index.html';
 				},
 				
 				
@@ -81,7 +157,7 @@ angular.module('WhatAtreat').controller('userCtrl',['userFactory','chollosFactor
 						}
 						$window.location.href = '/What_a_treat/pages/Index.html';
 					}else{
-						$location.path('/');
+						$window.location.href = '/What_a_treat/pages/Index.html';
 					}
 					
 				}	

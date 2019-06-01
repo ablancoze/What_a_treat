@@ -24,4 +24,5 @@ angular.module('WhatAtreat').controller('cholloList',['chollosFactory',function(
 				}
 	 }
 	 chollosListViewModel.functions.readListChollos();
+
 }])

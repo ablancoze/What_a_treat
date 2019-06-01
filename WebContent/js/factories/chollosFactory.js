@@ -23,6 +23,22 @@ angular.module('WhatAtreat').factory("chollosFactory", ['$http',function($http){
 	         		});
 	    	},
 	    	
+	    	getChollosBySearch : function(search){
+	    		var urlid = url + search;
+	            return $http.get(urlid)
+	            	.then(function(response){
+	            		return response.data;
+	         		});
+	    	},
+	    	
+	    	getChollosByShopId : function(id){
+	    		var urlid = url +"shop/"+ id;
+	            return $http.get(urlid)
+	            	.then(function(response){
+	            		return response.data;
+	         		});
+	    	},
+	    	
 	    	getChollosUser : function(id){
 	    		var urlid = url +"user/"+id;
 	            return $http.get(urlid)
@@ -39,22 +55,22 @@ angular.module('WhatAtreat').factory("chollosFactory", ['$http',function($http){
 	    			});
 	    	},
 	    	
+	    	postChollo:  function(chollo){
+	    		return $http.post(url,chollo)
+	            	.then(function(response){
+	            		console.log("creating chollo. Response:", response);
+	            		return response.status;
+	     			});
+	    	}, 
+	    	
 	    	putChollo : function (chollo){
 	    		var urlid = url+chollo.id;
 	            return $http.put(urlid, chollo)
 	            	.then(function(response){
-	            		 console.log("Creating chollo. Response:", response);
+	            		 console.log("Updating chollo. Response:", response);
 	      				 return response.status;
 	  				}); 
 	    	},
-	    	
-	    	postChollo:  function(chollo){
-	    		return $http.post(url,chollo)
-	            	.then(function(response){
-	            		console.log("Updating chollo. Response:", response);
-	            		return response.status;
-	     			});
-	    	}, 
 	    	
 	        deleteChollo : function(id){
 	        	var urlid = url+id;

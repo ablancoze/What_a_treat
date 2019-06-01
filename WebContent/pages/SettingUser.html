@@ -1,5 +1,5 @@
 
-<form data-ng-submit="userVM.functions.userHandlerSwitcher()" id="formularioEditarPerfil"class="editContainer" style="box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);margin-bottom: 0;grid-column-gap: 30px;">
+<form data-ng-submit="userVM.functions.updateUser()" id="formularioEditarPerfil" class="editContainer" style="box-shadow: 0 0.23077rem 0.38462rem 0 rgba(0, 0, 0, .25);margin-bottom: 0;grid-column-gap: 30px;">
 	<div class="infoFoto" style="margin-top: 0px;height: 1px;">
 		<div class="imagenChollo">
 			<img src="../img/FotoPerfilAlvaroAlumno.jpg">
@@ -10,22 +10,36 @@
 	</div>
 
 	<div class="infoChollo">
-		<h4 style="margin-bottom: 10px;">User name</h4>
-		<input data-ng-model="userVM.user.username" id="username" name="username" type="text" placeholder="{{userVM.user.username}}" value="" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
-		<h4 style="margin-bottom: 10px;">Email</h4>
-		<input data-ng-model="userVM.user.email" id="email" name="email" type="text" placeholder="{{userVM.user.email}}" value="" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
-		<p style="margin-bottom: 10px;">Old password</p>
-		<input data-ng-model="userVM.oldPassword" id="Oldpass" name="Oldpass" type="password" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
-		<p style="margin-bottom: 10px;">New password</p>
-		<input data-ng-model="userVM.newPassword" id="Newpass" name="Newpass" type="password"placeholder="Introduce tu nueva password" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
+		<div style="display: flex; justify-content: space-between; ">
+			<h4 style="margin-bottom: 10px;">User name</h4>
+			<p style="margin-bottom: 10px;color: red; font-weight: bold;">{{userVM.wrongUserName}}</p>
+		</div>
+		<input data-ng-model="userVM.newUserName" id="username" name="username" type="text" placeholder="{{userVM.user.username}}" value="" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
+		
+		<div style="display: flex; justify-content: space-between; ">
+			<h4 style="margin-bottom: 10px;">Email</h4>
+			<p style="margin-bottom: 10px;color: red; font-weight: bold;">{{userVM.wrongEmail}}</p>
+		</div>
+		<input data-ng-model="userVM.newEmail" id="email" name="email" type="text" placeholder="{{userVM.user.email}}" value="" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 30%;margin-bottom: 30px;">
+		
+		<fieldset style="padding: 20px 24px; border: 1px solid #ededed; margin-bottom: 30px; box-shadow: 0 1px 1px #EDEDED; background: #fff;width: 95%;">
+			<div style="display: flex; justify-content: space-between; ">
+				<p style="margin-bottom: 10px;">Old password</p>
+				<p style="margin-bottom: 10px;color: red; font-weight: bold;">{{userVM.wrongPassword}}</p>
+			</div>
+			<input data-ng-model="userVM.oldPassword" id="Oldpass" name="Oldpass" type="password" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 36%;margin-bottom: 30px;">
+			<p style="margin-bottom: 10px;">New password</p>
+			<input data-ng-model="userVM.newPassword" id="Newpass" name="Newpass" type="password"placeholder="Introduce tu nueva password" style="border-bottom: 2px solid #dbdbdb;border-top: none;border-right: none;border-left: none;width: 36%;margin-bottom: 30px;">
+		</fieldset>
+		
 	</div>
 	<button class="btn-aplicar" id="botonPublicarChollo" type="submit" value="Publica" class="botonPublicarChollo">
 		Aplicar cambios
 	</button>
 </form>
 
-<form method="post" action="EliminarCuenta" style="box-shadow: -1px 13px 12px 0px rgba(0,0,0,0.25);background-color: white;">
-	<button class="btn-eliminar"
-		type="submit">Eliminiar cuenta
+<form data-ng-submit="userVM.functions.deleteUser()" style="box-shadow: -1px 13px 12px 0px rgba(0,0,0,0.25);background-color: white;">
+	<button class="btn-eliminar"type="submit">
+		Eliminiar cuenta
 	</button>
 </form>

@@ -26,7 +26,7 @@ angular.module('WhatAtreat').controller('loginCtrl',['userFactory',function(user
 						userFactory.getUser().then(function(response) {
 							if (angular.isObject(response)){
 								loginViewModel.conected=true;
-								console.log("chekin login user", response);
+								console.log("chekin login user");
 							}
 						}, function(response) {
 							console.log("error on chekin login user");

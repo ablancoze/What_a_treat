@@ -58,6 +58,48 @@ public class ChollosResources {
 	  }
 	  
 	  @GET
+	  @Path("/{search: [a-zA-Z][a-zA-Z_0-9]*}")	
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public List<Chollo> getCholloBySearchJSON (@PathParam("search") String search, @Context HttpServletRequest request){
+		  
+		  Connection conn = (Connection) sc.getAttribute("dbWhat");
+		  
+		  HttpSession session = request.getSession();
+		  
+		  List<Chollo> chollos;
+		  
+		  // Le doy los chollos y los conecyo con la base de datospara que pueda verlos
+		  CholloDAO cholloDAO = new JDBCCholloDAOImpl();
+		  cholloDAO.setConnection(conn);
+		  
+		  
+		  chollos = cholloDAO.getAllBySearchAll(search);
+		  
+		  return chollos;
+	  }
+	  
+	  @GET
+	  @Path("/shop/{shopid: [0-9]+}")	
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public List<Chollo> getCholloByIdShopJSON (@PathParam("shopid") long shopid, @Context HttpServletRequest request){
+		  
+		  Connection conn = (Connection) sc.getAttribute("dbWhat");
+		  
+		  HttpSession session = request.getSession();
+		  
+		  List<Chollo> chollos;
+		  
+		  // Le doy los chollos y los conecyo con la base de datospara que pueda verlos
+		  CholloDAO cholloDAO = new JDBCCholloDAOImpl();
+		  cholloDAO.setConnection(conn);
+		  
+		  
+		  chollos = cholloDAO.getAllBySearchShop(shopid);
+		  
+		  return chollos;
+	  }
+	  
+	  @GET
 	  @Path("/{cholloid: [0-9]+}")	  
 	  @Produces(MediaType.APPLICATION_JSON)
 	  public Chollo getCholloJSON(@PathParam("cholloid") long cholloid, @Context HttpServletRequest request) {

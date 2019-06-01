@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 //TODO Comlete the urlpattern for this Filter
 
-@WebFilter(urlPatterns = {"/UserProfile", "/Logout" , "/EditProfile", "/PublicarChollo", "/EditChollo" })
+@WebFilter(dispatcherTypes = {DispatcherType.REQUEST } ,urlPatterns = {/*"/rest/*",*/"/pages/FormularioChollo.html/*","/pages/Index.html/user/*"})
 public class LoginFilter implements Filter{
 
 	private FilterConfig fc;
@@ -40,7 +40,7 @@ public class LoginFilter implements Filter{
 		HttpSession session = ((HttpServletRequest)request).getSession(true);
 		
 		if (session.getAttribute("user") == null) {
-			res.sendRedirect("Login");
+			res.sendRedirect("../Login");
 		}else {
 			chain.doFilter(request, response);
 		}
