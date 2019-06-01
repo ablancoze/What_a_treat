@@ -37,7 +37,7 @@ angular.module('WhatAtreat').controller('commentCtrl',['commentFactory','userFac
 						console.log("Error reading user");
 					})
 					
-					commentFactory.postpostComment(commentListViewModel.comment)
+					commentFactory.postComment(commentListViewModel.comment)
 					.then(function(response1) {
 							console.log("creating comment: ", commentListViewModel.comment.comentario , "by the user: ", commentListViewModel.comment.username,"in the chollo", commentListViewModel.comment.idc);
 						}, function(response) {
